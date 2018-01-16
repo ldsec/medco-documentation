@@ -45,7 +45,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'MedCo Technical Documentation'
+project = u'MedCo'
 copyright = u'2017, EPFL LCA1'
 author = u'Mickaël Misbach, EPFL LCA1'
 
