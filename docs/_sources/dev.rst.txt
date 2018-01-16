@@ -20,3 +20,20 @@ incl. full desc of folders
 
 -
 i2b2 configuration
+
+---
+links to all the repo
+how to set up the dev env
+
+Repositories
+------------
+
+
+
+I2b2 Documentation
+------------------
+
+
+Setup of the Development Environment
+------------------------------------
+

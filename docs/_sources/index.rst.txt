@@ -3,21 +3,22 @@ MedCo Technical Documentation
 
 ..  toctree::
     :maxdepth: 2
-    :caption: Contents:
+    :caption: Index
 
-    workflow
-    user
-    sysadmin
-    dev
+    deployment
 
+Disclaimer: this documentation is still under construction.
 
-Releases
---------
+Developer Resources
+-------------------
+**Repositories**
 
-0.1:todo, features, etc
-versions of dependencies used
-git versions
+- MedCo Deployment: https://c4science.ch/source/medco-deployment/
+- MedCo I2b2 Cell: https://c4science.ch/source/medco-i2b2-cell/
+- MedCo SHRINE fork: https://c4science.ch/source/shrine-medco/
+- MedCo Documentation: https://c4science.ch/source/medco-documentation/
 
-
-
-This documentation is written using reStructuredText and generated in html by Sphinx.
+- i2b2 server (core cells): https://github.com/i2b2/i2b2-core-server
+- i2b2 webclient: https://github.com/i2b2/i2b2-webclient
+- i2b2 data (database structure and demo data): https://github.com/i2b2/i2b2-data
+- SHRINE: https://open.med.harvard.edu/stash/projects/SHRINE/repos/shrine/browse

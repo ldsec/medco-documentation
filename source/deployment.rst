@@ -3,25 +3,15 @@ Deployment Documentation
 
 ..  toctree::
 
-    sysadmin/deployments
+    deployment/deployed_description
 
+This page explains how to deploy and configure MedCo.
 
-todo: change files and names to deployments
-todo: change structure of whole thing
-    How to deploy and configure MedCo
+**Deployment profiles**
 
-deploy-install
-configuration--use of conf generation (what it does is in deployment)
-system administration
-description of deployment
-
-3 nodes on a local machine
-
-docker version
-tested on debian jessie
-
-compose-profile, matching configuration profile: explain
-quick start guide
+When building and running MedCo, a *compose-profile* and a *configuration-profile* must be created and used.
+A *compose-profile* contains the Docker Compose file that starts a MedCo node. Configurations like ports to expose, log levels, etc. can be set up there.
+A *configuration-profile* is a configuration folder shared by the containers and contains things such as keys and certificates, see :ref:`lbl_config_folder`.
 
 Deploying MedCo on a Single Server
 ----------------------------------
@@ -106,9 +96,3 @@ select the MedCo plugin via the link on the top-right, and construct and run a q
 
 Another way to check is by accessing the ``SHRINE Dashboard`` from the index page (default credentials ``medcoadmin`` and ``prigen2017``).
 
-
-
-Deploying MedCo on Separate Servers
------------------------------------
-similar
-build and run: same as for one instance, but docker commands need to be on each server

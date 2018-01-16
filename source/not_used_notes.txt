@@ -1,0 +1,102 @@
+if you a system admin, wnat ot deploy-->
+
+
+known limitations and bugs
+- shrine dashboard: remote dashboard not functional
+- query shrine ontology with demo data
+
+Releases
+--------
+Upcoming MedCo release: v0.1
+0.1:todo, features, etc
+versions of dependencies used
+git versions
+
+User Documentation
+==================
+
+data loading how to use
+system usage
+
+High-Level Workflow
+===================
+
+include diagram with components
+
+
+
+---
+Developer Documentation
+=======================
+
+..  toctree::
+
+    dev/i2b2
+
+
+- building blocks description
+-- i2b2
+-- shrine
+- building blocks modifcations
+- how to setup deve nv
+intellij, iml files, etc. , projects
+
+-configuration-configuration files
+
+- source code doc (medco-i2b2 cells)
+incl. full desc of folders
+
+-
+i2b2 configuration
+
+---
+links to all the repo
+how to set up the dev env
+
+Repositories
+------------
+
+
+
+I2b2 Documentation
+------------------
+
+
+Setup of the Development Environment
+------------------------------------
+
+---
+I2b2
+====
+
+Ontology Description
+--------------------
+
+
+
+-- in deployments.rst:
+
+
+Deploying MedCo on Separate Servers
+-----------------------------------
+similar
+build and run: same as for one instance, but docker commands need to be on each server
+
+--and also:
+
+
+
+    How to deploy and configure MedCo
+
+deploy-install
+configuration--use of conf generation (what it does is in deployment)
+system administration
+description of deployment
+
+3 nodes on a local machine
+
+docker version
+tested on debian jessie
+
+compose-profile, matching configuration profile: explain
+quick start guide

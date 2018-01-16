@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Description of Deployments &#8212; MedCo Technical Documentation 0.1 documentation</title>
+    <title>Description of a Deployed Node &#8212; MedCo Technical Documentation 0.1 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Developer Documentation" href="../dev.html" />
-    <link rel="prev" title="Deployment Documentation" href="../sysadmin.html" /> 
+    <link rel="prev" title="Deployment Documentation" href="../deployment.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -34,13 +33,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../dev.html" title="Developer Documentation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="../sysadmin.html" title="Deployment Documentation"
+          <a href="../deployment.html" title="Deployment Documentation"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MedCo Technical Documentation 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../sysadmin.html" accesskey="U">Deployment Documentation</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../deployment.html" accesskey="U">Deployment Documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -49,45 +45,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="description-of-deployments">
-<h1>Description of Deployments<a class="headerlink" href="#description-of-deployments" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="description-of-a-deployed-node">
+<h1>Description of a Deployed Node<a class="headerlink" href="#description-of-a-deployed-node" title="Permalink to this headline">¶</a></h1>
 <p>This page describes the deployment of a MedCo stack. The deployment files can be found on the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository.</p>
-<img alt="sysadmin/medco_implementation_diagram_with_steps.png" class="align-left" src="sysadmin/medco_implementation_diagram_with_steps.png" />
-<div class="section" id="medco-configuration-folder">
-<h2>MedCo Configuration Folder<a class="headerlink" href="#medco-configuration-folder" title="Permalink to this headline">¶</a></h2>
-<p>In most of the deployed service there is a MedCo configuration folder at the path <code class="docutils literal"><span class="pre">/opt/medco-configuration</span></code>.
-It contains the configuration that depends on the nodes, such as some adresses, keys, etc.
-It is mounted in the Docker container through a Docker volume.
-Some example configurations are stored under <code class="docutils literal"><span class="pre">configuration-profiles/</span></code> on the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository.</p>
-<div class="section" id="configuration-files-specific-to-a-node">
-<h3>Configuration Files specific to a node<a class="headerlink" href="#configuration-files-specific-to-a-node" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">cacert.pem</span></code>: certificate of the MedCo certificate authority that establishes trust between SHRINE services and that signs HTTPS certificates</li>
-<li><code class="docutils literal"><span class="pre">group.toml</span></code>: public key of the collective authority (list of the public keys of all the unlynx nodes)</li>
-<li><code class="docutils literal"><span class="pre">srvX-private.toml</span></code>: private key of the unlynx node</li>
-<li><code class="docutils literal"><span class="pre">srvX-ddtsecrets.toml</span></code>: secrets of the nodes for the deterministic tagging (generated at runtime)</li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">srvX.keystore</span></code>: Keystore of the node for Tomcat (contains the certificate of the CA, the private and public keys of the node,</dt>
-<dd>and the certificate of the node signed by the CA)</dd>
-</dl>
-</li>
-<li><code class="docutils literal"><span class="pre">srvX.pem</span></code>: certificate signed by the CA for the web server to serve HTTPS</li>
-<li><code class="docutils literal"><span class="pre">shrine_downstream_nodes.conf</span></code>: file included in the <code class="docutils literal"><span class="pre">shrine.conf</span></code> configuration file that lists the URLs of all the nodes part of the network</li>
-</ul>
+<div class="section" id="system-diagram">
+<h2>System Diagram<a class="headerlink" href="#system-diagram" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-left">
+<img alt="../_images/medco_implementation_diagram.png" src="../_images/medco_implementation_diagram.png" />
 </div>
-<div class="section" id="configuration-generation-tool">
-<h3>Configuration Generation Tool<a class="headerlink" href="#configuration-generation-tool" title="Permalink to this headline">¶</a></h3>
-<p>The generation script can be found at <code class="docutils literal"><span class="pre">resources/config-generation-tool/generate-configuration-profile.sh</span></code> on the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository.
-It creates a new certificate authority, and for each node:</p>
-<ul class="simple">
-<li>generate a pair of SSL keys</li>
-<li>generate a certificate signature request and sign it with the CA</li>
-<li>import in the keystore the certificates and keys</li>
-<li>generate lighttpd certificate</li>
-<li>add the URL of the node in the <code class="docutils literal"><span class="pre">shrine_downstream_nodes.conf</span></code></li>
-<li>generate the unlynx pair of keys and assemble the public keys in the <code class="docutils literal"><span class="pre">group.toml</span></code> (not yet implemented)</li>
-</ul>
-</div>
+<p>This image shows the system diagram of deployed MedCo node.</p>
 </div>
 <div class="section" id="services-docker-containers">
 <h2>Services (Docker Containers)<a class="headerlink" href="#services-docker-containers" title="Permalink to this headline">¶</a></h2>
@@ -338,6 +304,38 @@ This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmi
 </ul>
 </div>
 </div>
+<div class="section" id="medco-configuration-folder">
+<span id="lbl-config-folder"></span><h2>MedCo Configuration Folder<a class="headerlink" href="#medco-configuration-folder" title="Permalink to this headline">¶</a></h2>
+<p>In most of the deployed service there is a MedCo configuration folder at the path <code class="docutils literal"><span class="pre">/opt/medco-configuration</span></code>.
+It contains the configuration that depends on the nodes, such as some adresses, keys, etc.
+It is mounted in the Docker container through a Docker volume.
+Some example configurations are stored under <code class="docutils literal"><span class="pre">configuration-profiles/</span></code> on the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository.</p>
+<div class="section" id="configuration-files-specific-to-a-node">
+<h3>Configuration Files specific to a node<a class="headerlink" href="#configuration-files-specific-to-a-node" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cacert.pem</span></code>: certificate of the MedCo certificate authority that establishes trust between SHRINE services and that signs HTTPS certificates</li>
+<li><code class="docutils literal"><span class="pre">group.toml</span></code>: public key of the collective authority (list of the public keys of all the unlynx nodes)</li>
+<li><code class="docutils literal"><span class="pre">srvX-private.toml</span></code>: private key of the unlynx node</li>
+<li><code class="docutils literal"><span class="pre">srvX-ddtsecrets.toml</span></code>: secrets of the nodes for the deterministic tagging (generated at runtime)</li>
+<li><code class="docutils literal"><span class="pre">srvX.keystore</span></code>: Keystore of the node for Tomcat (contains the certificate of the CA, the private and public keys of the node, and the certificate of the node signed by the CA)</li>
+<li><code class="docutils literal"><span class="pre">srvX.pem</span></code>: certificate signed by the CA for the web server to serve HTTPS</li>
+<li><code class="docutils literal"><span class="pre">shrine_downstream_nodes.conf</span></code>: file included in the <code class="docutils literal"><span class="pre">shrine.conf</span></code> configuration file that lists the URLs of all the nodes part of the network</li>
+</ul>
+</div>
+<div class="section" id="configuration-generation-tool">
+<h3>Configuration Generation Tool<a class="headerlink" href="#configuration-generation-tool" title="Permalink to this headline">¶</a></h3>
+<p>The generation script can be found at <code class="docutils literal"><span class="pre">resources/config-generation-tool/generate-configuration-profile.sh</span></code> on the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository.
+It creates a new certificate authority, and for each node:</p>
+<ul class="simple">
+<li>generate a pair of SSL keys</li>
+<li>generate a certificate signature request and sign it with the CA</li>
+<li>import in the keystore the certificates and keys</li>
+<li>generate lighttpd certificate</li>
+<li>add the URL of the node in the <code class="docutils literal"><span class="pre">shrine_downstream_nodes.conf</span></code></li>
+<li>generate the unlynx pair of keys and assemble the public keys in the <code class="docutils literal"><span class="pre">group.toml</span></code> (not yet implemented)</li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -347,11 +345,8 @@ This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmi
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../sysadmin.html"
+  <p class="topless"><a href="../deployment.html"
                         title="previous chapter">Deployment Documentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="../dev.html"
-                        title="next chapter">Developer Documentation</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -373,13 +368,10 @@ This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmi
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../dev.html" title="Developer Documentation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="../sysadmin.html" title="Deployment Documentation"
+          <a href="../deployment.html" title="Deployment Documentation"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">MedCo Technical Documentation 0.1 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../sysadmin.html" >Deployment Documentation</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../deployment.html" >Deployment Documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -1,41 +1,14 @@
-Description of Deployments
-==========================
+Description of a Deployed Node
+==============================
 This page describes the deployment of a MedCo stack. The deployment files can be found on the ``medco-deployment`` repository.
 
-.. image:: medco_implementation_diagram_with_steps.png
+System Diagram
+##############
+
+.. figure:: medco_implementation_diagram.png
     :align: left
 
-MedCo Configuration Folder
-##########################
-In most of the deployed service there is a MedCo configuration folder at the path ``/opt/medco-configuration``.
-It contains the configuration that depends on the nodes, such as some adresses, keys, etc.
-It is mounted in the Docker container through a Docker volume.
-Some example configurations are stored under ``configuration-profiles/`` on the ``medco-deployment`` repository.
-
-Configuration Files specific to a node
---------------------------------------
-
-- ``cacert.pem``: certificate of the MedCo certificate authority that establishes trust between SHRINE services and that signs HTTPS certificates
-- ``group.toml``: public key of the collective authority (list of the public keys of all the unlynx nodes)
-- ``srvX-private.toml``: private key of the unlynx node
-- ``srvX-ddtsecrets.toml``: secrets of the nodes for the deterministic tagging (generated at runtime)
-- ``srvX.keystore``: Keystore of the node for Tomcat (contains the certificate of the CA, the private and public keys of the node,
-    and the certificate of the node signed by the CA)
-- ``srvX.pem``: certificate signed by the CA for the web server to serve HTTPS
-- ``shrine_downstream_nodes.conf``: file included in the ``shrine.conf`` configuration file that lists the URLs of all the nodes part of the network
-
-
-Configuration Generation Tool
------------------------------
-The generation script can be found at ``resources/config-generation-tool/generate-configuration-profile.sh`` on the ``medco-deployment`` repository.
-It creates a new certificate authority, and for each node:
-
-- generate a pair of SSL keys
-- generate a certificate signature request and sign it with the CA
-- import in the keystore the certificates and keys
-- generate lighttpd certificate
-- add the URL of the node in the ``shrine_downstream_nodes.conf``
-- generate the unlynx pair of keys and assemble the public keys in the ``group.toml`` (not yet implemented)
+This image shows the system diagram of deployed MedCo node.
 
 
 Services (Docker Containers)
@@ -194,3 +167,38 @@ This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmi
 **Port Exposed**
 
 - 3306: MySQL
+
+
+.. _lbl_config_folder:
+
+MedCo Configuration Folder
+##########################
+In most of the deployed service there is a MedCo configuration folder at the path ``/opt/medco-configuration``.
+It contains the configuration that depends on the nodes, such as some adresses, keys, etc.
+It is mounted in the Docker container through a Docker volume.
+Some example configurations are stored under ``configuration-profiles/`` on the ``medco-deployment`` repository.
+
+Configuration Files specific to a node
+--------------------------------------
+
+- ``cacert.pem``: certificate of the MedCo certificate authority that establishes trust between SHRINE services and that signs HTTPS certificates
+- ``group.toml``: public key of the collective authority (list of the public keys of all the unlynx nodes)
+- ``srvX-private.toml``: private key of the unlynx node
+- ``srvX-ddtsecrets.toml``: secrets of the nodes for the deterministic tagging (generated at runtime)
+- ``srvX.keystore``: Keystore of the node for Tomcat (contains the certificate of the CA, the private and public keys of the node, and the certificate of the node signed by the CA)
+- ``srvX.pem``: certificate signed by the CA for the web server to serve HTTPS
+- ``shrine_downstream_nodes.conf``: file included in the ``shrine.conf`` configuration file that lists the URLs of all the nodes part of the network
+
+
+Configuration Generation Tool
+-----------------------------
+The generation script can be found at ``resources/config-generation-tool/generate-configuration-profile.sh`` on the ``medco-deployment`` repository.
+It creates a new certificate authority, and for each node:
+
+- generate a pair of SSL keys
+- generate a certificate signature request and sign it with the CA
+- import in the keystore the certificates and keys
+- generate lighttpd certificate
+- add the URL of the node in the ``shrine_downstream_nodes.conf``
+- generate the unlynx pair of keys and assemble the public keys in the ``group.toml`` (not yet implemented)
+
