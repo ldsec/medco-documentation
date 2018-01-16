@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = MedCoDocumentation
 SOURCEDIR     = source
-BUILDDIR      = build
+BUILDDIR      = .
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -14,9 +14,15 @@ help:
 
 .PHONY: help Makefile
 
-html: Makefile
+clean: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	mv build/html docs
+	rm -r docs
+
+html: Makefile
+	mkdir -p docs
+	mv docs html
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	mv html docs
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
