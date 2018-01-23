@@ -297,7 +297,7 @@ This is a simple PostgreSQL server running, containing the i2b2 data. See phpPgA
 <div class="section" id="shrine-database">
 <h3>shrine-database<a class="headerlink" href="#shrine-database" title="Permalink to this headline">¶</a></h3>
 <p>MySQL v5.5 is used.
-This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmin for browsing the data,</p>
+This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmin for browsing the data.</p>
 <p><strong>Port Exposed</strong></p>
 <ul class="simple">
 <li>3306: MySQL</li>
@@ -315,6 +315,7 @@ Some example configurations are stored under <code class="docutils literal"><spa
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">cacert.pem</span></code>: certificate of the MedCo certificate authority that establishes trust between SHRINE services and that signs HTTPS certificates</li>
 <li><code class="docutils literal"><span class="pre">group.toml</span></code>: public key of the collective authority (list of the public keys of all the unlynx nodes)</li>
+<li><code class="docutils literal"><span class="pre">srvX-public.toml</span></code>: public key of the unlynx node</li>
 <li><code class="docutils literal"><span class="pre">srvX-private.toml</span></code>: private key of the unlynx node</li>
 <li><code class="docutils literal"><span class="pre">srvX-ddtsecrets.toml</span></code>: secrets of the nodes for the deterministic tagging (generated at runtime)</li>
 <li><code class="docutils literal"><span class="pre">srvX.keystore</span></code>: Keystore of the node for Tomcat (contains the certificate of the CA, the private and public keys of the node, and the certificate of the node signed by the CA)</li>
@@ -332,7 +333,8 @@ It creates a new certificate authority, and for each node:</p>
 <li>import in the keystore the certificates and keys</li>
 <li>generate lighttpd certificate</li>
 <li>add the URL of the node in the <code class="docutils literal"><span class="pre">shrine_downstream_nodes.conf</span></code></li>
-<li>generate the unlynx pair of keys and assemble the public keys in the <code class="docutils literal"><span class="pre">group.toml</span></code> (not yet implemented)</li>
+<li>generate the unlynx pair of keys and assemble the public keys in the <code class="docutils literal"><span class="pre">group.toml</span></code></li>
+<li>generate the docker-compose file to build and run MedCo</li>
 </ul>
 </div>
 </div>
@@ -344,9 +346,6 @@ It creates a new certificate authority, and for each node:</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="../deployment.html"
-                        title="previous chapter">Deployment Documentation</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -357,6 +356,22 @@ It creates a new certificate authority, and for each node:</p>
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../deployment.html">Deployment Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Description of a Deployed Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-diagram">System Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#services-docker-containers">Services (Docker Containers)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#medco-configuration-folder">MedCo Configuration Folder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment.html#deploying-medco-on-a-single-server">Deploying MedCo on a Single Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment.html#deploying-medco-on-different-servers">Deploying MedCo on Different Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deployment.html#loading-the-medco-demo-data-v0-1">Loading the MedCo Demo Data v0.1</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>

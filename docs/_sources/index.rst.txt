@@ -1,13 +1,17 @@
 MedCo Technical Documentation
 =============================
 
+*Disclaimer: this documentation is still under construction.*
+
+Index
+-----
+
 ..  toctree::
-    :maxdepth: 2
-    :caption: Index
+    :maxdepth: 3
+    :includehidden:
 
     deployment
 
-Disclaimer: this documentation is still under construction.
 
 Developer Resources
 -------------------

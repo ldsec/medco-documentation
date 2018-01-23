@@ -76,19 +76,6 @@ Ontology Description
 
 -- in deployments.rst:
 
-
-Deploying MedCo on Separate Servers
------------------------------------
-similar
-build and run: same as for one instance, but docker commands need to be on each server
-
---and also:
-
-
-
-    How to deploy and configure MedCo
-
-deploy-install
 configuration--use of conf generation (what it does is in deployment)
 system administration
 description of deployment
@@ -100,3 +87,17 @@ tested on debian jessie
 
 compose-profile, matching configuration profile: explain
 quick start guide
+
+Loading the MedCo Demo Data v0.1
+--------------------------------
+>>>separate page  with description
+
+note: all nodes must be loaded
+todo: put how to clean up data
+todo:  host somewhare the dataset (in the form that it is currently + description of the dataset)
+note config:
+
+error: value too long for some annotations
+error: relation already exists
+
+todo

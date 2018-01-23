@@ -162,7 +162,7 @@ This is a simple PostgreSQL server running, containing the i2b2 data. See phpPgA
 shrine-database
 ---------------
 MySQL v5.5 is used.
-This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmin for browsing the data,
+This is a simple MySQL server running, containing the SHRINE data. See phpMyAdmin for browsing the data.
 
 **Port Exposed**
 
@@ -183,6 +183,7 @@ Configuration Files specific to a node
 
 - ``cacert.pem``: certificate of the MedCo certificate authority that establishes trust between SHRINE services and that signs HTTPS certificates
 - ``group.toml``: public key of the collective authority (list of the public keys of all the unlynx nodes)
+- ``srvX-public.toml``: public key of the unlynx node
 - ``srvX-private.toml``: private key of the unlynx node
 - ``srvX-ddtsecrets.toml``: secrets of the nodes for the deterministic tagging (generated at runtime)
 - ``srvX.keystore``: Keystore of the node for Tomcat (contains the certificate of the CA, the private and public keys of the node, and the certificate of the node signed by the CA)
@@ -200,5 +201,6 @@ It creates a new certificate authority, and for each node:
 - import in the keystore the certificates and keys
 - generate lighttpd certificate
 - add the URL of the node in the ``shrine_downstream_nodes.conf``
-- generate the unlynx pair of keys and assemble the public keys in the ``group.toml`` (not yet implemented)
+- generate the unlynx pair of keys and assemble the public keys in the ``group.toml``
+- generate the docker-compose file to build and run MedCo
 

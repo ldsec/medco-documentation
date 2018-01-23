@@ -50,35 +50,22 @@
             
   <div class="section" id="deployment-documentation">
 <h1>Deployment Documentation<a class="headerlink" href="#deployment-documentation" title="Permalink to this headline">¶</a></h1>
+<p><strong>Subpages</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="deployment/deployed_description.html">Description of a Deployed Node</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deployment/deployed_description.html#system-diagram">System Diagram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployment/deployed_description.html#services-docker-containers">Services (Docker Containers)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#i2b2-server">i2b2-server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#i2b2-web">i2b2-web</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#shrine-server">shrine-server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#unlynx">unlynx</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#i2b2-database">i2b2-database</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#shrine-database">shrine-database</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="deployment/deployed_description.html#medco-configuration-folder">MedCo Configuration Folder</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#configuration-files-specific-to-a-node">Configuration Files specific to a node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/deployed_description.html#configuration-generation-tool">Configuration Generation Tool</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment/deployed_description.html">Description of a Deployed Node</a></li>
 </ul>
 </div>
-<p>This page explains how to deploy and configure MedCo.</p>
+<p>This page explains how to deploy and configure MedCo in different scenarios.
+The first scenario is for development purposes and allows to deploy 3 nodes on a single server.
+The second scenario is for test purposes and allows to deploy 3 nodes on separates servers.
+Note that these two scenarios <em>should not be used in a production environment</em>: the private keys of the different nodes are public.</p>
 <p><strong>Deployment profiles</strong></p>
 <p>When building and running MedCo, a <em>compose-profile</em> and a <em>configuration-profile</em> must be created and used.
 A <em>compose-profile</em> contains the Docker Compose file that starts a MedCo node. Configurations like ports to expose, log levels, etc. can be set up there.
 A <em>configuration-profile</em> is a configuration folder shared by the containers and contains things such as keys and certificates, see <a class="reference internal" href="deployment/deployed_description.html#lbl-config-folder"><span class="std std-ref">MedCo Configuration Folder</span></a>.</p>
 <div class="section" id="deploying-medco-on-a-single-server">
-<h2>Deploying MedCo on a Single Server<a class="headerlink" href="#deploying-medco-on-a-single-server" title="Permalink to this headline">¶</a></h2>
+<span id="lbl-deploy-single-server"></span><h2>Deploying MedCo on a Single Server<a class="headerlink" href="#deploying-medco-on-a-single-server" title="Permalink to this headline">¶</a></h2>
 <p>This short guide will show you how to deploy 3 nodes of the full MedCo stack on a single machine with the help of Docker and Docker-Compose.
 Any kind of not too old Linux flavor should work, but it has only be tested on the following configuration:</p>
 <ul class="simple">
@@ -125,7 +112,7 @@ and can simply run again <code class="docutils literal"><span class="pre">screen
 <p>The first time each of the node runs, the database will be initialized with the structure and the i2b2 demo data,
 it will take a few minutes so do not interrupt this loading!
 The next times the nodes are ran, they take 1-2 minutes to be up and running. In order to stop a node,
-simply hit <code class="docutils literal"><span class="pre">Ctrl+C</span></code> in window where the node is active.</p>
+simply hit <code class="docutils literal"><span class="pre">Ctrl+C</span></code> in the window where the node is active.</p>
 <p><strong>Important note about the ports used when running several nodes a single host</strong></p>
 <p>Since they are running on the same host, the ports used for the different services had to be adapted.
 The modification follow the following logic: if the port is specified as being <code class="docutils literal"><span class="pre">80</span></code> on the documentation,
@@ -139,6 +126,114 @@ Connect with the default credentials (<code class="docutils literal"><span class
 you can run the <code class="docutils literal"><span class="pre">SHRINE-MedCo</span> <span class="pre">Webclient</span></code> from the index page (default credentials <code class="docutils literal"><span class="pre">medcoshrineuser</span></code> and <code class="docutils literal"><span class="pre">prigen2017</span></code>),
 select the MedCo plugin via the link on the top-right, and construct and run a query.</p>
 <p>Another way to check is by accessing the <code class="docutils literal"><span class="pre">SHRINE</span> <span class="pre">Dashboard</span></code> from the index page (default credentials <code class="docutils literal"><span class="pre">medcoadmin</span></code> and <code class="docutils literal"><span class="pre">prigen2017</span></code>).</p>
+<p><strong>Trusting the CA in your web browser</strong></p>
+<p>The file <code class="docutils literal"><span class="pre">cacert.pem</span></code> is the certificate of the CA, simply import it in your web browser in order to not have HTTPS
+warning messages when browsing the MedCo web pages.</p>
+</div>
+<div class="section" id="deploying-medco-on-different-servers">
+<h2>Deploying MedCo on Different Servers<a class="headerlink" href="#deploying-medco-on-different-servers" title="Permalink to this headline">¶</a></h2>
+<p>This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
+on a separate servers machine with the help of Docker, Docker-Compose and a script.</p>
+<p>Use the previous guide <a class="reference internal" href="#lbl-deploy-single-server"><span class="std std-ref">Deploying MedCo on a Single Server</span></a> to clone the <code class="docutils literal"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
+Before building the Docker images it is needed to generate the configuration profile, this can be done on your machine or on one of the servers that will serve a MedCo node.</p>
+<p><strong>Generating the configuration profile</strong></p>
+<p>Execute the tool with the properly constructed arguments:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> medco-deployment/resources/config-generation-tool
+$ bash generate-configuration-profile.sh test-3nodes somepassword server1.domain.com <span class="m">1</span>.1.1.1 server2.domain.com <span class="m">2</span>.2.2.2 server3.domain.com <span class="m">3</span>.3.3.3
+</pre></div>
+</div>
+<p>Explanation of the arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">test-3nodes</span></code>: name of the configuration profile, the folders <code class="docutils literal"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal"><span class="pre">configuration-profiles/test-3nodes</span></code> will be created</li>
+<li><code class="docutils literal"><span class="pre">somepassword</span></code>: password used to encrypt the keystores and the CA certificate generated</li>
+<li><code class="docutils literal"><span class="pre">serverX.domain.com</span></code>: the DNS name of the server number X</li>
+<li><code class="docutils literal"><span class="pre">A.B.C.D</span></code>: the IP address of the server number X</li>
+</ul>
+<p>The tool will be executed and several questions will be asked, let’s go through them.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">CA certificate filename (or enter to create)</span>
+<span class="go">&lt;leave empty&gt;</span>
+</pre></div>
+</div>
+<p>Leave empty to force the creation of a new certificate authority.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Enter PEM pass phrase:somepassword</span>
+<span class="go">Verifying - Enter PEM pass phrase:somepassword</span>
+</pre></div>
+</div>
+<p>This is the password used to encrypted the private key of the certificate authority: you can use the same as specified
+in the arguments of called script (for simplicity).</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Country Name (2 letter code) [XX]:CH</span>
+<span class="go">State or Province Name (full name) []:VD</span>
+<span class="go">Locality Name (eg, city) [Default City]:Lausanne</span>
+<span class="go">Organization Name (eg, company) [Default Company Ltd]:EPFL</span>
+<span class="go">Organizational Unit Name (eg, section) []:LCA1</span>
+<span class="go">Common Name (eg, your name or your server&#39;s hostname) []:MedCo</span>
+<span class="go">Email Address []:</span>
+
+<span class="go">Please enter the following &#39;extra&#39; attributes</span>
+<span class="go">to be sent with your certificate request</span>
+<span class="go">A challenge password []:</span>
+<span class="go">An optional company name []:</span>
+<span class="go">Using configuration from /.../medco-deployment/resources/config-generation-tool/openssl.cnf</span>
+<span class="go">Enter pass phrase for /.../medco-deployment/resources/config-generation-tool/CA/private/./cakey.pem:somepassword</span>
+</pre></div>
+</div>
+<p>These are the information that will be embedded in the certificate of the certificate authority.
+At the end input the password used to encrypt the private key of the CA.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>###0### Signing it with the CA
+Using configuration from /.../medco-deployment/resources/config-generation-tool/openssl.cnf
+Enter pass phrase for ./CA/private/cakey.pem:somepassword
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number:
+            c9:90:07:32:99:e9:02:58
+        Validity
+            Not Before: Jan 23 17:29:03 2018 GMT
+            Not After : Jan 23 17:29:03 2019 GMT
+        Subject:
+            countryName               = CH
+            stateOrProvinceName       = VD
+            localityName              = Lausanne
+            organizationName          = EPFL
+            organizationalUnitName    = LCA1
+            commonName                = server1.domain.com
+        X509v3 extensions:
+            X509v3 Basic Constraints:
+                CA:FALSE
+            X509v3 Subject Alternative Name:
+                IP Address:1.1.1.1, DNS:server1.domain.com
+            X509v3 Subject Key Identifier:
+                C1:E2:6D:08:14:D7:76:4D:CF:7D:43:79:53:1F:C8:B0:45:91:71:9C
+Certificate is to be certified until Jan 23 17:29:03 2019 GMT (365 days)
+Sign the certificate? [y/n]:y
+1 out of 1 certificate requests certified, commit? [y/n]y
+</pre></div>
+</div>
+<p>Here input again the password and validate with <code class="docutils literal"><span class="pre">y</span></code> twice to confirm the signature of the certificate of the node by the CA.
+Repeat this operation for as many nodes as you have (3 in this example), your configuration profile has been generated.</p>
+<p><strong>Deploying the nodes</strong></p>
+<p>Now that the configuration profile <code class="docutils literal"><span class="pre">test-3nodes</span></code> is generated, repeat the operation of cloning the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository
+and installing the dependencies on all the servers that will be MedCo nodes.
+Next copy on those servers the configuration profile, that is the 2 folders <code class="docutils literal"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal"><span class="pre">configuration-profiles/test-3nodes</span></code>.</p>
+<p>From there the  next steps are very similar to the single server scenario, build and run the nodes on all the servers.
+On server number 0:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> medco-deployment/compose-profiles/test-3nodes
+$ docker-compose -f docker-compose-srv0.yml build
+$ docker-compose -f docker-compose-srv0.yml up
+</pre></div>
+</div>
+<p>On server number 1:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> medco-deployment/compose-profiles/test-3nodes
+$ docker-compose -f docker-compose-srv1.yml build
+$ docker-compose -f docker-compose-srv1.yml up
+</pre></div>
+</div>
+<p>On server number 2:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> medco-deployment/compose-profiles/test-3nodes
+$ docker-compose -f docker-compose-srv2.yml build
+$ docker-compose -f docker-compose-srv2.yml up
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -148,12 +243,6 @@ select the MedCo plugin via the link on the top-right, and construct and run a q
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">MedCo Technical Documentation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="deployment/deployed_description.html"
-                        title="next chapter">Description of a Deployed Node</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -164,6 +253,16 @@ select the MedCo plugin via the link on the top-right, and construct and run a q
     </form>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deployment Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment/deployed_description.html">Description of a Deployed Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-medco-on-a-single-server">Deploying MedCo on a Single Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-medco-on-different-servers">Deploying MedCo on Different Servers</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
       </div>
       <div class="clearer"></div>
