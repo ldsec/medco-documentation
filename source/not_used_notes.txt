@@ -91,10 +91,11 @@ quick start guide
 Loading the MedCo Demo Data v0.1
 --------------------------------
 >>>separate page  with description
+ontology same everywhere, data is diff. (dataset splitted up in 3)
 
 note: all nodes must be loaded
 todo: put how to clean up data
-todo:  host somewhare the dataset (in the form that it is currently + description of the dataset)
+todo:  host somewhere the dataset (in the form that it is currently + description of the dataset)
 note config:
 
 error: value too long for some annotations

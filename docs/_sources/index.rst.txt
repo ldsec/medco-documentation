@@ -26,3 +26,9 @@ Developer Resources
 - i2b2 webclient: https://github.com/i2b2/i2b2-webclient
 - i2b2 data (database structure and demo data): https://github.com/i2b2/i2b2-data
 - SHRINE: https://open.med.harvard.edu/stash/projects/SHRINE/repos/shrine/browse
+
+todo:
+- explications sur comment reutiliser i2b2 shrine dockers
+- explications loading data, chaque noeud fait son loading
+
+- joao: pointers on how to fix the shrine problem

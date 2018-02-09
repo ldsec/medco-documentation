@@ -23,8 +23,8 @@ A *configuration-profile* is a configuration folder shared by the containers and
 
 .. _lbl_deploy_single_server:
 
-Deploying MedCo on a Single Server
-----------------------------------
+Deploying MedCo on a Single Server (For Development)
+----------------------------------------------------
 This short guide will show you how to deploy 3 nodes of the full MedCo stack on a single machine with the help of Docker and Docker-Compose.
 Any kind of not too old Linux flavor should work, but it has only be tested on the following configuration:
 
@@ -36,8 +36,9 @@ Among others, it will install Docker 17.12.0-ce and Docker-Compose 1.14.0.
 
 .. code-block:: bash
 
+    $ cd ~
     $ git clone https://c4science.ch/source/medco-deployment.git
-    $ bash medco-deployment/resources/utility-scripts/ubuntu_prereqs_setup.sh
+    $ bash ~/medco-deployment/resources/utility-scripts/ubuntu_prereqs_setup.sh
 
 Next step is to build the docker images. They will be built from source, for this reason the very first build might
 take a lot of time depending on the perfomance of your machine (up to 2 hours on a standard laptop, around 20 minutes on a powerful server).
@@ -48,7 +49,7 @@ This command will build the first node from scratch:
 
 .. code-block:: bash
 
-    $ cd medco-deployment/compose-profiles/dev-3nodes-samehost
+    $ cd ~/medco-deployment/compose-profiles/dev-3nodes-samehost
     $ docker-compose -f docker-compose-srv0.yml build
 
 Because Docker will cache the images built at the previous step, building the 2 other nodes will be much faster:
@@ -111,9 +112,10 @@ Another way to check is by accessing the ``SHRINE Dashboard`` from the index pag
 The file ``cacert.pem`` is the certificate of the CA, simply import it in your web browser in order to not have HTTPS
 warning messages when browsing the MedCo web pages.
 
+.. _lbl_deploy_different_servers_dev:
 
-Deploying MedCo on Different Servers
-------------------------------------
+Deploying MedCo on Different Servers (For Development)
+------------------------------------------------------
 This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
 on a separate servers machine with the help of Docker, Docker-Compose and a script.
 
@@ -127,8 +129,8 @@ Execute the tool with the properly constructed arguments:
 
 .. code-block:: bash
 
-    $ cd medco-deployment/resources/config-generation-tool
-    $ bash generate-configuration-profile.sh test-3nodes somepassword server1.domain.com 1.1.1.1 server2.domain.com 2.2.2.2 server3.domain.com 3.3.3.3
+    $ cd ~/medco-deployment/resources/config-generation-tool
+    $ bash generate-dev-configuration-profile.sh test-3nodes somepassword server1.domain.com 1.1.1.1 server2.domain.com 2.2.2.2 server3.domain.com 3.3.3.3
 
 Explanation of the arguments:
 
@@ -223,7 +225,7 @@ On server number 0:
 
 .. code-block:: bash
 
-    $ cd medco-deployment/compose-profiles/test-3nodes
+    $ cd ~/medco-deployment/compose-profiles/test-3nodes
     $ docker-compose -f docker-compose-srv0.yml build
     $ docker-compose -f docker-compose-srv0.yml up
 
@@ -231,7 +233,7 @@ On server number 1:
 
 .. code-block:: bash
 
-    $ cd medco-deployment/compose-profiles/test-3nodes
+    $ cd ~/medco-deployment/compose-profiles/test-3nodes
     $ docker-compose -f docker-compose-srv1.yml build
     $ docker-compose -f docker-compose-srv1.yml up
 
@@ -239,6 +241,140 @@ On server number 2:
 
 .. code-block:: bash
 
-    $ cd medco-deployment/compose-profiles/test-3nodes
+    $ cd ~/medco-deployment/compose-profiles/test-3nodes
     $ docker-compose -f docker-compose-srv2.yml build
     $ docker-compose -f docker-compose-srv2.yml up
+
+
+
+Deploying MedCo on Different Servers (For Production)
+-----------------------------------------------------
+
+This short guide will show you how to generate a working configuration in order to deploy a node of the full MedCo stack
+within a MedCo network of an arbitrary size, with the help of Docker, Docker-Compose and scripts.
+
+Use the previous guide :ref:`lbl_deploy_single_server` to clone the ``medco-deployment`` and install the required dependencies on your system.
+It is first needed to generate the configuration profiles indepentently for all the nodes, which can be done in several steps.
+A prerequisite to this step is that the different nodes must agree on their node index number, i.e. a node will be index 0,
+another index 1, and so on...
+
+
+**Generating the configuration profile of a node**
+
+Execute the first step with the properly constructed arguments to initialize the profiles and create the certificate authority
+(or import your own by inspecting how the script works).
+
+.. code-block:: bash
+
+    $ cd ~/medco-deployment/resources/config-generation-tool/generate-prod-configuration-profile
+    $ bash step1.sh test-prod-3nodes nodeindex somepassword serverX.domain.com
+
+Explanation of the arguments:
+
+- ``test-prod-3nodes``: name of the configuration profile, the folders ``compose-profiles/test-prod-3nodes`` and ``configuration-profiles/test-prod-3nodes`` will be created
+- ``nodeindex``: index number of the node for which the configuration is currently being generated
+- ``somepassword``: password used to encrypt the keystores and the CA certificate generated
+- ``serverX.domain.com``: the DNS name of the server
+
+The tool will be executed and several questions will be asked, use the beginning of the previous guide :ref:`lbl_deploy_different_servers_dev`
+to follow the creation of the certificate authority.
+
+
+Execute then the second step to generate the key pair for the node
+(or import your own by inspecting how the script works).
+
+.. code-block:: bash
+
+    $ bash step2.sh test-prod-3nodes nodeindex somepassword serverX.domain.com A.B.C.D
+
+Explanation of the arguments:
+
+- ``A.B.C.D``: the IP address of the server number X
+
+
+The third step to generate the certificate of the node
+(or import your own by inspecting how the script works).
+
+.. code-block:: bash
+
+    $ bash step3.sh test-prod-3nodes nodeindex somepassword serverX.domain.com A.B.C.D
+
+The tool will be executed and several questions will be asked, use the end of the previous guide :ref:`lbl_deploy_different_servers_dev`
+to follow the signature of the certificate.
+
+
+The fourth step to generate the unlynx keys and package the files to share with other nodes.
+
+.. code-block:: bash
+
+    $ bash step4.sh test-prod-3nodes nodeindex A.B.C.D
+
+After this step an archive ``srvX-publicdata.tar.gz`` will be generated.
+Share this archive with the responsible of all the other nodes, and gather the archives of the other nodes before continuing to step 5.
+
+
+The fifth and final step to aggregate the files
+
+.. code-block:: bash
+
+    $ bash step5.sh test-prod-3nodes nodeindex somepassword srv0-publicdata.tar.gz srv1-publicdata.tar.gz...
+
+Explanation of the arguments:
+
+- ``srvX-publicdata.tar.gz``: the archives shared by the other nodes
+
+The MedCo node is now ready to be built and ran using Docker-Compose, follow the previous guide :ref:`lbl_deploy_different_servers_dev`
+to do so.
+
+
+Loading the demo data of a node
+-------------------------------
+
+Loading the demo data is a 2-steps process. First step is to encrypt and load all of the clinical and genomic data in the i2b2
+database, and second is to load all of the genomic annotations.
+
+First get the archive containing all of the MedCo v0.1 demo data (file ``medco_v0.1_demo_data.tar.gz`` to be asked on
+the ``medco-dev`` email list) and extract it in the folder of your choice, say ``~/medco_v0.1_demo_data/``.
+Then on the node adapt and execute these commands (example for node 0, configuration profile ``test-prod-3nodes``):
+
+
+.. code-block:: bash
+
+    $ cd ~/medco_v0.1_demo_data/
+    $ ~/medco-deployment/configuration-profiles/test-prod-3nodes/unlynxMedCo loader \
+    --file ~/medco-deployment/configuration-profiles/test-prod-3nodes/group.toml --entryPointIdx 0 \
+    --ont_clinical ./data_clinical_skcm_broad.csv --sensitive PRIMARY_TUMOR_LOCALIZATION_TYPE --sensitive CANCER_TYPE_DETAILED \
+    --ont_genomic ./data_mutations_extended_skcm_broad.csv --clinical ./data_clinical_skcm_broad_clear_i2b2_part1_encodingOK.txt \
+    --genomic ./data_mutations_extended_skcm_broad_clear_i2b2_part1_encodingOK.txt --dbHost localhost \
+    --dbPort 5432 --dbName i2b2medco --dbUser postgres --dbPassword prigen2017
+
+Explanation of the arguments:
+
+- ``file``: public key of the collective authority
+- ``entryPointIdx``: the pre-agreed node number to which the data is being loaded
+- ``ont_clinical``: clinical dataset file used to populate the ontology
+- ``sensitive``: fields from the clinical dataset file considered sensitive (several allowed)
+- ``ont_genomic``: genomic dataset file used to populate the ontology (the annotations)
+- ``clinical``: clinical dataset with the data to load
+- ``genomic``: genomic dataset with the data to load
+- ``dbHost``: postgresql host in which to load the data
+- ``dbPort``: postgresql port
+- ``dbName``: postgresql database name
+- ``dbUser``: postgresql user for login
+- ``dbPassword``: postgresql password for login
+
+
+The second step will load the annotations in a way that the webclient will be able to query them:
+
+.. code-block:: bash
+
+    $ PGPASSWORD="pFjy3EjDVwLfT2rB9xkK" psql -U genomic_annotations -d i2b2medco -h localhost -p 5432 -a -f sqlAnnotations_all.sql
+
+Explanation of the arguments:
+
+- ``PGPASSWORD``: postgresql password
+- ``U``: postgresql user
+- ``d``: postgresql database
+- ``h``: postgresql host
+- ``p``: postgresql port
+- 
