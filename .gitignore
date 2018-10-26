@@ -2,6 +2,7 @@
 _build
 build/
 doctrees/
+docs/
 
 # Compiled source #
 ###################
