@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Deployment Documentation &#8212; MedCo 0.1 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -25,8 +17,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Description of a Deployed Node" href="deployment/deployed_description.html" />
     <link rel="prev" title="MedCo Technical Documentation" href="index.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -72,97 +63,97 @@ Any kind of not too old Linux flavor should work, but it has only be tested on t
 <li>Operating System: Ubuntu 14.04.5 LTS, assumed to be freshly installed and up to date.</li>
 <li>Pre-requisite software: <em>git</em> (the rest of the dependencies will be automatically installed with a script).</li>
 </ul>
-<p>First step is to clone the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository and to execute the script that will install the dependencies on your machine.
+<p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> repository and to execute the script that will install the dependencies on your machine.
 Among others, it will install Docker 17.12.0-ce and Docker-Compose 1.14.0.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
 $ git clone https://c4science.ch/source/medco-deployment.git
 $ bash ~/medco-deployment/resources/utility-scripts/ubuntu_prereqs_setup.sh
 </pre></div>
 </div>
 <p>Next step is to build the docker images. They will be built from source, for this reason the very first build might
 take a lot of time depending on the perfomance of your machine (up to 2 hours on a standard laptop, around 20 minutes on a powerful server).
-In this specific case (i.e. 3 nodes running on a single machine) you can use the provided compose and configuration profiles, called <code class="docutils literal"><span class="pre">dev-3nodes-samehost</span></code>.
+In this specific case (i.e. 3 nodes running on a single machine) you can use the provided compose and configuration profiles, called <code class="docutils literal notranslate"><span class="pre">dev-3nodes-samehost</span></code>.
 As it name indicates, it is for development purposes, runs 3 nodes on a single server.</p>
 <p>This command will build the first node from scratch:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/dev-3nodes-samehost
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/dev-3nodes-samehost
 $ docker-compose -f docker-compose-srv0.yml build
 </pre></div>
 </div>
 <p>Because Docker will cache the images built at the previous step, building the 2 other nodes will be much faster:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv1.yml build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv1.yml build
 $ docker-compose -f docker-compose-srv2.yml build
 </pre></div>
 </div>
 <p>Next step is to run the nodes. They need to be running in parallel, and the logs of the running containers will maintain the console captive.
-For this reason it is recommended to use <em>screen</em> to run them. Use <code class="docutils literal"><span class="pre">screen</span> <span class="pre">-dRR</span></code> to start a new screen session.
-<code class="docutils literal"><span class="pre">Ctrl+A-C</span></code> will create a new window: create at least 3 of them. <code class="docutils literal"><span class="pre">Ctrl+A-P</span></code> and <code class="docutils literal"><span class="pre">Ctrl+A-N</span></code> allow to navigate between the windows.
-Hit simply <code class="docutils literal"><span class="pre">Ctrl+D</span></code> to close the current window. Use <code class="docutils literal"><span class="pre">Ctrl+A-D</span></code> to detach from the screen instance. Once detached you are back in the normal console
-and can simply run again <code class="docutils literal"><span class="pre">screen</span> <span class="pre">-dRR</span></code> to attach to the running screen session.</p>
+For this reason it is recommended to use <em>screen</em> to run them. Use <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-dRR</span></code> to start a new screen session.
+<code class="docutils literal notranslate"><span class="pre">Ctrl+A-C</span></code> will create a new window: create at least 3 of them. <code class="docutils literal notranslate"><span class="pre">Ctrl+A-P</span></code> and <code class="docutils literal notranslate"><span class="pre">Ctrl+A-N</span></code> allow to navigate between the windows.
+Hit simply <code class="docutils literal notranslate"><span class="pre">Ctrl+D</span></code> to close the current window. Use <code class="docutils literal notranslate"><span class="pre">Ctrl+A-D</span></code> to detach from the screen instance. Once detached you are back in the normal console
+and can simply run again <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-dRR</span></code> to attach to the running screen session.</p>
 <p>Run the first node:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv0.yml up
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv0.yml up
 </pre></div>
 </div>
 <p>In a separate <em>screen</em> window the second:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv1.yml up
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv1.yml up
 </pre></div>
 </div>
 <p>And in another separate window the last one:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv2.yml up
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose-srv2.yml up
 </pre></div>
 </div>
 <p>The first time each of the node runs, the database will be initialized with the structure and the i2b2 demo data,
 it will take a few minutes so do not interrupt this loading!
 The next times the nodes are ran, they take 1-2 minutes to be up and running. In order to stop a node,
-simply hit <code class="docutils literal"><span class="pre">Ctrl+C</span></code> in the window where the node is active.</p>
+simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in the window where the node is active.</p>
 <p><strong>Important note about the ports used when running several nodes a single host</strong></p>
 <p>Since they are running on the same host, the ports used for the different services had to be adapted.
-The modification follow the following logic: if the port is specified as being <code class="docutils literal"><span class="pre">80</span></code> on the documentation,
-the port exposed on the host for the first node will be <code class="docutils literal"><span class="pre">82</span></code>, for the second node <code class="docutils literal"><span class="pre">84</span></code>, and for the third <code class="docutils literal"><span class="pre">86</span></code>.
+The modification follow the following logic: if the port is specified as being <code class="docutils literal notranslate"><span class="pre">80</span></code> on the documentation,
+the port exposed on the host for the first node will be <code class="docutils literal notranslate"><span class="pre">82</span></code>, for the second node <code class="docutils literal notranslate"><span class="pre">84</span></code>, and for the third <code class="docutils literal notranslate"><span class="pre">86</span></code>.
 That is, they are incremented by 2 for every node.</p>
 <p><strong>Testing that the nodes are working</strong></p>
-<p>In order to test that a <em>single node</em> is working, you can access the index page at <code class="docutils literal"><span class="pre">&lt;your_server_address&gt;:82</span></code> and
-click on the <code class="docutils literal"><span class="pre">I2b2</span> <span class="pre">Webclient</span></code> link (or another port for another node).
-Connect with the default credentials (<code class="docutils literal"><span class="pre">demo</span></code> and <code class="docutils literal"><span class="pre">prigen2017</span></code>), construct and run any query on the i2b2 demo data.</p>
+<p>In order to test that a <em>single node</em> is working, you can access the index page at <code class="docutils literal notranslate"><span class="pre">&lt;your_server_address&gt;:82</span></code> and
+click on the <code class="docutils literal notranslate"><span class="pre">I2b2</span> <span class="pre">Webclient</span></code> link (or another port for another node).
+Connect with the default credentials (<code class="docutils literal notranslate"><span class="pre">demo</span></code> and <code class="docutils literal notranslate"><span class="pre">prigen2017</span></code>), construct and run any query on the i2b2 demo data.</p>
 <p>The demo data for MedCo needs a specific loading process covered on a separate guide, but if you have loaded them already,
-you can run the <code class="docutils literal"><span class="pre">SHRINE-MedCo</span> <span class="pre">Webclient</span></code> from the index page (default credentials <code class="docutils literal"><span class="pre">medcoshrineuser</span></code> and <code class="docutils literal"><span class="pre">prigen2017</span></code>),
+you can run the <code class="docutils literal notranslate"><span class="pre">SHRINE-MedCo</span> <span class="pre">Webclient</span></code> from the index page (default credentials <code class="docutils literal notranslate"><span class="pre">medcoshrineuser</span></code> and <code class="docutils literal notranslate"><span class="pre">prigen2017</span></code>),
 select the MedCo plugin via the link on the top-right, and construct and run a query.</p>
-<p>Another way to check is by accessing the <code class="docutils literal"><span class="pre">SHRINE</span> <span class="pre">Dashboard</span></code> from the index page (default credentials <code class="docutils literal"><span class="pre">medcoadmin</span></code> and <code class="docutils literal"><span class="pre">prigen2017</span></code>).</p>
+<p>Another way to check is by accessing the <code class="docutils literal notranslate"><span class="pre">SHRINE</span> <span class="pre">Dashboard</span></code> from the index page (default credentials <code class="docutils literal notranslate"><span class="pre">medcoadmin</span></code> and <code class="docutils literal notranslate"><span class="pre">prigen2017</span></code>).</p>
 <p><strong>Trusting the CA in your web browser</strong></p>
-<p>The file <code class="docutils literal"><span class="pre">cacert.pem</span></code> is the certificate of the CA, simply import it in your web browser in order to not have HTTPS
+<p>The file <code class="docutils literal notranslate"><span class="pre">cacert.pem</span></code> is the certificate of the CA, simply import it in your web browser in order to not have HTTPS
 warning messages when browsing the MedCo web pages.</p>
 </div>
 <div class="section" id="deploying-medco-on-different-servers-for-development">
 <span id="lbl-deploy-different-servers-dev"></span><h2>Deploying MedCo on Different Servers (For Development)<a class="headerlink" href="#deploying-medco-on-different-servers-for-development" title="Permalink to this headline">¶</a></h2>
 <p>This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
 on a separate servers machine with the help of Docker, Docker-Compose and a script.</p>
-<p>Use the previous guide <a class="reference internal" href="#lbl-deploy-single-server"><span class="std std-ref">Deploying MedCo on a Single Server (For Development)</span></a> to clone the <code class="docutils literal"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
+<p>Use the previous guide <a class="reference internal" href="#lbl-deploy-single-server"><span class="std std-ref">Deploying MedCo on a Single Server (For Development)</span></a> to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
 Before building the Docker images it is needed to generate the configuration profile, this can be done on your machine or on one of the servers that will serve a MedCo node.</p>
 <p><strong>Generating the configuration profile</strong></p>
 <p>Execute the tool with the properly constructed arguments:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/config-generation-tool
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/config-generation-tool
 $ bash generate-dev-configuration-profile.sh test-3nodes somepassword server1.domain.com <span class="m">1</span>.1.1.1 server2.domain.com <span class="m">2</span>.2.2.2 server3.domain.com <span class="m">3</span>.3.3.3
 </pre></div>
 </div>
 <p>Explanation of the arguments:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">test-3nodes</span></code>: name of the configuration profile, the folders <code class="docutils literal"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal"><span class="pre">configuration-profiles/test-3nodes</span></code> will be created</li>
-<li><code class="docutils literal"><span class="pre">somepassword</span></code>: password used to encrypt the keystores and the CA certificate generated</li>
-<li><code class="docutils literal"><span class="pre">serverX.domain.com</span></code>: the DNS name of the server number X</li>
-<li><code class="docutils literal"><span class="pre">A.B.C.D</span></code>: the IP address of the server number X</li>
+<li><code class="docutils literal notranslate"><span class="pre">test-3nodes</span></code>: name of the configuration profile, the folders <code class="docutils literal notranslate"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">configuration-profiles/test-3nodes</span></code> will be created</li>
+<li><code class="docutils literal notranslate"><span class="pre">somepassword</span></code>: password used to encrypt the keystores and the CA certificate generated</li>
+<li><code class="docutils literal notranslate"><span class="pre">serverX.domain.com</span></code>: the DNS name of the server number X</li>
+<li><code class="docutils literal notranslate"><span class="pre">A.B.C.D</span></code>: the IP address of the server number X</li>
 </ul>
 <p>The tool will be executed and several questions will be asked, let’s go through them.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">CA certificate filename (or enter to create)</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CA certificate filename (or enter to create)</span>
 <span class="go">&lt;leave empty&gt;</span>
 </pre></div>
 </div>
 <p>Leave empty to force the creation of a new certificate authority.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Enter PEM pass phrase:somepassword</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Enter PEM pass phrase:somepassword</span>
 <span class="go">Verifying - Enter PEM pass phrase:somepassword</span>
 </pre></div>
 </div>
 <p>This is the password used to encrypted the private key of the certificate authority: you can use the same as specified
 in the arguments of called script (for simplicity).</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Country Name (2 letter code) [XX]:CH</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Country Name (2 letter code) [XX]:CH</span>
 <span class="go">State or Province Name (full name) []:VD</span>
 <span class="go">Locality Name (eg, city) [Default City]:Lausanne</span>
 <span class="go">Organization Name (eg, company) [Default Company Ltd]:EPFL</span>
@@ -180,7 +171,7 @@ in the arguments of called script (for simplicity).</p>
 </div>
 <p>These are the information that will be embedded in the certificate of the certificate authority.
 At the end input the password used to encrypt the private key of the CA.</p>
-<div class="highlight-none"><div class="highlight"><pre><span></span>###0### Signing it with the CA
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>###0### Signing it with the CA
 Using configuration from /.../medco-deployment/resources/config-generation-tool/openssl.cnf
 Enter pass phrase for ./CA/private/cakey.pem:somepassword
 Check that the request matches the signature
@@ -210,27 +201,27 @@ Sign the certificate? [y/n]:y
 1 out of 1 certificate requests certified, commit? [y/n]y
 </pre></div>
 </div>
-<p>Here input again the password and validate with <code class="docutils literal"><span class="pre">y</span></code> twice to confirm the signature of the certificate of the node by the CA.
+<p>Here input again the password and validate with <code class="docutils literal notranslate"><span class="pre">y</span></code> twice to confirm the signature of the certificate of the node by the CA.
 Repeat this operation for as many nodes as you have (3 in this example), your configuration profile has been generated.</p>
 <p><strong>Deploying the nodes</strong></p>
-<p>Now that the configuration profile <code class="docutils literal"><span class="pre">test-3nodes</span></code> is generated, repeat the operation of cloning the <code class="docutils literal"><span class="pre">medco-deployment</span></code> repository
+<p>Now that the configuration profile <code class="docutils literal notranslate"><span class="pre">test-3nodes</span></code> is generated, repeat the operation of cloning the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> repository
 and installing the dependencies on all the servers that will be MedCo nodes.
-Next copy on those servers the configuration profile, that is the 2 folders <code class="docutils literal"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal"><span class="pre">configuration-profiles/test-3nodes</span></code>.</p>
+Next copy on those servers the configuration profile, that is the 2 folders <code class="docutils literal notranslate"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">configuration-profiles/test-3nodes</span></code>.</p>
 <p>From there the  next steps are very similar to the single server scenario, build and run the nodes on all the servers.
 On server number 0:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
 $ docker-compose -f docker-compose-srv0.yml build
 $ docker-compose -f docker-compose-srv0.yml up
 </pre></div>
 </div>
 <p>On server number 1:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
 $ docker-compose -f docker-compose-srv1.yml build
 $ docker-compose -f docker-compose-srv1.yml up
 </pre></div>
 </div>
 <p>On server number 2:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
 $ docker-compose -f docker-compose-srv2.yml build
 $ docker-compose -f docker-compose-srv2.yml up
 </pre></div>
@@ -240,55 +231,55 @@ $ docker-compose -f docker-compose-srv2.yml up
 <h2>Deploying MedCo on Different Servers (For Production)<a class="headerlink" href="#deploying-medco-on-different-servers-for-production" title="Permalink to this headline">¶</a></h2>
 <p>This short guide will show you how to generate a working configuration in order to deploy a node of the full MedCo stack
 within a MedCo network of an arbitrary size, with the help of Docker, Docker-Compose and scripts.</p>
-<p>Use the previous guide <a class="reference internal" href="#lbl-deploy-single-server"><span class="std std-ref">Deploying MedCo on a Single Server (For Development)</span></a> to clone the <code class="docutils literal"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
+<p>Use the previous guide <a class="reference internal" href="#lbl-deploy-single-server"><span class="std std-ref">Deploying MedCo on a Single Server (For Development)</span></a> to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
 It is first needed to generate the configuration profiles indepentently for all the nodes, which can be done in several steps.
 A prerequisite to this step is that the different nodes must agree on their node index number, i.e. a node will be index 0,
 another index 1, and so on…</p>
 <p><strong>Generating the configuration profile of a node</strong></p>
 <p>Execute the first step with the properly constructed arguments to initialize the profiles and create the certificate authority
 (or import your own by inspecting how the script works).</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/config-generation-tool/generate-prod-configuration-profile
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/config-generation-tool/generate-prod-configuration-profile
 $ bash step1.sh test-prod-3nodes nodeindex somepassword serverX.domain.com
 </pre></div>
 </div>
 <p>Explanation of the arguments:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">test-prod-3nodes</span></code>: name of the configuration profile, the folders <code class="docutils literal"><span class="pre">compose-profiles/test-prod-3nodes</span></code> and <code class="docutils literal"><span class="pre">configuration-profiles/test-prod-3nodes</span></code> will be created</li>
-<li><code class="docutils literal"><span class="pre">nodeindex</span></code>: index number of the node for which the configuration is currently being generated</li>
-<li><code class="docutils literal"><span class="pre">somepassword</span></code>: password used to encrypt the keystores and the CA certificate generated</li>
-<li><code class="docutils literal"><span class="pre">serverX.domain.com</span></code>: the DNS name of the server</li>
+<li><code class="docutils literal notranslate"><span class="pre">test-prod-3nodes</span></code>: name of the configuration profile, the folders <code class="docutils literal notranslate"><span class="pre">compose-profiles/test-prod-3nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">configuration-profiles/test-prod-3nodes</span></code> will be created</li>
+<li><code class="docutils literal notranslate"><span class="pre">nodeindex</span></code>: index number of the node for which the configuration is currently being generated</li>
+<li><code class="docutils literal notranslate"><span class="pre">somepassword</span></code>: password used to encrypt the keystores and the CA certificate generated</li>
+<li><code class="docutils literal notranslate"><span class="pre">serverX.domain.com</span></code>: the DNS name of the server</li>
 </ul>
 <p>The tool will be executed and several questions will be asked, use the beginning of the previous guide <a class="reference internal" href="#lbl-deploy-different-servers-dev"><span class="std std-ref">Deploying MedCo on Different Servers (For Development)</span></a>
 to follow the creation of the certificate authority.</p>
 <p>Execute then the second step to generate the key pair for the node
 (or import your own by inspecting how the script works).</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ bash step2.sh test-prod-3nodes nodeindex somepassword serverX.domain.com A.B.C.D
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash step2.sh test-prod-3nodes nodeindex somepassword serverX.domain.com A.B.C.D
 </pre></div>
 </div>
 <p>Explanation of the arguments:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">A.B.C.D</span></code>: the IP address of the server number X</li>
+<li><code class="docutils literal notranslate"><span class="pre">A.B.C.D</span></code>: the IP address of the server number X</li>
 </ul>
 <p>The third step to generate the certificate of the node
 (or import your own by inspecting how the script works).</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ bash step3.sh test-prod-3nodes nodeindex somepassword serverX.domain.com A.B.C.D
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash step3.sh test-prod-3nodes nodeindex somepassword serverX.domain.com A.B.C.D
 </pre></div>
 </div>
 <p>The tool will be executed and several questions will be asked, use the end of the previous guide <a class="reference internal" href="#lbl-deploy-different-servers-dev"><span class="std std-ref">Deploying MedCo on Different Servers (For Development)</span></a>
 to follow the signature of the certificate.</p>
 <p>The fourth step to generate the unlynx keys and package the files to share with other nodes.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ bash step4.sh test-prod-3nodes nodeindex A.B.C.D
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash step4.sh test-prod-3nodes nodeindex A.B.C.D
 </pre></div>
 </div>
-<p>After this step an archive <code class="docutils literal"><span class="pre">srvX-publicdata.tar.gz</span></code> will be generated.
+<p>After this step an archive <code class="docutils literal notranslate"><span class="pre">srvX-publicdata.tar.gz</span></code> will be generated.
 Share this archive with the responsible of all the other nodes, and gather the archives of the other nodes before continuing to step 5.</p>
 <p>The fifth and final step to aggregate the files</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ bash step5.sh test-prod-3nodes nodeindex somepassword srv0-publicdata.tar.gz srv1-publicdata.tar.gz...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash step5.sh test-prod-3nodes nodeindex somepassword srv0-publicdata.tar.gz srv1-publicdata.tar.gz...
 </pre></div>
 </div>
 <p>Explanation of the arguments:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">srvX-publicdata.tar.gz</span></code>: the archives shared by the other nodes</li>
+<li><code class="docutils literal notranslate"><span class="pre">srvX-publicdata.tar.gz</span></code>: the archives shared by the other nodes</li>
 </ul>
 <p>The MedCo node is now ready to be built and ran using Docker-Compose, follow the previous guide <a class="reference internal" href="#lbl-deploy-different-servers-dev"><span class="std std-ref">Deploying MedCo on Different Servers (For Development)</span></a>
 to do so.</p>
@@ -297,10 +288,10 @@ to do so.</p>
 <h2>Loading the demo data of a node<a class="headerlink" href="#loading-the-demo-data-of-a-node" title="Permalink to this headline">¶</a></h2>
 <p>Loading the demo data is a 2-steps process. First step is to encrypt and load all of the clinical and genomic data in the i2b2
 database, and second is to load all of the genomic annotations.</p>
-<p>First get the archive containing all of the MedCo v0.1 demo data (file <code class="docutils literal"><span class="pre">medco_v0.1_demo_data.tar.gz</span></code> to be asked on
-the <code class="docutils literal"><span class="pre">medco-dev</span></code> email list) and extract it in the folder of your choice, say <code class="docutils literal"><span class="pre">~/medco_v0.1_demo_data/</span></code>.
-Then on the node adapt and execute these commands (example for node 0, configuration profile <code class="docutils literal"><span class="pre">test-prod-3nodes</span></code>):</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco_v0.1_demo_data/
+<p>First get the archive containing all of the MedCo v0.1 demo data (file <code class="docutils literal notranslate"><span class="pre">medco_v0.1_demo_data.tar.gz</span></code> to be asked on
+the <code class="docutils literal notranslate"><span class="pre">medco-dev</span></code> email list) and extract it in the folder of your choice, say <code class="docutils literal notranslate"><span class="pre">~/medco_v0.1_demo_data/</span></code>.
+Then on the node adapt and execute these commands (example for node 0, configuration profile <code class="docutils literal notranslate"><span class="pre">test-prod-3nodes</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco_v0.1_demo_data/
 $ ~/medco-deployment/configuration-profiles/test-prod-3nodes/unlynxMedCo loader <span class="se">\</span>
 --file ~/medco-deployment/configuration-profiles/test-prod-3nodes/group.toml --entryPointIdx <span class="m">0</span> <span class="se">\</span>
 --ont_clinical ./data_clinical_skcm_broad.csv --sensitive PRIMARY_TUMOR_LOCALIZATION_TYPE --sensitive CANCER_TYPE_DETAILED <span class="se">\</span>
@@ -311,30 +302,30 @@ $ ~/medco-deployment/configuration-profiles/test-prod-3nodes/unlynxMedCo loader 
 </div>
 <p>Explanation of the arguments:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">file</span></code>: public key of the collective authority</li>
-<li><code class="docutils literal"><span class="pre">entryPointIdx</span></code>: the pre-agreed node number to which the data is being loaded</li>
-<li><code class="docutils literal"><span class="pre">ont_clinical</span></code>: clinical dataset file used to populate the ontology</li>
-<li><code class="docutils literal"><span class="pre">sensitive</span></code>: fields from the clinical dataset file considered sensitive (several allowed)</li>
-<li><code class="docutils literal"><span class="pre">ont_genomic</span></code>: genomic dataset file used to populate the ontology (the annotations)</li>
-<li><code class="docutils literal"><span class="pre">clinical</span></code>: clinical dataset with the data to load</li>
-<li><code class="docutils literal"><span class="pre">genomic</span></code>: genomic dataset with the data to load</li>
-<li><code class="docutils literal"><span class="pre">dbHost</span></code>: postgresql host in which to load the data</li>
-<li><code class="docutils literal"><span class="pre">dbPort</span></code>: postgresql port</li>
-<li><code class="docutils literal"><span class="pre">dbName</span></code>: postgresql database name</li>
-<li><code class="docutils literal"><span class="pre">dbUser</span></code>: postgresql user for login</li>
-<li><code class="docutils literal"><span class="pre">dbPassword</span></code>: postgresql password for login</li>
+<li><code class="docutils literal notranslate"><span class="pre">file</span></code>: public key of the collective authority</li>
+<li><code class="docutils literal notranslate"><span class="pre">entryPointIdx</span></code>: the pre-agreed node number to which the data is being loaded</li>
+<li><code class="docutils literal notranslate"><span class="pre">ont_clinical</span></code>: clinical dataset file used to populate the ontology</li>
+<li><code class="docutils literal notranslate"><span class="pre">sensitive</span></code>: fields from the clinical dataset file considered sensitive (several allowed)</li>
+<li><code class="docutils literal notranslate"><span class="pre">ont_genomic</span></code>: genomic dataset file used to populate the ontology (the annotations)</li>
+<li><code class="docutils literal notranslate"><span class="pre">clinical</span></code>: clinical dataset with the data to load</li>
+<li><code class="docutils literal notranslate"><span class="pre">genomic</span></code>: genomic dataset with the data to load</li>
+<li><code class="docutils literal notranslate"><span class="pre">dbHost</span></code>: postgresql host in which to load the data</li>
+<li><code class="docutils literal notranslate"><span class="pre">dbPort</span></code>: postgresql port</li>
+<li><code class="docutils literal notranslate"><span class="pre">dbName</span></code>: postgresql database name</li>
+<li><code class="docutils literal notranslate"><span class="pre">dbUser</span></code>: postgresql user for login</li>
+<li><code class="docutils literal notranslate"><span class="pre">dbPassword</span></code>: postgresql password for login</li>
 </ul>
 <p>The second step will load the annotations in a way that the webclient will be able to query them:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nv">PGPASSWORD</span><span class="o">=</span><span class="s2">&quot;pFjy3EjDVwLfT2rB9xkK&quot;</span> psql -U genomic_annotations -d i2b2medco -h localhost -p <span class="m">5432</span> -a -f sqlAnnotations_all.sql
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">PGPASSWORD</span><span class="o">=</span><span class="s2">&quot;pFjy3EjDVwLfT2rB9xkK&quot;</span> psql -U genomic_annotations -d i2b2medco -h localhost -p <span class="m">5432</span> -a -f sqlAnnotations_all.sql
 </pre></div>
 </div>
 <p>Explanation of the arguments:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">PGPASSWORD</span></code>: postgresql password</li>
-<li><code class="docutils literal"><span class="pre">U</span></code>: postgresql user</li>
-<li><code class="docutils literal"><span class="pre">d</span></code>: postgresql database</li>
-<li><code class="docutils literal"><span class="pre">h</span></code>: postgresql host</li>
-<li><code class="docutils literal"><span class="pre">p</span></code>: postgresql port</li>
+<li><code class="docutils literal notranslate"><span class="pre">PGPASSWORD</span></code>: postgresql password</li>
+<li><code class="docutils literal notranslate"><span class="pre">U</span></code>: postgresql user</li>
+<li><code class="docutils literal notranslate"><span class="pre">d</span></code>: postgresql database</li>
+<li><code class="docutils literal notranslate"><span class="pre">h</span></code>: postgresql host</li>
+<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: postgresql port</li>
 <li></li>
 </ul>
 </div>
@@ -348,12 +339,14 @@ $ ~/medco-deployment/configuration-profiles/test-prod-3nodes/unlynxMedCo loader 
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
 <h3><a href="index.html">Table Of Contents</a></h3>
@@ -389,7 +382,7 @@ $ ~/medco-deployment/configuration-profiles/test-prod-3nodes/unlynxMedCo loader 
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, EPFL LCA1.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
