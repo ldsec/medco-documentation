@@ -1,12 +1,18 @@
-Deployment Documentation
-========================
+System Administrator Documentation
+==================================
+
+.. todo
+- vocab: host / node
+- adapt this page
 
 **Subpages**
 
 ..  toctree::
     :maxdepth: 1
 
-    deployment/deployed_description
+    test_deployment_1_host
+    test_deployment_several_host
+    data_loading
 
 
 This page explains how to deploy and configure MedCo in different scenarios.

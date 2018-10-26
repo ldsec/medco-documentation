@@ -10,25 +10,23 @@ Index
     :maxdepth: 3
     :includehidden:
 
-    deployment
+    system_admin/index
+    developer/index
+    user/index
 
 
-Developer Resources
+Contact the developers
+----------------------
+
+For assistance with deploying MedCo or any other technical questions, send an email at `medco-dev@listes.epfl.ch <mailto:medco-dev@listes.epfl.ch>`_.
+
+.. todo:
+- developers/contributors, papers, license etc.
+
+Releases
+--------
+
+
+Development Roadmap
 -------------------
-**Repositories**
 
-- MedCo Deployment: https://c4science.ch/source/medco-deployment/
-- MedCo I2b2 Cell: https://c4science.ch/source/medco-i2b2-cell/
-- MedCo SHRINE fork: https://c4science.ch/source/shrine-medco/
-- MedCo Documentation: https://c4science.ch/source/medco-documentation/
-
-- i2b2 server (core cells): https://github.com/i2b2/i2b2-core-server
-- i2b2 webclient: https://github.com/i2b2/i2b2-webclient
-- i2b2 data (database structure and demo data): https://github.com/i2b2/i2b2-data
-- SHRINE: https://open.med.harvard.edu/stash/projects/SHRINE/repos/shrine/browse
-
-todo:
-- explications sur comment reutiliser i2b2 shrine dockers
-- explications loading data, chaque noeud fait son loading
-
-- joao: pointers on how to fix the shrine problem
