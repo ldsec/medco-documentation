@@ -1,4 +1,2 @@
-User Documentation
-==================
-
-TBD
+User Guide
+==========
