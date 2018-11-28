@@ -1,0 +1,30 @@
+System Architecture
+===================
+
+.. figure:: system_architecture.png
+    :align: center
+
+Containers
+++++++++++
+
+php-fpm
+-------
+
+PHP processor running with FPM (FastCGI Process Manager)
+
+glowing-bear
+------------
+
+nginx web server serving GLowing Bear and the crypto module
+
+nginx
+-----
+
+web server and reverse proxy
+
+keycloak
+--------
+
+WildFly
+only in 1 of the nodes
+oidc identity provider

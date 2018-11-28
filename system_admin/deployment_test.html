@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Test Deployment (one node per machine) &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Loading Data" href="loading_data.html" />
+    <link rel="prev" title="Development Deployment (several nodes on a single machine)" href="deployment_dev.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MedCo Technical Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html">Development Deployment (several nodes on a single machine)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Test Deployment (one node per machine)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data.html">Loading Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#deployment-profiles">Deployment profiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MedCo Technical Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">System Administrator Guide</a> &raquo;</li>
+        
+      <li>Test Deployment (one node per machine)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/system_admin/deployment_test.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p id="lbl-deployment-test">todo: change keycloak pw</p>
+<div class="section" id="test-deployment-one-node-per-machine">
+<h1>Test Deployment (one node per machine)<a class="headerlink" href="#test-deployment-one-node-per-machine" title="Permalink to this headline">¶</a></h1>
+<p>This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
+on separate machines with the help of Docker, Docker-Compose and a configuration script.</p>
+<p>Use the previous guide <span class="xref std std-ref">lbl_deploy_single_server</span> to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
+Before building the Docker images it is needed to generate the configuration profile, this can be done on your machine or on one of the servers that will serve a MedCo node.</p>
+<p><strong>Generating the configuration profile</strong></p>
+<p>Execute the tool with the properly constructed arguments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/config-generation-tool
+$ bash generate-dev-configuration-profile.sh test-3nodes <span class="m">1</span>.1.1.1 <span class="m">2</span>.2.2.2 <span class="m">3</span>.3.3.3
+</pre></div>
+</div>
+<p>Explanation of the arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">test-3nodes</span></code>: name of the configuration profile, the folders <code class="docutils literal notranslate"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">configuration-profiles/test-3nodes</span></code> will be created</li>
+<li><code class="docutils literal notranslate"><span class="pre">A.B.C.D</span></code>: the IP address of the server number X</li>
+</ul>
+<p><strong>Deploying the nodes</strong></p>
+<p>Now that the configuration profile <code class="docutils literal notranslate"><span class="pre">test-3nodes</span></code> is generated, repeat the operation of cloning the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code>, <code class="docutils literal notranslate"><span class="pre">IRCT</span></code> and <code class="docutils literal notranslate"><span class="pre">glowing-bear</span></code> repositories
+and installing the dependencies on all the servers that will be MedCo nodes.
+Next copy on those servers the configuration profile, that is the 2 folders <code class="docutils literal notranslate"><span class="pre">compose-profiles/test-3nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">configuration-profiles/test-3nodes</span></code>.</p>
+<p>From there the  next steps are very similar to the single server scenario, build and run the nodes on all the servers.
+On server number 0:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
+$ docker-compose -f docker-compose-srv0.yml build
+$ docker-compose -f docker-compose-srv0.yml up
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
+$ docker-compose -f xxx build
+$ docker-compose -f xxx up
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/glowing-bear/
+$ docker-compose -f xxx build
+$ docker-compose -f xxx up
+</pre></div>
+</div>
+<p>On server number 1:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
+$ docker-compose -f docker-compose-srv1.yml build
+$ docker-compose -f docker-compose-srv1.yml up
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
+$ docker-compose -f xxx build
+$ docker-compose -f xxx up
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/glowing-bear/
+$ docker-compose -f xxx build
+$ docker-compose -f xxx up
+</pre></div>
+</div>
+<p>On server number 2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-3nodes
+$ docker-compose -f docker-compose-srv2.yml build
+$ docker-compose -f docker-compose-srv2.yml up
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
+$ docker-compose -f xxx build
+$ docker-compose -f xxx up
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/glowing-bear/
+$ docker-compose -f xxx build
+$ docker-compose -f xxx up
+</pre></div>
+</div>
+<ul class="simple">
+<li>https none keycloak??</li>
+<li>client id create i2b2 + set redirect + web origin</li>
+<li>add user + set pw</li>
+<li>add_i2b2_medco_resource</li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loading_data.html" class="btn btn-neutral float-right" title="Loading Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deployment_dev.html" class="btn btn-neutral" title="Development Deployment (several nodes on a single machine)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2018, EPFL LCA1
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

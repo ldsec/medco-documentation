@@ -10,25 +10,33 @@ Index
     :maxdepth: 3
     :includehidden:
 
-    deployment
+    system_admin/index
+    developer/index
+    user/index
 
 
-Developer Resources
--------------------
-**Repositories**
+Releases
+--------
 
-- MedCo Deployment: https://c4science.ch/source/medco-deployment/
-- MedCo I2b2 Cell: https://c4science.ch/source/medco-i2b2-cell/
-- MedCo SHRINE fork: https://c4science.ch/source/shrine-medco/
-- MedCo Documentation: https://c4science.ch/source/medco-documentation/
+    - **0.1**, *30th Sept. 2018*: First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.
 
-- i2b2 server (core cells): https://github.com/i2b2/i2b2-core-server
-- i2b2 webclient: https://github.com/i2b2/i2b2-webclient
-- i2b2 data (database structure and demo data): https://github.com/i2b2/i2b2-data
-- SHRINE: https://open.med.harvard.edu/stash/projects/SHRINE/repos/shrine/browse
 
-todo:
-- explications sur comment reutiliser i2b2 shrine dockers
-- explications loading data, chaque noeud fait son loading
+Roadmap
+-------
+    - **0.1.1**, *16th Dec. 2018*: Multi-machines test deployment and other various improvements.
+    - **0.2**, *24th Feb. 2019*: PIC-SURE 2 and MedChain integration.
 
-- joao: pointers on how to fix the shrine problem
+License
+-------
+
+MedCo is licensed under a End User Software License Agreement ('EULA') for non-commercial use. If you need more information, please contact us.
+
+Contact
+-------
+
+For assistance with deploying MedCo or any other technical questions, send an email at `medco-dev@listes.epfl.ch <mailto:medco-dev@listes.epfl.ch>`_ or any of the contributors.
+
+- `Jean Louis Raisaro <https://github.com/JLRgithub>`_ (Data Protection Specialist at CHUV) - `jean.raisaro@epfl.ch <mailto:jean.raisaro@epfl.ch>`_ 
+- `Juan Troncoso-Pastoriza <https://github.com/jrtroncoso>`_ (Post-Doc) - `juan.troncoso-pastoriza@epfl.ch <mailto:juan.troncoso-pastoriza@epfl.ch>`_ 
+- `Mickaël Misbach <https://github.com/mickmis>`_ (Software Engineer) - `mickael@misba.ch <mailto:mickael@misba.ch>`_
+- `Joao Andre Sa <https://github.com/JoaoAndreSa>`_ (Software Engineer) - `joao.gomesdesaesousa@epfl.ch <mailto:joao.gomesdesaesousa@epfl.ch>`_ 

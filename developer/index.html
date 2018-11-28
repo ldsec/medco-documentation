@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Guide &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Architecture" href="architecture/index.html" />
+    <link rel="prev" title="Loading Data" href="../system_admin/loading_data.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MedCo Technical Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../system_admin/index.html">System Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture/index.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_data_description.html">Description of the default test data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#medco-git-repositories">MedCo Git Repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-resources">Other Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MedCo Technical Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-guide">
+<h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture/index.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture/system.html">System Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/system.html#containers">Containers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="architecture/network.html">Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="architecture/network.html#external-entities">External Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="architecture/network.html#firewall-ports-opening">Firewall Ports Opening</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_data_description.html">Description of the default test data</a></li>
+</ul>
+</div>
+<div class="section" id="medco-git-repositories">
+<h2>MedCo Git Repositories<a class="headerlink" href="#medco-git-repositories" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>MedCo Software</strong></dt>
+<dd><ul class="first last simple">
+<li>I2B2 Cell: <a class="reference external" href="https://github.com/lca1/medco-i2b2-cell">https://github.com/lca1/medco-i2b2-cell</a></li>
+<li>Unlynx Wrapper: <a class="reference external" href="https://github.com/lca1/medco-unlynx">https://github.com/lca1/medco-unlynx</a></li>
+<li>Javascript Unlynx Crypto Library: <a class="reference external" href="https://github.com/lca1/unlynx-crypto-js-lib">https://github.com/lca1/unlynx-crypto-js-lib</a></li>
+<li>Data Loader: <a class="reference external" href="https://github.com/lca1/medco-loader">https://github.com/lca1/medco-loader</a></li>
+</ul>
+</dd>
+<dt><strong>MedCo Software forks</strong></dt>
+<dd><ul class="first last simple">
+<li>IRCT: <a class="reference external" href="https://github.com/lca1/IRCT">https://github.com/lca1/IRCT</a> (forked from <a class="reference external" href="https://github.com/hms-dbmi/IRCT">https://github.com/hms-dbmi/IRCT</a>)</li>
+<li>Glowing Bear: <a class="reference external" href="https://github.com/lca1/glowing-bear">https://github.com/lca1/glowing-bear</a> (forked from <a class="reference external" href="https://github.com/thehyve/glowing-bear">https://github.com/thehyve/glowing-bear</a>)</li>
+</ul>
+</dd>
+<dt><strong>Other Repositories</strong></dt>
+<dd><ul class="first last simple">
+<li>Deployment: <a class="reference external" href="https://github.com/lca1/medco-deployment">https://github.com/lca1/medco-deployment</a></li>
+<li>Documentation: <a class="reference external" href="https://github.com/lca1/medco-documentation">https://github.com/lca1/medco-documentation</a></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="other-resources">
+<h2>Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Docker Hub organization: <a class="reference external" href="https://hub.docker.com/u/medco/">https://hub.docker.com/u/medco/</a></li>
+<li>NPM.js organization: <a class="reference external" href="https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib">https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib</a></li>
+<li>Example data sets: <a class="reference external" href="https://drive.switch.ch/index.php/s/Q2I3v6lOYIxAuY9">https://drive.switch.ch/index.php/s/Q2I3v6lOYIxAuY9</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="architecture/index.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../system_admin/loading_data.html" class="btn btn-neutral" title="Loading Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2018, EPFL LCA1
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
