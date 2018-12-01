@@ -204,4 +204,3 @@ It creates a new certificate authority, and for each node:
 - add the URL of the node in the ``shrine_downstream_nodes.conf``
 - generate the unlynx pair of keys and assemble the public keys in the ``group.toml``
 - generate the docker-compose file to build and run MedCo
-

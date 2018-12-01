@@ -1,7 +1,10 @@
-.. _lbl_deploy_multiple_servers:
+.. _lbl_deployment_test:
 
-Deploying MedCo on Multiple Servers 
-------------------------------------
+todo: change keycloak pw
+
+Network Test Deployment (one node per machine)
+----------------------------------------------
+
 This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
 on separate machines with the help of Docker, Docker-Compose and a configuration script.
 
@@ -88,3 +91,9 @@ On server number 2:
     $ cd ~/glowing-bear/
     $ docker-compose -f xxx build
     $ docker-compose -f xxx up
+
+
+- https none keycloak??
+- client id create i2b2 + set redirect + web origin
+- add user + set pw
+- add_i2b2_medco_resource
