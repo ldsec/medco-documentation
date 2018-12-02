@@ -2,8 +2,8 @@
 
 todo: change keycloak pw
 
-Test Deployment (one node per machine)
---------------------------------------
+Network Test Deployment (one node per machine)
+----------------------------------------------
 
 This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
 on separate machines with the help of Docker, Docker-Compose and a configuration script.

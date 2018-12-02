@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer Guide &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  <title>Developer Guide &mdash; MedCo Technical Documentation 0.1a documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Architecture" href="architecture/index.html" />
-    <link rel="prev" title="Loading Data" href="../system_admin/loading_data.html" /> 
+    <link rel="next" title="System Architecture" href="system_architecture.html" />
+    <link rel="prev" title="Network Architecture" href="../system_admin/network_architecture.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -85,7 +85,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../system_admin/index.html">System Administrator Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="architecture/index.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_architecture.html">System Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_data_description.html">Description of the default test data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#medco-git-repositories">MedCo Git Repositories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-resources">Other Resources</a></li>
@@ -160,14 +160,17 @@
 <h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="architecture/index.html">Architecture</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="architecture/system.html">System Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="architecture/system.html#containers">Containers</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="architecture/network.html">Network Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="architecture/network.html#external-entities">External Entities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="architecture/network.html#firewall-ports-opening">Firewall Ports Opening</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_architecture.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system_architecture.html#containers">Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#medco-unlynx">medco-unlynx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#i2b2-medco">i2b2-medco</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#irct">irct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#glowing-bear">glowing-bear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#keycloak">keycloak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#postgresql">postgresql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#pg-admin">pg-admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#nginx">nginx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_architecture.html#php-fpm">php-fpm</a></li>
 </ul>
 </li>
 </ul>
@@ -206,7 +209,6 @@
 <div><ul class="simple">
 <li>Docker Hub organization: <a class="reference external" href="https://hub.docker.com/u/medco/">https://hub.docker.com/u/medco/</a></li>
 <li>NPM.js organization: <a class="reference external" href="https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib">https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib</a></li>
-<li>Example data sets: <a class="reference external" href="https://drive.switch.ch/index.php/s/Q2I3v6lOYIxAuY9">https://drive.switch.ch/index.php/s/Q2I3v6lOYIxAuY9</a></li>
 </ul>
 </div></blockquote>
 </div>
@@ -220,10 +222,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="architecture/index.html" class="btn btn-neutral float-right" title="Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="system_architecture.html" class="btn btn-neutral float-right" title="System Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../system_admin/loading_data.html" class="btn btn-neutral" title="Loading Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../system_admin/network_architecture.html" class="btn btn-neutral" title="Network Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -256,7 +258,7 @@
       <script type="text/javascript">
           var DOCUMENTATION_OPTIONS = {
               URL_ROOT:'../',
-              VERSION:'0.1',
+              VERSION:'0.1a',
               LANGUAGE:'None',
               COLLAPSE_INDEX:false,
               FILE_SUFFIX:'.html',

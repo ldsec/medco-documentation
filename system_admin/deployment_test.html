@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Test Deployment (one node per machine) &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  <title>Network Test Deployment (one node per machine) &mdash; MedCo Technical Documentation 0.1a documentation</title>
   
 
   
@@ -27,9 +27,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Loading Data" href="loading_data.html" />
-    <link rel="prev" title="Development Deployment (several nodes on a single machine)" href="deployment_dev.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -82,14 +80,8 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">System Administrator Guide</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html">Development Deployment (several nodes on a single machine)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Test Deployment (one node per machine)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html">Loading Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#deployment-profiles">Deployment profiles</a></li>
-</ul>
-</li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">System Administrator Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
 </ul>
@@ -137,9 +129,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">System Administrator Guide</a> &raquo;</li>
-        
-      <li>Test Deployment (one node per machine)</li>
+      <li>Network Test Deployment (one node per machine)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,8 +149,8 @@
            <div itemprop="articleBody">
             
   <p id="lbl-deployment-test">todo: change keycloak pw</p>
-<div class="section" id="test-deployment-one-node-per-machine">
-<h1>Test Deployment (one node per machine)<a class="headerlink" href="#test-deployment-one-node-per-machine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="network-test-deployment-one-node-per-machine">
+<h1>Network Test Deployment (one node per machine)<a class="headerlink" href="#network-test-deployment-one-node-per-machine" title="Permalink to this headline">¶</a></h1>
 <p>This short guide will show you how to generate a working configuration in order to deploy 3 nodes of the full MedCo stack
 on separate machines with the help of Docker, Docker-Compose and a configuration script.</p>
 <p>Use the previous guide <span class="xref std std-ref">lbl_deploy_single_server</span> to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> and install the required dependencies on your system.
@@ -243,15 +233,6 @@ $ docker-compose -f xxx up
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="loading_data.html" class="btn btn-neutral float-right" title="Loading Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="deployment_dev.html" class="btn btn-neutral" title="Development Deployment (several nodes on a single machine)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
@@ -281,7 +262,7 @@ $ docker-compose -f xxx up
       <script type="text/javascript">
           var DOCUMENTATION_OPTIONS = {
               URL_ROOT:'../',
-              VERSION:'0.1',
+              VERSION:'0.1a',
               LANGUAGE:'None',
               COLLAPSE_INDEX:false,
               FILE_SUFFIX:'.html',

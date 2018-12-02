@@ -1,7 +1,7 @@
 .. _lbl_deployment_dev:
 
-Development Deployment (several nodes on a single machine)
-----------------------------------------------------------
+Local Test Deployment (several nodes on a single machine)
+---------------------------------------------------------
 
 Docker Deployment
 *****************
@@ -17,9 +17,9 @@ First step is to clone the ``medco-deployment``, ``IRCT`` and ``glowing-bear`` r
 .. code-block:: bash
 
     $ cd ~
-    $ git clone -b v0.1 https://github.com/lca1/medco-deployment.git
-    $ git clone -b MedCo-v0.1 https://github.com/lca1/IRCT.git
-    $ git clone -b MedCo-v0.1 https://github.com/lca1/glowing-bear.git
+    $ git clone -b v0.1a https://github.com/lca1/medco-deployment.git
+    $ git clone -b MedCo-v0.1a https://github.com/lca1/IRCT.git
+    $ git clone -b MedCo-v0.1a https://github.com/lca1/glowing-bear.git
 
 Next step is to build or download the docker images.
 In this specific case (i.e. 3 nodes running on a single machine) you can use the provided compose and configuration profiles, called ``dev-3nodes-1host``.

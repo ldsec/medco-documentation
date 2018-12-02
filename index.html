@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MedCo Technical Documentation &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  <title>MedCo Technical Documentation &mdash; MedCo Technical Documentation 0.1a documentation</title>
   
 
   
@@ -157,25 +157,30 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="system_admin/index.html">System Administrator Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/deployment_dev.html">Development Deployment (several nodes on a single machine)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system_admin/deployment_dev.html">Local Test Deployment (several nodes on a single machine)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="system_admin/deployment_dev.html#docker-deployment">Docker Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system_admin/deployment_dev.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system_admin/deployment_dev.html#testing-that-the-nodes-are-working">Testing that the nodes are working</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/deployment_test.html">Test Deployment (one node per machine)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_admin/loading_data.html">Loading Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system_admin/loading_data.html#pre-requisites">Pre-Requisites</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system_admin/loading_data.html#v0-genomic-data">v0 (Genomic Data)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system_admin/loading_data.html#v1-i2b2-demodata">v1 (I2B2 Demodata)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/index.html#deployment-profiles">Deployment profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_admin/network_architecture.html">Network Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system_admin/network_architecture.html#external-entities">External Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_admin/network_architecture.html#firewall-ports-opening">Firewall Ports Opening</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system_admin/index.html#deployment-profiles">Deployment Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_admin/index.html#specifications">Specifications</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developer/index.html">Developer Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developer/architecture/index.html">Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="developer/architecture/system.html">System Architecture</a></li>
-<li class="toctree-l3"><a class="reference internal" href="developer/architecture/network.html">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/system_architecture.html">System Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="developer/system_architecture.html#containers">Containers</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="developer/test_data_description.html">Description of the default test data</a></li>
@@ -191,7 +196,7 @@
 <h2>Releases<a class="headerlink" href="#releases" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li><strong>0.1</strong>, <em>30th Sept. 2018</em>: First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.</li>
+<li><strong>0.1</strong>, <em>1st Dec. 2018</em>: First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.</li>
 </ul>
 </div></blockquote>
 </div>
@@ -262,7 +267,7 @@
       <script type="text/javascript">
           var DOCUMENTATION_OPTIONS = {
               URL_ROOT:'./',
-              VERSION:'0.1',
+              VERSION:'0.1a',
               LANGUAGE:'None',
               COLLAPSE_INDEX:false,
               FILE_SUFFIX:'.html',

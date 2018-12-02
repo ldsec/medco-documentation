@@ -5,7 +5,7 @@ Developer Guide
     :maxdepth: 3
     :includehidden:
 
-    architecture/index
+    system_architecture
     test_data_description
 
 
@@ -32,4 +32,3 @@ Other Resources
 
     - Docker Hub organization: https://hub.docker.com/u/medco/
     - NPM.js organization: https://www.npmjs.com/package/@medco/unlynx-crypto-js-lib
-    - Example data sets: https://drive.switch.ch/index.php/s/Q2I3v6lOYIxAuY9

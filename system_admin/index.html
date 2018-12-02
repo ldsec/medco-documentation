@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Administrator Guide &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  <title>System Administrator Guide &mdash; MedCo Technical Documentation 0.1a documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Development Deployment (several nodes on a single machine)" href="deployment_dev.html" />
+    <link rel="next" title="Local Test Deployment (several nodes on a single machine)" href="deployment_dev.html" />
     <link rel="prev" title="MedCo Technical Documentation" href="../index.html" /> 
 
   
@@ -84,10 +84,11 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Administrator Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html">Development Deployment (several nodes on a single machine)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployment_test.html">Test Deployment (one node per machine)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html">Local Test Deployment (several nodes on a single machine)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="loading_data.html">Loading Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#deployment-profiles">Deployment profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_architecture.html">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-profiles">Deployment Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specifications">Specifications</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Guide</a></li>
@@ -160,16 +161,29 @@
 <h1>System Administrator Guide<a class="headerlink" href="#system-administrator-guide" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="deployment_dev.html">Development Deployment (several nodes on a single machine)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="deployment_dev.html">Local Test Deployment (several nodes on a single machine)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="deployment_dev.html#docker-deployment">Docker Deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deployment_dev.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deployment_dev.html#testing-that-the-nodes-are-working">Testing that the nodes are working</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="deployment_test.html">Test Deployment (one node per machine)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_data.html">Loading Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html#v0-genomic-data">v0 (Genomic Data)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html#v1-i2b2-demodata">v1 (I2B2 Demodata)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data.html#pre-requisites">Pre-Requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data.html#v0-genomic-data">v0 (Genomic Data)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="loading_data.html#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loading_data.html#data-manipulation">Data Manipulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data.html#v1-i2b2-demodata">v1 (I2B2 Demodata)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="loading_data.html#dummy-generation">Dummy Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loading_data.html#id1">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="network_architecture.html">Network Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="network_architecture.html#external-entities">External Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_architecture.html#firewall-ports-opening">Firewall Ports Opening</a></li>
 </ul>
 </li>
 </ul>
@@ -180,10 +194,42 @@ The second scenario is for test purposes and explains how to deploy 3 nodes on m
 Both of those deployments come with some default test data.
 Note that these two scenarios <em>should not be used in a production environment with real data</em> (e.g, the private keys of the different nodes are public, and the software is still experimental).</p>
 <div class="section" id="deployment-profiles">
-<h2>Deployment profiles<a class="headerlink" href="#deployment-profiles" title="Permalink to this headline">¶</a></h2>
+<h2>Deployment Profiles<a class="headerlink" href="#deployment-profiles" title="Permalink to this headline">¶</a></h2>
 <p>When building and running MedCo, a <em>compose-profile</em> and a <em>configuration-profile</em> must be created and used.
-A <em>compose-profile</em> contains the Docker Compose file that starts a MedCo node. Configurations like ports to expose, log levels, etc. can be set up there.
-A <em>configuration-profile</em> is a configuration folder shared by the containers and contains things such as keys and certificates.</p>
+A <em>compose-profile</em> contains the Docker Compose file that starts a MedCo node.
+Configurations like ports to expose, log levels, etc. can be set up there.
+A <em>configuration-profile</em> is a configuration folder shared by the containers and contains things such as keys and certificates.
+For development purposes, a profile running 3 nodes on a single machine is provided and can be used as is, see <a class="reference internal" href="deployment_dev.html#lbl-deployment-dev"><span class="std std-ref">Local Test Deployment (several nodes on a single machine)</span></a>.
+In other scenarios, the profiles must be created.</p>
+</div>
+<div class="section" id="specifications">
+<h2>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<p>We recommend the following specifications for running MedCo:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>Network Bandwidth</em>: &gt;100 Mbps (ideal), &gt;10 Mbps (minimum), symmetrical</li>
+<li><em>Ports Opening</em> and <em>IP Restrictions</em>: see <a class="reference internal" href="network_architecture.html#lbl-network-architecture"><span class="std std-ref">Network Architecture</span></a></li>
+<li><dl class="first docutils">
+<dt><em>Hardware</em></dt>
+<dd><ul class="first last">
+<li><em>CPU</em>: 8 cores (ideal), 4 cores (minimum)</li>
+<li><em>RAM</em>: &gt;16 GB (ideal), &gt;8GB (minimum)</li>
+<li><em>Storage</em>: dependent on data loaded, &gt;100GB</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>Software</em></dt>
+<dd><ul class="first last">
+<li><em>OS</em>: Any flavor of Linux, physical or virtualized</li>
+<li><em>Softwares</em>: Docker &amp; Docker-Compose</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
 </div>
 </div>
 
@@ -195,7 +241,7 @@ A <em>configuration-profile</em> is a configuration folder shared by the contain
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deployment_dev.html" class="btn btn-neutral float-right" title="Development Deployment (several nodes on a single machine)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deployment_dev.html" class="btn btn-neutral float-right" title="Local Test Deployment (several nodes on a single machine)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="MedCo Technical Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -231,7 +277,7 @@ A <em>configuration-profile</em> is a configuration folder shared by the contain
       <script type="text/javascript">
           var DOCUMENTATION_OPTIONS = {
               URL_ROOT:'../',
-              VERSION:'0.1',
+              VERSION:'0.1a',
               LANGUAGE:'None',
               COLLAPSE_INDEX:false,
               FILE_SUFFIX:'.html',

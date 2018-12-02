@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Development Deployment (several nodes on a single machine) &mdash; MedCo Technical Documentation 0.1 documentation</title>
+  <title>Local Test Deployment (several nodes on a single machine) &mdash; MedCo Technical Documentation 0.1a documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Test Deployment (one node per machine)" href="deployment_test.html" />
+    <link rel="next" title="Loading Data" href="loading_data.html" />
     <link rel="prev" title="System Administrator Guide" href="index.html" /> 
 
   
@@ -84,15 +84,16 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Administrator Guide</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Development Deployment (several nodes on a single machine)</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Local Test Deployment (several nodes on a single machine)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#docker-deployment">Docker Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#testing-that-the-nodes-are-working">Testing that the nodes are working</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="deployment_test.html">Test Deployment (one node per machine)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="loading_data.html">Loading Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#deployment-profiles">Deployment profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_architecture.html">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#deployment-profiles">Deployment Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#specifications">Specifications</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Guide</a></li>
@@ -144,7 +145,7 @@
         
           <li><a href="index.html">System Administrator Guide</a> &raquo;</li>
         
-      <li>Development Deployment (several nodes on a single machine)</li>
+      <li>Local Test Deployment (several nodes on a single machine)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,8 +164,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="development-deployment-several-nodes-on-a-single-machine">
-<span id="lbl-deployment-dev"></span><h1>Development Deployment (several nodes on a single machine)<a class="headerlink" href="#development-deployment-several-nodes-on-a-single-machine" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="local-test-deployment-several-nodes-on-a-single-machine">
+<span id="lbl-deployment-dev"></span><h1>Local Test Deployment (several nodes on a single machine)<a class="headerlink" href="#local-test-deployment-several-nodes-on-a-single-machine" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="docker-deployment">
 <h2>Docker Deployment<a class="headerlink" href="#docker-deployment" title="Permalink to this headline">¶</a></h2>
 <p>This short guide will show you how to deploy 3 nodes of the full MedCo stack on a single machine with the help of Docker and Docker-Compose, for development purpose, or test on a single machine.
@@ -175,9 +176,9 @@ Any kind of not too old Linux flavor should work, but it has only be tested on t
 </ul>
 <p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code>, <code class="docutils literal notranslate"><span class="pre">IRCT</span></code> and <code class="docutils literal notranslate"><span class="pre">glowing-bear</span></code> repositories (with the correct branch).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
-$ git clone -b v0.1 https://github.com/lca1/medco-deployment.git
-$ git clone -b MedCo-v0.1 https://github.com/lca1/IRCT.git
-$ git clone -b MedCo-v0.1 https://github.com/lca1/glowing-bear.git
+$ git clone -b v0.1a https://github.com/lca1/medco-deployment.git
+$ git clone -b MedCo-v0.1a https://github.com/lca1/IRCT.git
+$ git clone -b MedCo-v0.1a https://github.com/lca1/glowing-bear.git
 </pre></div>
 </div>
 <p>Next step is to build or download the docker images.
@@ -258,7 +259,7 @@ The database address to use is <code class="docutils literal notranslate"><span 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deployment_test.html" class="btn btn-neutral float-right" title="Test Deployment (one node per machine)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="loading_data.html" class="btn btn-neutral float-right" title="Loading Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="System Administrator Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -294,7 +295,7 @@ The database address to use is <code class="docutils literal notranslate"><span 
       <script type="text/javascript">
           var DOCUMENTATION_OPTIONS = {
               URL_ROOT:'../',
-              VERSION:'0.1',
+              VERSION:'0.1a',
               LANGUAGE:'None',
               COLLAPSE_INDEX:false,
               FILE_SUFFIX:'.html',
