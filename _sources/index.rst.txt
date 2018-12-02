@@ -20,12 +20,6 @@ Releases
 
     - **0.1**, *1st Dec. 2018*: First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.
 
-..
-Roadmap
--------
-    - **0.1.1**, *16th Dec. 2018*: Multi-machines test deployment and other various improvements.
-    - **0.2**, *24th Feb. 2019*: PIC-SURE 2 and MedChain integration.
-
 License
 -------
 
