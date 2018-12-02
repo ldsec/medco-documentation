@@ -2,7 +2,7 @@ System Architecture
 ===================
 
 .. figure:: system_architecture.png
-:align: center
+    :align: center
 
 Containers
 ++++++++++
