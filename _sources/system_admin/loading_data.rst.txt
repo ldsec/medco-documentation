@@ -107,7 +107,7 @@ This involves encrypting and 'deterministically tagging' some of the data.
 
 List of input ('original') files:
 
-    - all i2b2metadata files(e.g. i2b2.csv)
+    - all i2b2metadata files (e.g. i2b2.csv)
     - dummy_to_patient.csv
     - patient_dimension.csv
     - visit_dimension.csv
