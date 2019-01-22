@@ -40,7 +40,7 @@ Glowing Bear is deployed separately for development, as we use its very practica
 .. code-block:: bash
 
     $ cd ~/glowing-bear/deployment
-    $ docker-compose build gb-dev-server
+    $ docker-compose build dev-server
 
 Next step is to run the nodes. They will run simultaneously, and the logs of the running containers will maintain the console captive.
 No configuration changes are needed in this scenario before running the nodes.
@@ -69,7 +69,7 @@ And in another separate terminal run the glowing bear development server:
 .. code-block:: bash
 
     $ cd ~/glowing-bear/deployment
-    $ docker-compose up gb-dev-server
+    $ docker-compose up dev-server
 
 In order to stop the containers, simply hit ``Ctrl+C`` in all the active windows.
 Follow the instructions from :ref:`lbl_configuration_keycloak` to be able to test the deployment.
