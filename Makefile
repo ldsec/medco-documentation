@@ -2,11 +2,14 @@
 #
 
 # You can set these variables from the command line.
+PWD           = $(shell pwd)
+CURRENT_USER  = $(shell id -u)
+CURRENT_GROUP = $(shell id -g)
 SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
+SPHINXBUILD   = docker run -u $(CURRENT_USER):$(CURRENT_GROUP) -v $(PWD):/medco-documentation netresearch/sphinx-buildbox:latest sphinx-build
 SPHINXPROJ    = MedCoDocumentation
-SOURCEDIR     = source
-BUILDDIR      = .
+SOURCEDIR     = /medco-documentation/source
+BUILDDIR      = /medco-documentation
 
 # Put it first so that "make" without argument is like "make help".
 help:
