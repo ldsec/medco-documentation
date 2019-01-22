@@ -1,5 +1,5 @@
 User Guide
-==========
+++++++++++
 
 *Coming soon*
 

@@ -1,4 +1,4 @@
-Building
-========
+MedCo Loader
+============
 
-docker build --no-cache -t medco/medco-loader:v0.1 .
+*Coming soon*
