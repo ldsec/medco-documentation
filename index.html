@@ -151,68 +151,84 @@
             
   <div class="section" id="medco-technical-documentation">
 <h1>MedCo Technical Documentation<a class="headerlink" href="#medco-technical-documentation" title="Permalink to this headline">¶</a></h1>
-<p><em>Disclaimer: this documentation is still under construction.</em></p>
-<div class="section" id="index">
-<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="system_admin/index.html">System Administrator Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/deployment_dev.html">Local Test Deployment (several nodes on a single machine)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/deployment_dev.html#docker-deployment">Docker Deployment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/deployment_dev.html#keycloak-configuration">Keycloak Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/deployment_dev.html#testing-that-the-nodes-are-working">Testing that the nodes are working</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/loading_data.html">Loading Data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/loading_data.html#pre-requisites">Pre-Requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/loading_data.html#v0-genomic-data">v0 (Genomic Data)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/loading_data.html#v1-i2b2-demodata">v1 (I2B2 Demodata)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/network_architecture.html">Network Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/network_architecture.html#external-entities">External Entities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system_admin/network_architecture.html#firewall-ports-opening">Firewall Ports Opening</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/index.html#deployment-profiles">Deployment Profiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="system_admin/index.html#specifications">Specifications</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="developer/index.html">Developer Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developer/system_architecture.html">System Architecture</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="developer/system_architecture.html#containers">Containers</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="developer/test_data_description.html">Description of the default test data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer/index.html#medco-git-repositories">MedCo Git Repositories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer/index.html#other-resources">Other Resources</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="user/index.html">User Guide</a></li>
-</ul>
 </div>
-</div>
+<p><em>Disclaimer: MedCo is still an experimental software under development and should not, at this point, use real sensitive data.</em></p>
 <div class="section" id="releases">
 <h2>Releases<a class="headerlink" href="#releases" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ul class="simple">
-<li><strong>0.1</strong>, <em>1st Dec. 2018</em>: First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.</li>
+<div><ul>
+<li><div class="first line-block">
+<div class="line"><strong>0.1.1</strong>, <em>23rd Jan. 2019</em></div>
+<div class="line">Deployment for test purposes on several machines, enhancements of documentation and deployment infrastructure, Nginx reverse proxy with HTTPS support, Keycloak update.</div>
+</div>
+</li>
+<li><div class="first line-block">
+<div class="line"><strong>0.1</strong>, <em>1st Dec. 2018</em></div>
+<div class="line">First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.</div>
+</div>
+</li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>MedCo is licensed under a End User Software License Agreement (‘EULA’) for non-commercial use. If you need more information, please contact us.</p>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>MedCo software repositories</dt>
+<dd><ul class="first last">
+<li>I2B2 Cell: <a class="reference external" href="https://github.com/lca1/medco-i2b2-cell">https://github.com/lca1/medco-i2b2-cell</a></li>
+<li>Unlynx Wrapper: <a class="reference external" href="https://github.com/lca1/medco-unlynx">https://github.com/lca1/medco-unlynx</a></li>
+<li>Unlynx Javascript Crypto Library: <a class="reference external" href="https://github.com/lca1/medco-unlynx-js">https://github.com/lca1/medco-unlynx-js</a></li>
+<li>Data Loader: <a class="reference external" href="https://github.com/lca1/medco-loader">https://github.com/lca1/medco-loader</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>MedCo software forked repositories</dt>
+<dd><ul class="first last">
+<li>IRCT: <a class="reference external" href="https://github.com/lca1/IRCT">https://github.com/lca1/IRCT</a> (forked from <a class="reference external" href="https://github.com/hms-dbmi/IRCT">https://github.com/hms-dbmi/IRCT</a>)</li>
+<li>Glowing Bear: <a class="reference external" href="https://github.com/lca1/glowing-bear">https://github.com/lca1/glowing-bear</a> (forked from <a class="reference external" href="https://github.com/thehyve/glowing-bear">https://github.com/thehyve/glowing-bear</a>)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Other repositories</dt>
+<dd><ul class="first last">
+<li>Deployment: <a class="reference external" href="https://github.com/lca1/medco-deployment">https://github.com/lca1/medco-deployment</a></li>
+<li>Documentation: <a class="reference external" href="https://github.com/lca1/medco-documentation">https://github.com/lca1/medco-documentation</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Other resources</dt>
+<dd><ul class="first last">
+<li>Docker Hub organization: <a class="reference external" href="https://hub.docker.com/u/medco/">https://hub.docker.com/u/medco/</a></li>
+<li>NPM.js organization: <a class="reference external" href="https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib">https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="contact">
 <h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
 <p>For assistance with deploying MedCo or any other technical questions, send an email at <a class="reference external" href="mailto:medco-dev&#37;&#52;&#48;listes&#46;epfl&#46;ch">medco-dev<span>&#64;</span>listes<span>&#46;</span>epfl<span>&#46;</span>ch</a> or any of the contributors.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/JLRgithub">Jean Louis Raisaro</a> (Data Protection Specialist at CHUV) - <a class="reference external" href="mailto:jean&#46;raisaro&#37;&#52;&#48;epfl&#46;ch">jean<span>&#46;</span>raisaro<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
-<li><a class="reference external" href="https://github.com/jrtroncoso">Juan Troncoso-Pastoriza</a> (Post-Doc) - <a class="reference external" href="mailto:juan&#46;troncoso-pastoriza&#37;&#52;&#48;epfl&#46;ch">juan<span>&#46;</span>troncoso-pastoriza<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
-<li><a class="reference external" href="https://github.com/mickmis">Mickaël Misbach</a> (Software Engineer) - <a class="reference external" href="mailto:mickael&#37;&#52;&#48;misba&#46;ch">mickael<span>&#64;</span>misba<span>&#46;</span>ch</a></li>
-<li><a class="reference external" href="https://github.com/JoaoAndreSa">Joao Andre Sa</a> (Software Engineer) - <a class="reference external" href="mailto:joao&#46;gomesdesaesousa&#37;&#52;&#48;epfl&#46;ch">joao<span>&#46;</span>gomesdesaesousa<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
+<li><a class="reference external" href="https://github.com/mickmis">Mickaël Misbach</a> (Privacy and Security Software Engineer, EPFL) - <a class="reference external" href="mailto:mickael&#46;misbach&#37;&#52;&#48;epfl&#46;ch">mickael<span>&#46;</span>misbach<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
+<li><a class="reference external" href="https://github.com/JoaoAndreSa">Joao Andre Sa</a> (Privacy and Security Software Engineer, EPFL) - <a class="reference external" href="mailto:joao&#46;gomesdesaesousa&#37;&#52;&#48;epfl&#46;ch">joao<span>&#46;</span>gomesdesaesousa<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
+<li><a class="reference external" href="https://github.com/JLRgithub">Jean Louis Raisaro</a> (Data Protection Specialist, CHUV) - <a class="reference external" href="mailto:jean&#46;raisaro&#37;&#52;&#48;chuv&#46;ch">jean<span>&#46;</span>raisaro<span>&#64;</span>chuv<span>&#46;</span>ch</a></li>
+<li><a class="reference external" href="https://github.com/jrtroncoso">Juan Troncoso-Pastoriza</a> (Post-Doctoral Researcher, EPFL) - <a class="reference external" href="mailto:juan&#46;troncoso-pastoriza&#37;&#52;&#48;epfl&#46;ch">juan<span>&#46;</span>troncoso-pastoriza<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
+<li><a class="reference external" href="https://people.epfl.ch/jean-pierre.hubaux">Jean-Pierre Hubaux</a> (Professor, EPFL) - <a class="reference external" href="mailto:jean-pierre&#46;hubaux&#37;&#52;&#48;epfl&#46;ch">jean-pierre<span>&#46;</span>hubaux<span>&#64;</span>epfl<span>&#46;</span>ch</a></li>
 </ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>MedCo is licensed under a End User Software License Agreement (‘EULA’) for non-commercial use.
+If you need more information, please contact us.</p>
 </div>
 </div>
 

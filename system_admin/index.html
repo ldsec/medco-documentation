@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Local Test Deployment (several nodes on a single machine)" href="deployment_dev.html" />
+    <link rel="next" title="Deployment" href="deployment/index.html" />
     <link rel="prev" title="MedCo Technical Documentation" href="../index.html" /> 
 
   
@@ -84,11 +84,10 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Administrator Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html">Local Test Deployment (several nodes on a single machine)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html">Loading Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment/index.html">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data/index.html">Loading Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network_architecture.html">Network Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#deployment-profiles">Deployment Profiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#specifications">Specifications</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Guide</a></li>
@@ -161,24 +160,58 @@
 <h1>System Administrator Guide<a class="headerlink" href="#system-administrator-guide" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="deployment_dev.html">Local Test Deployment (several nodes on a single machine)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html#docker-deployment">Docker Deployment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html#keycloak-configuration">Keycloak Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deployment_dev.html#testing-that-the-nodes-are-working">Testing that the nodes are working</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment/index.html">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment/dev-local-3nodes.html">Local Development Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="loading_data.html">Loading Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html#pre-requisites">Pre-Requisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html#v0-genomic-data">v0 (Genomic Data)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="loading_data.html#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="loading_data.html#data-manipulation">Data Manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment/test-local-3nodes.html">Local Test Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="loading_data.html#v1-i2b2-demodata">v1 (I2B2 Demodata)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="loading_data.html#dummy-generation">Dummy Generation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="loading_data.html#id1">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment/test-network.html">Network Test Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#preliminaries">Preliminaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#generation-of-the-deployment-profile">Generation of the Deployment Profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#irct-configuration-and-deployment">IRCT Configuration and Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="deployment/index.html#deployment-profiles">Deployment Profiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration/index.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration/keycloak.html">Keycloak Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#accessing-the-web-administration-interface">Accessing the web administration interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#manually-add-an-authorized-user">Manually add an authorized user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#add-the-default-openid-connect-client-configuration-for-medco">Add the default OpenID Connect client configuration for MedCo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#disabling-https-requirement-for-external-connections">Disabling HTTPS requirement for external connections</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/https.html">HTTPS Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration/https.html#certificate">Certificate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/https.html#enable-https-for-the-test-local-deployment">Enable HTTPS for the Test Local Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/https.html#configure-https-for-the-test-network-deployment">Configure HTTPS for the Test Network Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/postgresql.html">The PostgreSQL database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration/postgresql.html#administration-with-pgadmin">Administration with PgAdmin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loading_data/index.html">Loading Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="loading_data/v0.html">v0 (Genomic Data)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="loading_data/v0.html#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loading_data/v0.html#data-manipulation">Data Manipulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data/v1.html">v1 (I2B2 Demodata)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="loading_data/v1.html#dummy-generation">Dummy Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loading_data/v1.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="loading_data/index.html#pre-requisites">Pre-Requisites</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="network_architecture.html">Network Architecture</a><ul>
@@ -188,45 +221,32 @@
 </li>
 </ul>
 </div>
-<p>This page explains how to deploy and configure MedCo in different scenarios.
-The first scenario is for development purposes and explains how to deploy 3 nodes on a single server.
-The second scenario is for test purposes and explains how to deploy 3 nodes on multiple separate servers.
-Both of those deployments come with some default test data.
-Note that these two scenarios <em>should not be used in a production environment with real data</em> (e.g, the private keys of the different nodes are public, and the software is still experimental).</p>
-<div class="section" id="deployment-profiles">
-<h2>Deployment Profiles<a class="headerlink" href="#deployment-profiles" title="Permalink to this headline">¶</a></h2>
-<p>When building and running MedCo, a <em>compose-profile</em> and a <em>configuration-profile</em> must be created and used.
-A <em>compose-profile</em> contains the Docker Compose file that starts a MedCo node.
-Configurations like ports to expose, log levels, etc. can be set up there.
-A <em>configuration-profile</em> is a configuration folder shared by the containers and contains things such as keys and certificates.
-For development purposes, a profile running 3 nodes on a single machine is provided and can be used as is, see <a class="reference internal" href="deployment_dev.html#lbl-deployment-dev"><span class="std std-ref">Local Test Deployment (several nodes on a single machine)</span></a>.
-In other scenarios, the profiles must be created.</p>
-</div>
+<p>This guide explains the deployment and configuration of MedCo instances.</p>
 <div class="section" id="specifications">
 <h2>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
 <p>We recommend the following specifications for running MedCo:</p>
 <blockquote>
+<div><ul>
+<li><p class="first"><em>Network Bandwidth</em>: &gt;100 Mbps (ideal), &gt;10 Mbps (minimum), symmetrical</p>
+</li>
+<li><p class="first"><em>Ports Opening</em> and <em>IP Restrictions</em>: see <a class="reference internal" href="network_architecture.html#lbl-network-architecture"><span class="std std-ref">Network Architecture</span></a></p>
+</li>
+<li><p class="first"><em>Hardware</em></p>
+<blockquote>
 <div><ul class="simple">
-<li><em>Network Bandwidth</em>: &gt;100 Mbps (ideal), &gt;10 Mbps (minimum), symmetrical</li>
-<li><em>Ports Opening</em> and <em>IP Restrictions</em>: see <a class="reference internal" href="network_architecture.html#lbl-network-architecture"><span class="std std-ref">Network Architecture</span></a></li>
-<li><dl class="first docutils">
-<dt><em>Hardware</em></dt>
-<dd><ul class="first last">
 <li><em>CPU</em>: 8 cores (ideal), 4 cores (minimum)</li>
 <li><em>RAM</em>: &gt;16 GB (ideal), &gt;8GB (minimum)</li>
 <li><em>Storage</em>: dependent on data loaded, &gt;100GB</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt><em>Software</em></dt>
-<dd><ul class="first last">
-<li><em>OS</em>: Any flavor of Linux, physical or virtualized</li>
-<li><em>Softwares</em>: Docker &amp; Docker-Compose</li>
+<li><p class="first"><em>Software</em></p>
+<blockquote>
+<div><ul class="simple">
+<li><em>OS</em>: Any flavor of Linux, physical or virtualized (tested with Ubuntu 16.04, 18.04, Fedora 29)</li>
+<li><em>Softwares</em>: Docker &amp; Docker-Compose, Git and Git-LFS</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div></blockquote>
@@ -241,7 +261,7 @@ In other scenarios, the profiles must be created.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deployment_dev.html" class="btn btn-neutral float-right" title="Local Test Deployment (several nodes on a single machine)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deployment/index.html" class="btn btn-neutral float-right" title="Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="MedCo Technical Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

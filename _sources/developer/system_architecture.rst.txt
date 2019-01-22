@@ -18,18 +18,17 @@ This cell communicates with *medco-unlynx* to execute the distributed cryptograp
 
 irct
 ----
+The query translation and broadcasting layer.
 
 
 glowing-bear
 ------------
-nginx web server serving GLowing Bear and the crypto module
+Nginx web server serving Glowing Bear and the crypto module.
 
 
 keycloak
 --------
-WildFly
-only in 1 of the nodes
-oidc identity provider
+OpenID Connect identity provider.
 
 postgresql
 ----------
@@ -41,8 +40,7 @@ A web-based administration tool for the PostgreSQL database.
 
 nginx
 -----
-
-web server and reverse proxy
+Web server and (HTTPS-enabled) reverse proxy.
 
 php-fpm
 -------
