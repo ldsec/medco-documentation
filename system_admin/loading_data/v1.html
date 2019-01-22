@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>v1 (I2B2 Demodata) &mdash; MedCo Technical Documentation 0.1a documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Network Architecture" href="../network_architecture.html" />
+    <link rel="prev" title="v0 (Genomic Data)" href="v0.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MedCo Technical Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../deployment/index.html">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Loading Data</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="v0.html">v0 (Genomic Data)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">v1 (I2B2 Demodata)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../network_architecture.html">Network Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MedCo Technical Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">System Administrator Guide</a> &raquo;</li>
+        
+          <li><a href="index.html">Loading Data</a> &raquo;</li>
+        
+      <li>v1 (I2B2 Demodata)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/system_admin/loading_data/v1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="v1-i2b2-demodata">
+<h1>v1 (I2B2 Demodata)<a class="headerlink" href="#v1-i2b2-demodata" title="Permalink to this headline">¶</a></h1>
+<p>v1 expects an already existing i2b2 database (in <em>.csv</em> format) that will be converted in a way that is compliant with the MedCo data model.
+This involves encrypting and ‘deterministically tagging’ some of the data.</p>
+<p>List of input (‘original’) files:</p>
+<blockquote>
+<div><ul class="simple">
+<li>all i2b2metadata files (e.g. i2b2.csv)</li>
+<li>dummy_to_patient.csv</li>
+<li>patient_dimension.csv</li>
+<li>visit_dimension.csv</li>
+<li>concept_dimension.csv</li>
+<li>modifier_dimension.csv</li>
+<li>observation_fact.csv</li>
+<li>table_access.csv</li>
+</ul>
+</div></blockquote>
+<div class="section" id="dummy-generation">
+<h2>Dummy Generation<a class="headerlink" href="#dummy-generation" title="Permalink to this headline">¶</a></h2>
+<p>The provided example data set files come with dummy data pre-generated.
+Those data are random dummy entries whose purpose is to prevent frequency attacks.
+For more information on how this dummy generation is done please refer to <code class="docutils literal notranslate"><span class="pre">data/scripts/import-tool/report/report.pdf</span></code>.
+In a future release, the generation will be done dynamically by the loader.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The following example allows to load data into a running MedCo development deployment (<em>dev-local-3nodes</em>), on the node 0.
+Adapt accordingly arguments <code class="docutils literal notranslate"><span class="pre">network</span></code>, <code class="docutils literal notranslate"><span class="pre">entryPointIdx</span></code> and <code class="docutils literal notranslate"><span class="pre">dbName</span></code> for the 2 other nodes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --network<span class="o">=</span><span class="s2">&quot;dev-local-3nodes_medco-network&quot;</span> --network<span class="o">=</span><span class="s2">&quot;dev-local-3nodes_medco-srv0&quot;</span> <span class="se">\</span>
+    -v ~/medco-loader/data/i2b2:/dataset -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml <span class="se">\</span>
+    medco/medco-loader:v0.1d -debug <span class="m">2</span> v1 --group /group.toml --entryPointIdx <span class="m">0</span> --sen /dataset/sensitive.txt  <span class="se">\</span>
+    --files /dataset/files.toml --dbHost postgresql --dbPort <span class="m">5432</span> --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>NAME:
+    medco-loader v1 - Convert existing i2b2 data model
+
+USAGE:
+    medco-loader v1 <span class="o">[</span><span class="nb">command</span> options<span class="o">]</span> <span class="o">[</span>arguments...<span class="o">]</span>
+
+OPTIONS:
+    --group value, -g value               UnLynx group definition file
+    --entryPointIdx value, --entry value  Index <span class="o">(</span>relative to the group definition file<span class="o">)</span> of the collective authority server to load the data
+    --sensitive value, --sen value        File containing a list of sensitive concepts
+    --dbHost value, --dbH value           Database hostname
+    --dbPort value, --dbP value           Database port <span class="o">(</span>default: <span class="m">0</span><span class="o">)</span>
+    --dbName value, --dbN value           Database name
+    --dbUser value, --dbU value           Database user
+    --dbPassword value, --dbPw value      Database password
+    --files value, -f value               Configuration toml with the path of the all the necessary i2b2 files
+    --empty, -e                           Empty patient and visit dimension tables <span class="o">(</span>y/n<span class="o">)</span>
+</pre></div>
+</div>
+<p>For more help simply type</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./medco-loader v1 -help
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../network_architecture.html" class="btn btn-neutral float-right" title="Network Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="v0.html" class="btn btn-neutral" title="v0 (Genomic Data)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2018, EPFL LCA1.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1a',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

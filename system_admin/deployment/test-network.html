@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Network Test Deployment &mdash; MedCo Technical Documentation 0.1a documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Configuration" href="../configuration/index.html" />
+    <link rel="prev" title="Local Test Deployment" href="test-local-3nodes.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MedCo Technical Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Deployment</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dev-local-3nodes.html">Local Development Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test-local-3nodes.html">Local Test Deployment</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Network Test Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../loading_data/index.html">Loading Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../network_architecture.html">Network Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MedCo Technical Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">System Administrator Guide</a> &raquo;</li>
+        
+          <li><a href="index.html">Deployment</a> &raquo;</li>
+        
+      <li>Network Test Deployment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/system_admin/deployment/test-network.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="network-test-deployment">
+<span id="lbl-deployment-test-network"></span><h1>Network Test Deployment<a class="headerlink" href="#network-test-deployment" title="Permalink to this headline">¶</a></h1>
+<p>Profile <em>test-network</em></p>
+<p>This test profile deploys a MedCo node part of a MedCo network on a machine for test purposes.
+It can be deployed on a machine reachable by the other nodes of the network.
+The version of the docker images used are the latest released versions.</p>
+<div class="section" id="preliminaries">
+<h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
+<p>First step is to get the MedCo Deployment latest release, and separately the IRCT repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+$ wget https://github.com/lca1/medco-deployment/archive/v0.1d.tar.gz
+$ tar xvzf v0.1d.tar.gz
+$ mv medco-deployment-0.1d medco-deployment
+$ git clone -b MedCo-v0.1e https://github.com/lca1/IRCT.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="generation-of-the-deployment-profile">
+<h2>Generation of the Deployment Profile<a class="headerlink" href="#generation-of-the-deployment-profile" title="Permalink to this headline">¶</a></h2>
+<p>Next the <em>compose and configuration profiles</em> must be generated using a script.
+This script is executed in two steps, and individually by each node of the network.
+- <strong>Step 1</strong>: each node generates its keys and certificates, and shares its public ones with the other nodes
+- <strong>Step 2</strong>: each node gathers the public keys and certificates of the others</p>
+<p>For step 1, the network name should be common to all the nodes.
+Beforehand the different parties should have agreed on the nodes members of the network, and assigned to each a
+node index (starting from 0, to n-1, n being the total number of nodes).
+The node domain name should be accessible by the other nodes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/profile-generation-scripts/test-network
+$ bash step1.sh &lt;network name&gt; &lt;node index&gt; &lt;node domain name&gt;
+</pre></div>
+</div>
+<p>This script will generate part of the <em>configuration profile</em>, including a file <code class="docutils literal notranslate"><span class="pre">srv&lt;node</span> <span class="pre">index&gt;-public.tar.gz</span></code>.
+This file should be shared with the other nodes, and all of them need to place it in the <em>configuration profile</em> folder,
+such that all the <code class="docutils literal notranslate"><span class="pre">srv&lt;node</span> <span class="pre">index&gt;-public.tar.gz</span></code> files are present at the same place.</p>
+<p>Once this is done, the step 2 can be executed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash step2.sh &lt;network name&gt; &lt;node index&gt;
+</pre></div>
+</div>
+<p>The deployment profile is now ready to be used.</p>
+</div>
+<div class="section" id="medco-node-deployment-except-irct">
+<h2>MedCo Node Deployment (except IRCT)<a class="headerlink" href="#medco-node-deployment-except-irct" title="Permalink to this headline">¶</a></h2>
+<p>Next step is to download or build the docker images, and run the node:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-network-&lt;network name&gt;
+$ docker-compose pull
+$ docker-compose build
+$ docker-compose up
+</pre></div>
+</div>
+<p>Wait some time for the initialization of the containers to be done (until the logging stops), this can take up to 10 minutes.
+For the subsequent runs, the startup will be faster.</p>
+</div>
+<div class="section" id="irct-configuration-and-deployment">
+<h2>IRCT Configuration and Deployment<a class="headerlink" href="#irct-configuration-and-deployment" title="Permalink to this headline">¶</a></h2>
+<p>Currently IRCT must be configured manually and deployed separately, this will change in the future.</p>
+<p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/IRCT/deployments/.env</span></code> and adjust to your case:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MEDCO_NODE_URL</span><span class="o">=</span>https://&lt;node domain name&gt;
+<span class="nv">MEDCO_NODE_IDX</span><span class="o">=</span>&lt;node index&gt;
+<span class="nv">MEDCO_PROFILE_NAME</span><span class="o">=</span>test-network-&lt;network name&gt;
+</pre></div>
+</div>
+<p>Copy all the certificates obtained from the previous step to the folder <code class="docutils literal notranslate"><span class="pre">~/IRCT/deployments/irct/volumes/certificates/</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp ~/medco-deployment/configuration-profiles/test-network-&lt;network name&gt;/*.crt ~/IRCT/deployments/irct/volumes/certificates/
+</pre></div>
+</div>
+<p>Then, build and run the IRCT container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
+$ docker-compose -f docker-compose.medco.test-network.yml build
+$ chmod -R a+rw ../
+$ docker-compose -f docker-compose.medco.test-network.yml up
+</pre></div>
+</div>
+<p>Use the pgAdmin tool to add the IRCT configuration (see <a class="reference internal" href="../configuration/postgresql.html#lbl-configuration-postgresql"><span class="std std-ref">The PostgreSQL database</span></a>).
+With the query tool, execute the following SQL in the database <code class="docutils literal notranslate"><span class="pre">irct</span></code> by adapting to your case:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">add_i2b2_medco_resource</span><span class="p">(</span>
+    <span class="s1">&#39;i2b2-medco-test-network&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;https://&lt;node 0 domain name&gt;/i2b2/services/,https://&lt;node 1 domain name&gt;/i2b2/services/,...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;i2b2medco,i2b2medco,i2b2medco&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;medcouser&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;demouser&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;true&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;edu.harvard.hms.dbmi.bd2k.irct.ri.medco.I2B2MedCoResourceImplementation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TREE&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Finally, restart IRCT to account for the new configuration by hitting <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in IRCT terminal, and starting it again:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose.medco.test-network.yml up
+</pre></div>
+</div>
+<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.
+Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> to be able to test the deployment.</p>
+</div>
+<div class="section" id="test-the-deployment">
+<h2>Test the deployment<a class="headerlink" href="#test-the-deployment" title="Permalink to this headline">¶</a></h2>
+<p>In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;domain</span> <span class="pre">name&gt;</span></code>
+and use the credentials previously configured.</p>
+<p>The default test data will not be working (the queries made will fail), as the data is not encrypted with the keys that were generated.
+Use first the MedCo loader (see <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>) to be able to test the deployment.
+The database address to use is <code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;:5432</span></code> with the database <code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code>.</p>
+<p>Note that by default the certificate generated by the script are self-signed, and when using Glowing Bear, the browser will issue a security warning.
+To use your own valid certificates, see <a class="reference internal" href="../configuration/https.html#lbl-configuration-https"><span class="std std-ref">HTTPS Configuration</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../configuration/index.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="test-local-3nodes.html" class="btn btn-neutral" title="Local Test Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2018, EPFL LCA1.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1a',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
