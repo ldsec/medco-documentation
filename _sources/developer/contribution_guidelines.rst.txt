@@ -41,6 +41,8 @@ https://github.com/lca1/medco-deployment/releases/tag/v0.1 : have text at index 
 
 update versions in medco-doicuemntaiton
 
+WARNING: tag AFTER the PR (if not annoying problems -> tag it directly on github and not on CLI)
+or not? check...
 
 all repos have same version number, but can differ in terms of letters
 
