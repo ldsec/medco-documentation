@@ -29,4 +29,4 @@ We recommend the following specifications for running MedCo:
     - *Software*
 
         - *OS*: Any flavor of Linux, physical or virtualized (tested with Ubuntu 16.04, 18.04, Fedora 29)
-        - *Softwares*: Docker & Docker-Compose, Git and Git-LFS
+        - *Softwares*: Docker (version >= 18.03) & Docker-Compose (version >= 1.21), Git and Git-LFS

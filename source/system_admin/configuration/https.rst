@@ -20,9 +20,9 @@ Enable HTTPS for the Test Local Deployment
 
 To enable HTTPS for the profile *test-local-3nodes*, replace the files *certificate.key* and *certificate.crt*
 from the *configuration profile* folder with your own versions.
-Such a certificate can be obtained for example through `Let's Encrypt <https://letsencrypt.org/>`_
+Such a certificate can be obtained for example through `Let's Encrypt <https://letsencrypt.org/>`_.
 
-Then edit the file ``.env`` from the *compose profile*, and replace the ``http`` with ``https``, and restart the deployment.
+Then edit the file ``.env`` from the *compose profile*, replace the ``http`` with ``https``, and restart the deployment.
 
 
 Configure HTTPS for the Test Network Deployment
