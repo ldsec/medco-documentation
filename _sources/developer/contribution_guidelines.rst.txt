@@ -39,7 +39,7 @@ git push --tags
 https://github.com/lca1/medco-deployment/releases/tag/v0.1 : have text at index of doc matching the one on github release (and list)
 + is a pre-release
 
-update version in medco-doicuemntaiton
+update versions in medco-doicuemntaiton
 
 
 all repos have same version number, but can differ in terms of letters

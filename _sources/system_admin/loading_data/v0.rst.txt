@@ -17,11 +17,11 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
 .. code-block:: bash
 
     cd ~/medco-loader/docker
-    docker pull medco/medco-loader:v0.1d
+    docker pull medco/medco-loader:v0.1.1
     docker run --network="dev-local-3nodes_medco-network" --network="dev-local-3nodes_medco-srv0" \
         -v ~/medco-loader/data/genomic:/dataset \
         -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml \
-        medco/medco-loader:v0.1d -debug 2 v0 --group /group.toml --entryPointIdx 0 \
+        medco/medco-loader:v0.1.1 -debug 2 v0 --group /group.toml --entryPointIdx 0 \
         --ont_clinical /dataset/tcga_cbio/8_clinical_data.csv --sen /dataset/sensitive.txt \
         --ont_genomic /dataset/tcga_cbio/8_mutation_data.csv --clinical /dataset/tcga_cbio/8_clinical_data.csv \
         --genomic /dataset/tcga_cbio/8_mutation_data.csv --output /dataset/ --dbHost postgresql --dbPort 5432 \

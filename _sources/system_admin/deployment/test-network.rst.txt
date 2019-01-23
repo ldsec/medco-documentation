@@ -18,10 +18,10 @@ First step is to get the MedCo Deployment latest release, and separately the IRC
 .. code-block:: bash
 
     $ cd ~
-    $ wget https://github.com/lca1/medco-deployment/archive/v0.1d.tar.gz
-    $ tar xvzf v0.1d.tar.gz
-    $ mv medco-deployment-0.1d medco-deployment
-    $ git clone -b MedCo-v0.1e https://github.com/lca1/IRCT.git
+    $ wget https://github.com/lca1/medco-deployment/archive/v0.1.1.tar.gz
+    $ tar xvzf v0.1.1.tar.gz
+    $ mv medco-deployment-0.1.1 medco-deployment
+    $ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
 
 
 Generation of the Deployment Profile

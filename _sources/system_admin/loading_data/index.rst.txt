@@ -29,7 +29,7 @@ Not that you need *git-lfs* for those data to be retrieved with the repository.
 .. code-block:: bash
 
     $ cd ~
-    $ git clone -b v0.1d https://github.com/lca1/medco-loader.git
+    $ git clone -b v0.1.1 https://github.com/lca1/medco-loader.git
 
 **Building Application**
 
@@ -37,5 +37,5 @@ To get the MedCo loader application, pull it with Docker:
 
 .. code-block:: bash
 
-    docker pull medco/medco-loader:v0.1d
+    docker pull medco/medco-loader:v0.1.1
 
