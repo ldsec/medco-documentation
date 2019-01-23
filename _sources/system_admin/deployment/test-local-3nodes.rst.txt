@@ -15,9 +15,9 @@ First step is to get the MedCo Deployment latest release, and separately the IRC
 .. code-block:: bash
 
     $ cd ~
-    $ wget https://github.com/lca1/medco-deployment/archive/v0.1.1.tar.gz
-    $ tar xvzf v0.1.1.tar.gz
-    $ mv medco-deployment-0.1.1 medco-deployment
+    $ wget https://github.com/lca1/medco-deployment/archive/v0.1.1a.tar.gz
+    $ tar xvzf v0.1.1a.tar.gz
+    $ mv medco-deployment-0.1.1a medco-deployment
     $ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
 
 Next step is to download or build the docker images:
