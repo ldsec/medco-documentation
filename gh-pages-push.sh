@@ -15,3 +15,6 @@ git push
 
 git checkout "${CURRENT_BRANCH}"
 git stash pop
+
+# todo: some folders are not pushed?
+# todo: what happens if push rejected?
