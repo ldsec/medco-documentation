@@ -28,6 +28,7 @@ Generation of the Deployment Profile
 ''''''''''''''''''''''''''''''''''''
 Next the *compose and configuration profiles* must be generated using a script.
 This script is executed in two steps, and individually by each node of the network.
+
 - **Step 1**: each node generates its keys and certificates, and shares its public ones with the other nodes
 - **Step 2**: each node gathers the public keys and certificates of the others
 

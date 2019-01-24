@@ -185,9 +185,11 @@ $ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
 <div class="section" id="generation-of-the-deployment-profile">
 <h2>Generation of the Deployment Profile<a class="headerlink" href="#generation-of-the-deployment-profile" title="Permalink to this headline">¶</a></h2>
 <p>Next the <em>compose and configuration profiles</em> must be generated using a script.
-This script is executed in two steps, and individually by each node of the network.
-- <strong>Step 1</strong>: each node generates its keys and certificates, and shares its public ones with the other nodes
-- <strong>Step 2</strong>: each node gathers the public keys and certificates of the others</p>
+This script is executed in two steps, and individually by each node of the network.</p>
+<ul class="simple">
+<li><strong>Step 1</strong>: each node generates its keys and certificates, and shares its public ones with the other nodes</li>
+<li><strong>Step 2</strong>: each node gathers the public keys and certificates of the others</li>
+</ul>
 <p>For step 1, the network name should be common to all the nodes.
 Beforehand the different parties should have agreed on the nodes members of the network, and assigned to each a
 node index (starting from 0, to n-1, n being the total number of nodes).
