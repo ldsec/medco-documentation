@@ -14,7 +14,7 @@ make html
 ```
 
 ## Push sources and publish HTML on Github Pages
-In order to commit and push the updated sources, and publish the HTML files on Github pages,  
+In order to commit and push the updated sources, and publish the HTML files on Github pages, 
 simply run from the root of the repository:
 ```bash
 make publish
