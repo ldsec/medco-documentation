@@ -4,9 +4,8 @@
 # You can set these variables from the command line.
 PWD           = $(shell pwd)
 CURRENT_USER  = $(shell id -u)
-CURRENT_GROUP = $(shell id -g)
 SPHINXOPTS    =
-SPHINXBUILD   = docker run -u $(CURRENT_USER):$(CURRENT_GROUP) -v $(PWD):/medco-documentation netresearch/sphinx-buildbox:latest sphinx-build
+SPHINXBUILD   = docker run -e USER_ID=$(CURRENT_USER) -v $(PWD):/medco-documentation ddidier/sphinx-doc:1.8.3-2 sphinx-build
 SPHINXPROJ    = MedCoDocumentation
 SOURCEDIR     = /medco-documentation/source
 BUILDDIR      = /medco-documentation
