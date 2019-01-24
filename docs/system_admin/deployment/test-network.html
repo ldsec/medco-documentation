@@ -210,7 +210,7 @@ such that all the <code class="docutils literal notranslate"><span class="pre">s
 <div class="section" id="medco-node-deployment-except-irct">
 <h2>MedCo Node Deployment (except IRCT)<a class="headerlink" href="#medco-node-deployment-except-irct" title="Permalink to this headline">¶</a></h2>
 <p>Next step is to download or build the docker images, and run the node:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-network-&lt;network name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-network-&lt;network name&gt;-node&lt;node index&gt;
 $ docker-compose pull
 $ docker-compose build
 $ docker-compose up
@@ -225,11 +225,11 @@ For the subsequent runs, the startup will be faster.</p>
 <p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/IRCT/deployments/.env</span></code> and adjust to your case:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MEDCO_NODE_URL</span><span class="o">=</span>https://&lt;node domain name&gt;
 <span class="nv">MEDCO_NODE_IDX</span><span class="o">=</span>&lt;node index&gt;
-<span class="nv">MEDCO_PROFILE_NAME</span><span class="o">=</span>test-network-&lt;network name&gt;
+<span class="nv">MEDCO_PROFILE_NAME</span><span class="o">=</span>test-network-&lt;network name&gt;-node&lt;node index&gt;
 </pre></div>
 </div>
 <p>Copy all the certificates obtained from the previous step to the folder <code class="docutils literal notranslate"><span class="pre">~/IRCT/deployments/irct/volumes/certificates/</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp ~/medco-deployment/configuration-profiles/test-network-&lt;network name&gt;/*.crt ~/IRCT/deployments/irct/volumes/certificates/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cp ~/medco-deployment/configuration-profiles/test-network-&lt;network name&gt;-node&lt;node index&gt;/*.crt ~/IRCT/deployments/irct/volumes/certificates/
 </pre></div>
 </div>
 <p>Then, build and run the IRCT container:</p>

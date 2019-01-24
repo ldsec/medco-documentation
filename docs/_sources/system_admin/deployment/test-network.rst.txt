@@ -62,7 +62,7 @@ Next step is to download or build the docker images, and run the node:
 
 .. code-block:: bash
 
-    $ cd ~/medco-deployment/compose-profiles/test-network-<network name>
+    $ cd ~/medco-deployment/compose-profiles/test-network-<network name>-node<node index>
     $ docker-compose pull
     $ docker-compose build
     $ docker-compose up
@@ -82,13 +82,13 @@ Edit the file ``~/IRCT/deployments/.env`` and adjust to your case:
 
     MEDCO_NODE_URL=https://<node domain name>
     MEDCO_NODE_IDX=<node index>
-    MEDCO_PROFILE_NAME=test-network-<network name>
+    MEDCO_PROFILE_NAME=test-network-<network name>-node<node index>
 
 Copy all the certificates obtained from the previous step to the folder ``~/IRCT/deployments/irct/volumes/certificates/``:
 
 .. code-block:: bash
 
-    $ cp ~/medco-deployment/configuration-profiles/test-network-<network name>/*.crt ~/IRCT/deployments/irct/volumes/certificates/
+    $ cp ~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/*.crt ~/IRCT/deployments/irct/volumes/certificates/
 
 Then, build and run the IRCT container:
 
