@@ -1,22 +1,23 @@
 # Documentation of the MedCo Project
-The `master` branch is served using github pages: 
-https://lca1.github.io/medco-documentation/
+The `docs/` folder is served using github pages: 
+https://medco.epfl.ch/documentation/
 
-The `dev` branch contains the sources in reStructuredText format.
+The `source/` folder contains the sources in reStructuredText format.
 
-## Build HTML files
+## Build HTML files locally
 **Dependency**: *Docker*
 
-In order to build the HTML files in the `docs/` folder, 
+In order to build the HTML files locally in the `docs/` folder, 
 simply run from the root of the repository:
 ```bash
 make html
 ```
 
-## Push on Github Pages
-Run the following to push the previously compiled HTML website on the `master` branch:
+## Push sources and publish HTML on Github Pages
+In order to commit and push the updated sources, and publish the HTML files on Github pages,  
+simply run from the root of the repository:
 ```bash
-./gh-pages-push.sh
+make publish
 ```
 
 # License

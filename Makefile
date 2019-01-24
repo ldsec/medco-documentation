@@ -18,8 +18,7 @@ help:
 .PHONY: help Makefile
 
 clean: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	rm -r docs
+	rm -rf docs/ doctrees/
 
 html: Makefile
 	mkdir -p docs
@@ -27,6 +26,12 @@ html: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	mv html docs
 	touch docs/.nojekyll
+
+publish: clean html
+	git pull
+	git add -A docs/ source/
+	git commit -m "medco-documentation update from Makefile"
+	git push
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
