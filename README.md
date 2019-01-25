@@ -4,8 +4,9 @@ https://medco.epfl.ch/documentation/
 
 The `source/` folder contains the sources in reStructuredText format.
 
-## Build HTML files locally
 **Dependency**: *Docker*
+
+## Build HTML files locally
 
 In order to build the HTML files locally in the `docs/` folder, 
 simply run from the root of the repository:
