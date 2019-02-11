@@ -45,11 +45,11 @@ For example:
     MEDCO_NODE_URL=https://medco-demo.epfl.ch
     HTTP_SCHEME=https
 
-``MEDCO_NODE_URL`` should the protocol and the fully qualified domain name of the host,
+``MEDCO_NODE_URL`` should include the protocol and the fully qualified domain name of the host,
 ``HTTP_SCHEME`` should be ``http`` or ``https``.
 
+Follow :ref:`lbl_configuration_https` to set up the certificates needed for HTTPS. 
 If you are deploying on another host than the local host without HTTPS, take note of the following: :ref:`lbl_configuration_keycloak_no_https`.
-Moreover follow :ref:`lbl_configuration_https` to set up the certificates needed for HTTPS.
 
 Next step is to run the nodes. They will run simultaneously, and the logs of the running containers will maintain the console captive.
 No configuration changes are needed in this scenario before running the nodes.
@@ -57,9 +57,10 @@ To run them:
 
 .. code-block:: bash
 
+    $ cd ~/medco-deployment/compose-profiles/test-local-3nodes
     $ docker-compose up
 
-Wait some time for the initialization of the containers to be done (until the logging stops), this can take up to 10 minutes.
+Wait some time for the initialization of the containers to be done (up to the message: *"i2b2-medco-srv... - Started x of y services (z services are lazy, passive or on-demand)"*), this can take up to 10 minutes.
 For the subsequent runs, the startup will be faster.
 
 Then, in a separate terminal run the IRCT container:
@@ -70,18 +71,20 @@ Then, in a separate terminal run the IRCT container:
     $ chmod -R a+rw ../
     $ docker-compose -f docker-compose.medco.test-local-3nodes.yml up
 
-Again, the initial startup takes up a few minutes as IRCT is compiled at that point.
+Again, the initial startup takes up a few minutes as IRCT is compiled at that point (up to the message: *"irct_1... - Started x of y services (z services are lazy, passive or on-demand)"*).
 
 In order to stop the containers, simply hit ``Ctrl+C`` in all the active windows.
-Follow the instructions from :ref:`lbl_configuration_keycloak` to be able to test the deployment.
 
+Keycloak Configuration
+''''''''''''''''''''''
+
+Follow the instructions from :ref:`lbl_configuration_keycloak` and then you should be able to login in Glowing Bear.
 
 Test the deployment
 '''''''''''''''''''
 
-In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at ``http://<domain name>``
-and use the credentials previously configured.
+In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at ``http://<domain name>`` and use the credentials previously configured during the :ref:`lbl_configuration_keycloak`. If you are new to Glowing Bear you can watch the `Glowing Bear user interface walkthrough <https://glowingbear.app>`_ video.
 
-By default MedCo contains only those test data, refer to :ref:`lbl_test_data_description` for expected results to queries.
-To load a data set, follow the guide :ref:`lbl_loading_data`.
-The database address to use is ``<domain name>:5432`` with the databases ``i2b2medcosrv0``, ``i2b2medcosrv1`` and ``i2b2medcosrv2``.
+By default MedCo loads a specific test data, refer to :ref:`lbl_test_data_description` for expected results to queries.
+To load a dataset, follow the guide :ref:`lbl_loading_data`.
+For reference, the database address to use during loading is ``<domain name>:5432`` and the databases ``i2b2medcosrv0``, ``i2b2medcosrv1`` and ``i2b2medcosrv2``.

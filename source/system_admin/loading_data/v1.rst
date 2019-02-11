@@ -1,7 +1,7 @@
 v1 (I2B2 Demodata)
 ------------------
 
-v1 expects an already existing i2b2 database (in *.csv* format) that will be converted in a way that is compliant with the MedCo data model.
+The *v1* loader expects an already existing i2b2 database (in *.csv* format) that will be converted in a way that is compliant with the MedCo data model.
 This involves encrypting and 'deterministically tagging' some of the data.
 
 List of input ('original') files:
@@ -15,12 +15,22 @@ List of input ('original') files:
     - observation_fact.csv
     - table_access.csv
 
+You can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. 
+
+=================== ========================================================================================= ============================================================================================================================================================ =============     
+Deployment Profile  --network                                                                                 --v (volumes)                                                                                                                                                --dbName
+=================== ========================================================================================= ============================================================================================================================================================ =============  
+*test-local-3nodes* ``test-local-3nodes_medco-network`` + ``test-local-3nodes_medco-network-srv<node index>`` ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml``                            ``i2b2medcosrv<node index>``
+*test-network*      ``test-network-<network name>-node<node index>_default``                                  ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/group.toml:/group.toml`` ``i2b2medco``
+*dev-local-3nodes*  ``dev-local-3nodes_medco-network`` + ``dev-local-3nodes_medco-network-srv<node index>``   ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml``                             ``i2b2medcosrv<node index>``
+=================== ========================================================================================= ============================================================================================================================================================ ============= 
+
 Dummy Generation
 ''''''''''''''''
 
 The provided example data set files come with dummy data pre-generated.
 Those data are random dummy entries whose purpose is to prevent frequency attacks.
-For more information on how this dummy generation is done please refer to ``data/scripts/import-tool/report/report.pdf``.
+For more information on how this dummy generation is done please refer to ``~/medco-loader/data/scripts/import-tool/report/report.pdf``.
 In a future release, the generation will be done dynamically by the loader.
 
 Example
@@ -33,7 +43,7 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
 
     docker run --network="dev-local-3nodes_medco-network" --network="dev-local-3nodes_medco-srv0" \
         -v ~/medco-loader/data/i2b2:/dataset -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml \
-        medco/medco-loader:v0.1.1a -debug 2 v1 --group /group.toml --entryPointIdx 0 --sen /dataset/sensitive.txt  \
+        medco/medco-loader:v0.1.1 medco-loader -debug 2 v1 --group /group.toml --entryPointIdx 0 --sen /dataset/sensitive.txt  \
         --files /dataset/files.toml --dbHost postgresql --dbPort 5432 --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
 
 .. code-block:: bash
@@ -55,9 +65,3 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
         --dbPassword value, --dbPw value      Database password
         --files value, -f value               Configuration toml with the path of the all the necessary i2b2 files
         --empty, -e                           Empty patient and visit dimension tables (y/n)
-
-For more help simply type
-
-.. code-block:: bash
-
-    ./medco-loader v1 -help
