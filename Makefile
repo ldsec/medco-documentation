@@ -19,7 +19,7 @@ help:
 clean: Makefile
 	rm -rf docs/ doctrees/
 
-html: Makefile
+html: clean Makefile
 	mkdir -p docs
 	mv docs html
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
