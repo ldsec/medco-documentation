@@ -22,7 +22,7 @@ Example
 '''''''
 
 The following example allows to load data into a running MedCo development deployment (*dev-local-3nodes*), on the node 0.
-Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for the 2 other nodes.
+Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for the 2 other nodes
 
 .. code-block:: bash
 
