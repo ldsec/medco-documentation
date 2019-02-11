@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Deployment</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="test-local-3nodes.html">Local Test Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="test-network.html">Network Test Deployment</a></li>
@@ -172,12 +173,12 @@
 It is meant to be used only on your local machine, i.e. <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.
 The version of the docker images used are all <em>dev</em>, i.e. the ones built from the development version of the different source codes.
 They are available either through Docker Hub, or built locally.</p>
-<p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code>, <code class="docutils literal notranslate"><span class="pre">IRCT</span></code> and <code class="docutils literal notranslate"><span class="pre">glowing-bear</span></code> repositories with the correct branch.
+<div class="section" id="medco-node-deployment-except-irct">
+<h2>MedCo Node Deployment (except IRCT)<a class="headerlink" href="#medco-node-deployment-except-irct" title="Permalink to this headline">¶</a></h2>
+<p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">medco-deployment</span></code> repository with the correct branch.
 This example gets the data in the home directory of the current user, but that can be changed.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
 $ git clone -b dev https://github.com/lca1/medco-deployment.git
-$ git clone -b fork/thehyve https://github.com/lca1/IRCT.git
-$ git clone -b picsure https://github.com/lca1/glowing-bear.git
 </pre></div>
 </div>
 <p>Next step is to download or build the docker images:</p>
@@ -186,9 +187,39 @@ $ docker-compose pull
 $ docker-compose build
 </pre></div>
 </div>
+<p>Next step is to run the nodes. They will run simultaneously, and the logs of the running containers will maintain the console captive.
+No configuration changes are needed in this scenario before running the nodes.
+To run them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose up
+</pre></div>
+</div>
+<p>Wait some time for the initialization of the containers to be done (up to the message: <em>“i2b2-medco-srv… - Started x of y services (z services are lazy, passive or on-demand)”</em>), this can take up to 10 minutes.
+For the subsequent runs, the startup will be faster.</p>
+</div>
+<div class="section" id="irct-deployment-and-configuration">
+<h2>IRCT Deployment and Configuration<a class="headerlink" href="#irct-deployment-and-configuration" title="Permalink to this headline">¶</a></h2>
+<p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">IRCT</span></code> repository with the correct branch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+$ git clone -b fork/thehyve https://github.com/lca1/IRCT.git
+</pre></div>
+</div>
 <p>Currently IRCT must be deployed separately, this will change in the future:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
 $ docker-compose -f docker-compose.medco.dev-local-3nodes.yml build
+</pre></div>
+</div>
+<p>In a separate terminal run the IRCT container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ chmod -R a+rw ../
+$ docker-compose -f docker-compose.medco.dev-local-3nodes.yml up
+</pre></div>
+</div>
+<p>Again, the initial startup takes up a few minutes as IRCT is compiled at that point (up to the message: <em>“irct_1… - Started x of y services (z services are lazy, passive or on-demand)”</em>).</p>
+</div>
+<div class="section" id="glowing-bear-deployment-and-configuration">
+<h2>Glowing Bear Deployment and Configuration<a class="headerlink" href="#glowing-bear-deployment-and-configuration" title="Permalink to this headline">¶</a></h2>
+<p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">glowing-bear</span></code> repository with the correct branch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+$ git clone -b picsure https://github.com/lca1/glowing-bear.git
 </pre></div>
 </div>
 <p>Glowing Bear is deployed separately for development, as we use its very practical development server:</p>
@@ -196,36 +227,23 @@ $ docker-compose -f docker-compose.medco.dev-local-3nodes.yml build
 $ docker-compose build dev-server
 </pre></div>
 </div>
-<p>Next step is to run the nodes. They will run simultaneously, and the logs of the running containers will maintain the console captive.
-No configuration changes are needed in this scenario before running the nodes.
-To run them:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/dev-local-3nodes
-$ docker-compose up
+<p>In another separate terminal run the glowing bear development server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose up dev-server
 </pre></div>
 </div>
-<p>Wait some time for the initialization of the containers to be done (until the logging stops), this can take up to 10 minutes.
-For the subsequent runs, the startup will be faster.</p>
-<p>Then, in a separate terminal run the IRCT container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
-$ chmod -R a+rw ../
-$ docker-compose -f docker-compose.medco.dev-local-3nodes.yml up
-</pre></div>
+<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.</p>
 </div>
-<p>Again, the initial startup takes up a few minutes as IRCT is compiled at that point.</p>
-<p>And in another separate terminal run the glowing bear development server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/glowing-bear/deployment
-$ docker-compose up dev-server
-</pre></div>
+<div class="section" id="keycloak-configuration">
+<h2>Keycloak Configuration<a class="headerlink" href="#keycloak-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> and then you should be able to login in Glowing Bear.</p>
 </div>
-<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.
-Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> to be able to test the deployment.</p>
 <div class="section" id="test-the-deployment">
 <h2>Test the deployment<a class="headerlink" href="#test-the-deployment" title="Permalink to this headline">¶</a></h2>
 <p>In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at <code class="docutils literal notranslate"><span class="pre">http://localhost:4200</span></code>
-and use the credentials previously configured.</p>
-<p>By default MedCo contains only those test data, refer to <a class="reference internal" href="../../developer/test_data_description.html#lbl-test-data-description"><span class="std std-ref">Description of the default test data</span></a> for expected results to queries.
-To load a data set, follow the guide <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>.
-The database address to use is <code class="docutils literal notranslate"><span class="pre">localhost:5432</span></code> with the databases <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv0</span></code>, <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv1</span></code> and <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv2</span></code>.</p>
+and use the credentials previously configured during the <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a>. If you are new to Glowing Bear you can watch the <a class="reference external" href="https://glowingbear.app">Glowing Bear user interface walkthrough</a> video.</p>
+<p>By default MedCo loads a specific test data, refer to <a class="reference internal" href="../../developer/test_data_description.html#lbl-test-data-description"><span class="std std-ref">Description of the default test data</span></a> for expected results to queries.
+To load a dataset, follow the guide <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>.
+For reference, the database address (host) to use during loading is <code class="docutils literal notranslate"><span class="pre">localhost:5432</span></code> and the databases <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv0</span></code>, <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv1</span></code> and <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv2</span></code>.</p>
 </div>
 </div>
 

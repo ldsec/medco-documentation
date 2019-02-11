@@ -19,24 +19,6 @@ Releases
     - | **0.1**, *1st Dec. 2018*
       | First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.
 
-Specifications
-++++++++++++++
-
-We recommend the following specifications for running MedCo:
-
-    - *Network Bandwidth*: >100 Mbps (ideal), >10 Mbps (minimum), symmetrical
-    - *Ports Opening* and *IP Restrictions*: see :ref:`lbl_network_architecture`
-    - *Hardware*
-
-        - *CPU*: 8 cores (ideal), 4 cores (minimum)
-        - *RAM*: >16 GB (ideal), >8GB (minimum)
-        - *Storage*: dependent on data loaded, >100GB
-
-    - *Software*
-
-        - *OS*: Any flavor of Linux, physical or virtualized (tested with Ubuntu 16.04, 18.04, Fedora 29)
-        - *Softwares*: OpenSSL, `Docker <https://docs.docker.com/install/>`_ (version = 18.09.1) & `Docker-Compose <https://docs.docker.com/compose/install/>`_ (version = 1.23.2), `Git <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_ and `Git-LFS <https://github.com/git-lfs/git-lfs/wiki/Installation>`_
-
 
 Resources
 +++++++++

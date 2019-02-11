@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Local Test Deployment" href="test-local-3nodes.html" />
-    <link rel="prev" title="System Administrator Guide" href="../index.html" /> 
+    <link rel="prev" title="Specifications" href="../specifications/index.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Deployment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="test-local-3nodes.html">Local Test Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="test-network.html">Network Test Deployment</a></li>
@@ -168,6 +169,9 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="test-local-3nodes.html">Local Test Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test-local-3nodes.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-local-3nodes.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-local-3nodes.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
@@ -175,19 +179,25 @@
 <li class="toctree-l2"><a class="reference internal" href="test-network.html#preliminaries">Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test-network.html#generation-of-the-deployment-profile">Generation of the Deployment Profile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test-network.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test-network.html#irct-configuration-and-deployment">IRCT Configuration and Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-network.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-network.html#keycloak-configuration">Keycloak Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test-network.html#data-loading">Data Loading</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test-network.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev-local-3nodes.html">Local Development Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev-local-3nodes.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev-local-3nodes.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev-local-3nodes.html#glowing-bear-deployment-and-configuration">Glowing Bear Deployment and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev-local-3nodes.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<p>Those pages explain how to deploy MedCo in different scenarios.
+<p>These pages explain how to deploy MedCo in different scenarios.
 Each deployment scenario corresponds to a deployment profile, as described below.
-All those instructions use the deployment scripts from the <a class="reference internal" href="../../developer/components/medco-deployment.html#lbl-component-medco-deployment"><span class="std std-ref">MedCo Deployment</span></a> component.</p>
+All these instructions use the deployment scripts from the <a class="reference external" href="https://github.com/lca1/medco-deployment">medco-deployment</a> repository.</p>
 <p><strong>If you are new to MedCo…</strong></p>
 <p>… and want to try to deploy the system on a single machine to test it, you should should follow the <a class="reference internal" href="test-local-3nodes.html#lbl-deployment-test-local-3nodes"><span class="std std-ref">Local Test Deployment</span></a> guide.</p>
 <p>… and want to create or join a MedCo network, you should follow the <a class="reference internal" href="test-network.html#lbl-deployment-test-network"><span class="std std-ref">Network Test Deployment</span></a> guide.</p>
@@ -196,12 +206,12 @@ All those instructions use the deployment scripts from the <a class="reference i
 <h2>Deployment Profiles<a class="headerlink" href="#deployment-profiles" title="Permalink to this headline">¶</a></h2>
 <p>A <em>deployment profile</em> is composed of two things:</p>
 <ul class="simple">
-<li>a <em>compose profile</em> in <code class="docutils literal notranslate"><span class="pre">compose-profiles/&lt;profile</span> <span class="pre">name&gt;/</span></code>: docker-compose file and parameters like ports to expose, log level, etc.</li>
-<li>a <em>configuration profile</em> in <code class="docutils literal notranslate"><span class="pre">configuration-profiles/&lt;profile</span> <span class="pre">name&gt;/</span></code>: files mounted in the docker containers, containing the cryptographic keys, the certificates, etc.</li>
+<li>a <em>compose profile</em> in <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/compose-profiles/&lt;profile</span> <span class="pre">name&gt;/</span></code>: docker-compose file and parameters like ports to expose, log level, etc.</li>
+<li>a <em>configuration profile</em> in <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/&lt;profile</span> <span class="pre">name&gt;/</span></code>: files mounted in the docker containers, containing the cryptographic keys, the certificates, etc.</li>
 </ul>
 <p>Some profiles are provided by default, for development or testing purposes.
 Those should not be used in a production scenario with real data, as the private keys are set by default, thus not private.
-Other types of profiles must generated using the scripts in <code class="docutils literal notranslate"><span class="pre">resources/profile-generation-scripts/&lt;profile</span> <span class="pre">name&gt;/</span></code>.</p>
+Other types of profiles must generated using the scripts in <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/resources/profile-generation-scripts/&lt;profile</span> <span class="pre">name&gt;/</span></code>.</p>
 <p>The different profiles are the following:</p>
 <ul>
 <li><p class="first"><em>test-local-3nodes</em> (<a class="reference internal" href="test-local-3nodes.html#lbl-deployment-test-local-3nodes"><span class="std std-ref">Local Test Deployment</span></a>)</p>
@@ -238,8 +248,8 @@ Other types of profiles must generated using the scripts in <code class="docutil
 </div></blockquote>
 </li>
 </ul>
-<p>At the very first deployment the database is loaded with some test encrypted data, using the key of the pre-generated profiles.
-This means that this test data will not work with the profile <em>test-network</em>, but only with <em>dev-local-3nodes</em> and <em>test-local-3nodes</em>.</p>
+<p>The database is pre-loaded with some encrypted test data using a key that is pre-generated from the combination of all the participating nodes’ public keys.
+For the <em>test-network</em> deployment profile this data will not be correctly encrypted, since the public key of each node is generated independently, and, as such, the data must be re-loaded.</p>
 </div>
 </div>
 
@@ -254,7 +264,7 @@ This means that this test data will not work with the profile <em>test-network</
         <a href="test-local-3nodes.html" class="btn btn-neutral float-right" title="Local Test Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="System Administrator Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../specifications/index.html" class="btn btn-neutral" title="Specifications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

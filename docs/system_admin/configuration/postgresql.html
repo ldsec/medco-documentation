@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deployment/index.html">Deployment</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Configuration</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="keycloak.html">Keycloak Configuration</a></li>
@@ -169,9 +170,10 @@
 <span id="lbl-configuration-postgresql"></span><h1>The PostgreSQL database<a class="headerlink" href="#the-postgresql-database" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="administration-with-pgadmin">
 <h2>Administration with PgAdmin<a class="headerlink" href="#administration-with-pgadmin" title="Permalink to this headline">¶</a></h2>
-<p>This can be accessed through <code class="docutils literal notranslate"><span class="pre">http://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;/pgadmin</span></code>.
-The credentials for the UI are <code class="docutils literal notranslate"><span class="pre">admin/admin</span></code>.
-After logging in, add the server with the address <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> and the credentials <code class="docutils literal notranslate"><span class="pre">postgres/postgres</span></code>.</p>
+<p>PgAdmin can be accessed through <code class="docutils literal notranslate"><span class="pre">http://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;/pgadmin</span></code> with username <code class="docutils literal notranslate"><span class="pre">admin</span></code> and password <code class="docutils literal notranslate"><span class="pre">admin</span></code> (by default). To access the test database just create a server with the name <code class="docutils literal notranslate"><span class="pre">MedCo</span></code>, the address <code class="docutils literal notranslate"><span class="pre">postgresql</span></code>, username <code class="docutils literal notranslate"><span class="pre">postgres</span></code> and password <code class="docutils literal notranslate"><span class="pre">postgres</span></code>.</p>
+<div class="figure align-center">
+<img alt="../../_images/pgadmin.png" src="../../_images/pgadmin.png" />
+</div>
 </div>
 </div>
 

@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Deployment" href="deployment/index.html" />
+    <link rel="next" title="Specifications" href="specifications/index.html" />
     <link rel="prev" title="MedCo Technical Documentation" href="../index.html" /> 
 
   
@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Administrator Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="specifications/index.html">Specifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deployment/index.html">Deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="loading_data/index.html">Loading Data</a></li>
@@ -160,8 +161,14 @@
 <h1>System Administrator Guide<a class="headerlink" href="#system-administrator-guide" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="specifications/index.html">Specifications</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="deployment/index.html">Deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="deployment/test-local-3nodes.html">Local Test Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
@@ -169,11 +176,17 @@
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#preliminaries">Preliminaries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#generation-of-the-deployment-profile">Generation of the Deployment Profile</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#irct-configuration-and-deployment">IRCT Configuration and Deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#keycloak-configuration">Keycloak Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#data-loading">Data Loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="deployment/dev-local-3nodes.html">Local Development Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#glowing-bear-deployment-and-configuration">Glowing Bear Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
@@ -183,9 +196,9 @@
 <li class="toctree-l1"><a class="reference internal" href="configuration/index.html">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="configuration/keycloak.html">Keycloak Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#accessing-the-web-administration-interface">Accessing the web administration interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#disabling-https-requirement-for-external-connections">Disabling HTTPS requirement for external connections</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#manually-add-an-authorized-user">Manually add an authorized user</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#add-the-default-openid-connect-client-configuration-for-medco">Add the default OpenID Connect client configuration for MedCo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configuration/keycloak.html#disabling-https-requirement-for-external-connections">Disabling HTTPS requirement for external connections</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration/https.html">HTTPS Configuration</a><ul>
@@ -222,35 +235,6 @@
 </ul>
 </div>
 <p>This guide explains the deployment and configuration of MedCo instances.</p>
-<div class="section" id="specifications">
-<h2>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
-<p>We recommend the following specifications for running MedCo:</p>
-<blockquote>
-<div><ul>
-<li><p class="first"><em>Network Bandwidth</em>: &gt;100 Mbps (ideal), &gt;10 Mbps (minimum), symmetrical</p>
-</li>
-<li><p class="first"><em>Ports Opening</em> and <em>IP Restrictions</em>: see <a class="reference internal" href="network_architecture.html#lbl-network-architecture"><span class="std std-ref">Network Architecture</span></a></p>
-</li>
-<li><p class="first"><em>Hardware</em></p>
-<blockquote>
-<div><ul class="simple">
-<li><em>CPU</em>: 8 cores (ideal), 4 cores (minimum)</li>
-<li><em>RAM</em>: &gt;16 GB (ideal), &gt;8GB (minimum)</li>
-<li><em>Storage</em>: dependent on data loaded, &gt;100GB</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first"><em>Software</em></p>
-<blockquote>
-<div><ul class="simple">
-<li><em>OS</em>: Any flavor of Linux, physical or virtualized (tested with Ubuntu 16.04, 18.04, Fedora 29)</li>
-<li><em>Softwares</em>: Docker (version &gt;= 18.03) &amp; Docker-Compose (version &gt;= 1.21), Git and Git-LFS</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</div>
 </div>
 
 
@@ -261,7 +245,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="deployment/index.html" class="btn btn-neutral float-right" title="Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="specifications/index.html" class="btn btn-neutral float-right" title="Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="MedCo Technical Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

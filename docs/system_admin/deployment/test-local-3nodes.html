@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Deployment</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Local Test Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="test-network.html">Network Test Deployment</a></li>
@@ -172,18 +173,35 @@
 It can be used either on your local machine, or any other machine to which you have access.
 The version of the docker images used are the latest released versions.
 This profile is for example used for the <a class="reference external" href="https://medco-demo.epfl.ch">MedCo public demo</a>.</p>
-<p>First step is to get the MedCo Deployment latest release, and separately the IRCT repository.</p>
+<div class="section" id="medco-node-deployment-except-irct">
+<h2>MedCo Node Deployment (except IRCT)<a class="headerlink" href="#medco-node-deployment-except-irct" title="Permalink to this headline">¶</a></h2>
+<p>First step is to get the MedCo Deployment latest release.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
 $ wget https://github.com/lca1/medco-deployment/archive/v0.1.1c.tar.gz
 $ tar xvzf v0.1.1c.tar.gz
 $ mv medco-deployment-0.1.1c medco-deployment
-$ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
 </pre></div>
 </div>
-<p>Next step is to download or build the docker images:</p>
+<p>Next step is to download and build the docker images:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-local-3nodes
 $ docker-compose pull
 $ docker-compose build
+</pre></div>
+</div>
+<p>Final step is to run the nodes. They will run simultaneously, and the logs of the running containers will maintain the console captive.
+No configuration changes are needed in this scenario before running the nodes.
+To run them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose up
+</pre></div>
+</div>
+<p>Wait some time for the initialization of the containers to be done (up to the message: <em>“i2b2-medco-srv… - Started x of y services (z services are lazy, passive or on-demand)”</em>), this can take up to 10 minutes.
+For the subsequent runs, the startup will be faster.</p>
+</div>
+<div class="section" id="irct-deployment-and-configuration">
+<h2>IRCT Deployment and Configuration<a class="headerlink" href="#irct-deployment-and-configuration" title="Permalink to this headline">¶</a></h2>
+<p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">IRCT</span></code> repository with the correct branch.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+$ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
 </pre></div>
 </div>
 <p>Currently IRCT must be deployed separately, this will change in the future:</p>
@@ -199,34 +217,28 @@ For example:</p>
 <span class="nv">HTTP_SCHEME</span><span class="o">=</span>https
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">MEDCO_NODE_URL</span></code> should the protocol and the fully qualified domain name of the host,
+<p><code class="docutils literal notranslate"><span class="pre">MEDCO_NODE_URL</span></code> should include the protocol and the fully qualified domain name of the host,
 <code class="docutils literal notranslate"><span class="pre">HTTP_SCHEME</span></code> should be <code class="docutils literal notranslate"><span class="pre">http</span></code> or <code class="docutils literal notranslate"><span class="pre">https</span></code>.</p>
-<p>If you are deploying on another host than the local host without HTTPS, take note of the following: <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak-no-https"><span class="std std-ref">Disabling HTTPS requirement for external connections</span></a>.
-Moreover follow <a class="reference internal" href="../configuration/https.html#lbl-configuration-https"><span class="std std-ref">HTTPS Configuration</span></a> to set up the certificates needed for HTTPS.</p>
-<p>Next step is to run the nodes. They will run simultaneously, and the logs of the running containers will maintain the console captive.
-No configuration changes are needed in this scenario before running the nodes.
-To run them:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose up
-</pre></div>
-</div>
-<p>Wait some time for the initialization of the containers to be done (until the logging stops), this can take up to 10 minutes.
-For the subsequent runs, the startup will be faster.</p>
-<p>Then, in a separate terminal run the IRCT container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/IRCT/deployments
-$ chmod -R a+rw ../
+<p>Follow <a class="reference internal" href="../configuration/https.html#lbl-configuration-https"><span class="std std-ref">HTTPS Configuration</span></a> to set up the certificates needed for HTTPS.
+If you are deploying on another host than the local host without HTTPS take note of the following: <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak-no-https"><span class="std std-ref">Disabling HTTPS requirement for external connections</span></a>.</p>
+<p>In a separate terminal run the IRCT container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ chmod -R a+rw ../
 $ docker-compose -f docker-compose.medco.test-local-3nodes.yml up
 </pre></div>
 </div>
-<p>Again, the initial startup takes up a few minutes as IRCT is compiled at that point.</p>
-<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.
-Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> to be able to test the deployment.</p>
+<p>Again, the initial startup takes up a few minutes as IRCT is compiled at that point (up to the message: <em>“irct_1… - Started x of y services (z services are lazy, passive or on-demand)”</em>).</p>
+<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.</p>
+</div>
+<div class="section" id="keycloak-configuration">
+<h2>Keycloak Configuration<a class="headerlink" href="#keycloak-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> and then you should be able to login in Glowing Bear.</p>
+</div>
 <div class="section" id="test-the-deployment">
 <h2>Test the deployment<a class="headerlink" href="#test-the-deployment" title="Permalink to this headline">¶</a></h2>
-<p>In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;domain</span> <span class="pre">name&gt;</span></code>
-and use the credentials previously configured.</p>
-<p>By default MedCo contains only those test data, refer to <a class="reference internal" href="../../developer/test_data_description.html#lbl-test-data-description"><span class="std std-ref">Description of the default test data</span></a> for expected results to queries.
-To load a data set, follow the guide <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>.
-The database address to use is <code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;:5432</span></code> with the databases <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv0</span></code>, <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv1</span></code> and <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv2</span></code>.</p>
+<p>In order to test that the local test deployment of MedCo is working, access Glowing Bear in your web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;domain</span> <span class="pre">name&gt;</span></code> (or <code class="docutils literal notranslate"><span class="pre">https</span></code>) and use the credentials previously configured during the <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a>. If you are new to Glowing Bear you can watch the <a class="reference external" href="https://glowingbear.app">Glowing Bear user interface walkthrough</a> video.</p>
+<p>By default MedCo loads a specific test data, refer to <a class="reference internal" href="../../developer/test_data_description.html#lbl-test-data-description"><span class="std std-ref">Description of the default test data</span></a> for expected results to queries.
+To load a dataset, follow the guide <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>.
+For reference, the database address (host) to use during loading is <code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;:5432</span></code> and the databases <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv0</span></code>, <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv1</span></code> and <code class="docutils literal notranslate"><span class="pre">i2b2medcosrv2</span></code>.</p>
 </div>
 </div>
 

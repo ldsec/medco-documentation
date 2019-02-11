@@ -16,6 +16,19 @@ The credentials are :
 - User ``keycloak``.
 - Password ``keycloak`` by default, or whatever else was configured at the initial deployment.
 
+.. _lbl_configuration_keycloak_no_https:
+
+Disabling HTTPS requirement for external connections
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+When deploying the *test-local-3nodes* profile without HTTPS on a machine other than ``localhost``, the administration interface will refuse to load.
+To solve this, access pgAdmin (see :ref:`lbl_configuration_postgresql`) and execute the following SQL on the ``keycloak`` database:
+
+.. code-block:: sql
+
+    update REALM set ssl_required = 'NONE' where id = 'master';
+
+You need to restart the Keycloak docker container to enable the changes. 
 
 Manually add an authorized user
 '''''''''''''''''''''''''''''''
@@ -35,21 +48,8 @@ Add the default OpenID Connect client configuration for MedCo
 =================== ============================================= ================================
 Deployment Profile  Valid Redirect URIs                           Web Origins
 =================== ============================================= ================================
-*dev-local-3nodes*  ``http://localhost:4200``                     ``http://localhost:4200``
 *test-local-3nodes* ``http(s)://<node domain name>/glowing-bear`` ``http(s)://<node domain name>``
 *test-network*      ``https://<node domain name>/glowing-bear``   ``https://<node domain name>``
+*dev-local-3nodes*  ``http://localhost:4200``                     ``http://localhost:4200``
 =================== ============================================= ================================
-
-
-.. _lbl_configuration_keycloak_no_https:
-
-Disabling HTTPS requirement for external connections
-''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-When deploying the *test-local-3nodes* profile without HTTPS on a machine other than ``localhost``, the administration interface will refuse to load.
-To solve this, access pgAdmin (see :ref:`lbl_configuration_postgresql`) and execute the following SQL on the ``keycloak`` database:
-
-.. code-block:: sql
-
-    update REALM set ssl_required = 'NONE' where id = 'master';
 

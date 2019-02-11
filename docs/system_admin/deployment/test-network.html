@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Deployment</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="test-local-3nodes.html">Local Test Deployment</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Network Test Deployment</a></li>
@@ -168,40 +169,35 @@
   <div class="section" id="network-test-deployment">
 <span id="lbl-deployment-test-network"></span><h1>Network Test Deployment<a class="headerlink" href="#network-test-deployment" title="Permalink to this headline">¶</a></h1>
 <p>Profile <em>test-network</em></p>
-<p>This test profile deploys a MedCo node part of a MedCo network on a machine for test purposes.
-It can be deployed on a machine reachable by the other nodes of the network.
-The version of the docker images used are the latest released versions.</p>
+<p>This test profile deploys an arbitrary set of MedCo nodes independently in different machines that together form a MedCo network. This deployment assumes each node is deployed in a single dedicated machine. All the machines have to be reachable between each other. Nodes should agree on a network name and individual indexes beforehand (to be assigned an UID). The next set of steps must be <strong>executed individually by each node of the network</strong>.</p>
+<p>This guide is for the latest released version of the docker images.</p>
 <div class="section" id="preliminaries">
 <h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
-<p>First step is to get the MedCo Deployment latest release, and separately the IRCT repository.</p>
+<p>First step is to get the MedCo Deployment latest release at each node.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
-$ wget https://github.com/lca1/medco-deployment/archive/v0.1.1c.tar.gz
-$ tar xvzf v0.1.1c.tar.gz
-$ mv medco-deployment-0.1.1c medco-deployment
-$ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
+$ wget https://github.com/lca1/medco-deployment/archive/v0.1.1b.tar.gz
+$ tar xvzf v0.1.1b.tar.gz
+$ mv medco-deployment-0.1.1b medco-deployment
 </pre></div>
 </div>
 </div>
 <div class="section" id="generation-of-the-deployment-profile">
 <h2>Generation of the Deployment Profile<a class="headerlink" href="#generation-of-the-deployment-profile" title="Permalink to this headline">¶</a></h2>
 <p>Next the <em>compose and configuration profiles</em> must be generated using a script.
-This script is executed in two steps, and individually by each node of the network.</p>
+This script is executed in two steps.</p>
 <ul class="simple">
-<li><strong>Step 1</strong>: each node generates its keys and certificates, and shares its public ones with the other nodes</li>
-<li><strong>Step 2</strong>: each node gathers the public keys and certificates of the others</li>
+<li><strong>Step 1</strong>: each node generates its keys and certificates, and shares its public information with the other nodes</li>
+<li><strong>Step 2</strong>: each node collects the public keys and certificates of the all the other nodes</li>
 </ul>
-<p>For step 1, the network name should be common to all the nodes.
-Beforehand the different parties should have agreed on the nodes members of the network, and assigned to each a
-node index (starting from 0, to n-1, n being the total number of nodes).
-The node domain name should be accessible by the other nodes.</p>
+<p>For step 1, the network name should be common to all the nodes. A &lt;node domain name&gt; corresponds to the machine domain name where the node is being deployed.
+As mentioned before the different parties should have agreed beforehand on the members of the network, and assigned an index to each different node to construct its UID (starting from 0, to n-1, n being the total number of nodes).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/profile-generation-scripts/test-network
 $ bash step1.sh &lt;network name&gt; &lt;node index&gt; &lt;node domain name&gt;
 </pre></div>
 </div>
 <p>This script will generate part of the <em>configuration profile</em>, including a file <code class="docutils literal notranslate"><span class="pre">srv&lt;node</span> <span class="pre">index&gt;-public.tar.gz</span></code>.
-This file should be shared with the other nodes, and all of them need to place it in the <em>configuration profile</em> folder,
-such that all the <code class="docutils literal notranslate"><span class="pre">srv&lt;node</span> <span class="pre">index&gt;-public.tar.gz</span></code> files are present at the same place.</p>
-<p>Once this is done, the step 2 can be executed:</p>
+This file should be shared with the other nodes, and all of them need to place it in the <em>configuration profile</em> folder, <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;</span></code>, such that all the files inside <code class="docutils literal notranslate"><span class="pre">srv&lt;node</span> <span class="pre">index&gt;-public.tar.gz</span></code> are in the same location in each node.</p>
+<p>Once this is done, step 2 can be executed:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash step2.sh &lt;network name&gt; &lt;node index&gt;
 </pre></div>
 </div>
@@ -209,20 +205,24 @@ such that all the <code class="docutils literal notranslate"><span class="pre">s
 </div>
 <div class="section" id="medco-node-deployment-except-irct">
 <h2>MedCo Node Deployment (except IRCT)<a class="headerlink" href="#medco-node-deployment-except-irct" title="Permalink to this headline">¶</a></h2>
-<p>Next step is to download or build the docker images, and run the node:</p>
+<p>Next step is to download and build the docker images, and run a node.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/test-network-&lt;network name&gt;-node&lt;node index&gt;
 $ docker-compose pull
 $ docker-compose build
 $ docker-compose up
 </pre></div>
 </div>
-<p>Wait some time for the initialization of the containers to be done (until the logging stops), this can take up to 10 minutes.
+<p>Wait some time for the initialization of the containers to be done (up to the message: <em>“- Started x of y services (z services are lazy, passive or on-demand)”</em>), this can take up to 10 minutes.
 For the subsequent runs, the startup will be faster.</p>
 </div>
-<div class="section" id="irct-configuration-and-deployment">
-<h2>IRCT Configuration and Deployment<a class="headerlink" href="#irct-configuration-and-deployment" title="Permalink to this headline">¶</a></h2>
-<p>Currently IRCT must be configured manually and deployed separately, this will change in the future.</p>
-<p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/IRCT/deployments/.env</span></code> and adjust to your case:</p>
+<div class="section" id="irct-deployment-and-configuration">
+<h2>IRCT Deployment and Configuration<a class="headerlink" href="#irct-deployment-and-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Currently IRCT must be configured manually and deployed separately in each of the nodes.  This will change in the future.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+$ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
+</pre></div>
+</div>
+<p>Edit the file <code class="docutils literal notranslate"><span class="pre">~/IRCT/deployments/.env</span></code> and adjust for each node:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MEDCO_NODE_URL</span><span class="o">=</span>https://&lt;node domain name&gt;
 <span class="nv">MEDCO_NODE_IDX</span><span class="o">=</span>&lt;node index&gt;
 <span class="nv">MEDCO_PROFILE_NAME</span><span class="o">=</span>test-network-&lt;network name&gt;-node&lt;node index&gt;
@@ -258,17 +258,22 @@ With the query tool, execute the following SQL in the database <code class="docu
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker-compose -f docker-compose.medco.test-network.yml up
 </pre></div>
 </div>
-<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.
-Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> to be able to test the deployment.</p>
+<p>In order to stop the containers, simply hit <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in all the active windows.</p>
+</div>
+<div class="section" id="keycloak-configuration">
+<h2>Keycloak Configuration<a class="headerlink" href="#keycloak-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Follow the instructions from <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a> and then you should be able to login in Glowing Bear.</p>
+</div>
+<div class="section" id="data-loading">
+<h2>Data Loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
+<p>Contrary to the other deployment profiles <strong>the default test data will not be working (the queries made will fail)</strong> since the data is not encrypted with the collective key that was generated (encryption key derived from all the nodes’ public keys).
+Run the MedCo loader (see <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>) to be able to test this deployment.
+For reference, the database address (host) to use during loading is <code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;:5432</span></code> and the database <code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code>.</p>
 </div>
 <div class="section" id="test-the-deployment">
 <h2>Test the deployment<a class="headerlink" href="#test-the-deployment" title="Permalink to this headline">¶</a></h2>
-<p>In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;domain</span> <span class="pre">name&gt;</span></code>
-and use the credentials previously configured.</p>
-<p>The default test data will not be working (the queries made will fail), as the data is not encrypted with the keys that were generated.
-Use first the MedCo loader (see <a class="reference internal" href="../loading_data/index.html#lbl-loading-data"><span class="std std-ref">Loading Data</span></a>) to be able to test the deployment.
-The database address to use is <code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;:5432</span></code> with the database <code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code>.</p>
-<p>Note that by default the certificate generated by the script are self-signed, and when using Glowing Bear, the browser will issue a security warning.
+<p>In order to test that the network deployment of MedCo is working, access Glowing Bear in your web browser at <code class="docutils literal notranslate"><span class="pre">http://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;</span></code> and use the credentials previously configured during the <a class="reference internal" href="../configuration/keycloak.html#lbl-configuration-keycloak"><span class="std std-ref">Keycloak Configuration</span></a>. If you are new to Glowing Bear you can watch the <a class="reference external" href="https://glowingbear.app">Glowing Bear user interface walkthrough</a> video.</p>
+<p>Note that by default the certificates generated by the script are self-signed and thus, when using Glowing Bear, the browser will issue a security warning.
 To use your own valid certificates, see <a class="reference internal" href="../configuration/https.html#lbl-configuration-https"><span class="std std-ref">HTTPS Configuration</span></a>.</p>
 </div>
 </div>

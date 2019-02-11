@@ -5,6 +5,7 @@ System Administrator Guide
     :maxdepth: 3
     :includehidden:
 
+    specifications/index
     deployment/index
     configuration/index
     loading_data/index

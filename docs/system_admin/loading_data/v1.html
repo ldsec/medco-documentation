@@ -84,6 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">System Administrator Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../deployment/index.html">Deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Loading Data</a><ul class="current">
@@ -166,7 +167,7 @@
             
   <div class="section" id="v1-i2b2-demodata">
 <h1>v1 (I2B2 Demodata)<a class="headerlink" href="#v1-i2b2-demodata" title="Permalink to this headline">¶</a></h1>
-<p>v1 expects an already existing i2b2 database (in <em>.csv</em> format) that will be converted in a way that is compliant with the MedCo data model.
+<p>The <em>v1</em> loader expects an already existing i2b2 database (in <em>.csv</em> format) that will be converted in a way that is compliant with the MedCo data model.
 This involves encrypting and ‘deterministically tagging’ some of the data.</p>
 <p>List of input (‘original’) files:</p>
 <blockquote>
@@ -181,11 +182,49 @@ This involves encrypting and ‘deterministically tagging’ some of the data.</
 <li>table_access.csv</li>
 </ul>
 </div></blockquote>
+<p>You can use the following table bellow to adapt some of the script parameters depending on the deployment scenario.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="29%" />
+<col width="50%" />
+<col width="6%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Deployment Profile</th>
+<th class="head">–network</th>
+<th class="head">–v (volumes)</th>
+<th class="head">–dbHost</th>
+<th class="head">–dbName</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>test-local-3nodes</em></td>
+<td><code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-network-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/i2b2:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
+</tr>
+<tr class="row-odd"><td><em>test-network</em></td>
+<td><code class="docutils literal notranslate"><span class="pre">test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;_default</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/i2b2:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/group.toml:/group.toml</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code></td>
+</tr>
+<tr class="row-even"><td><em>dev-local-3nodes</em></td>
+<td><code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-network-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/i2b2:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">localhost</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="dummy-generation">
 <h2>Dummy Generation<a class="headerlink" href="#dummy-generation" title="Permalink to this headline">¶</a></h2>
 <p>The provided example data set files come with dummy data pre-generated.
 Those data are random dummy entries whose purpose is to prevent frequency attacks.
-For more information on how this dummy generation is done please refer to <code class="docutils literal notranslate"><span class="pre">data/scripts/import-tool/report/report.pdf</span></code>.
+For more information on how this dummy generation is done please refer to <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/scripts/import-tool/report/report.pdf</span></code>.
 In a future release, the generation will be done dynamically by the loader.</p>
 </div>
 <div class="section" id="example">
@@ -194,8 +233,8 @@ In a future release, the generation will be done dynamically by the loader.</p>
 Adapt accordingly arguments <code class="docutils literal notranslate"><span class="pre">network</span></code>, <code class="docutils literal notranslate"><span class="pre">entryPointIdx</span></code> and <code class="docutils literal notranslate"><span class="pre">dbName</span></code> for the 2 other nodes.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --network<span class="o">=</span><span class="s2">&quot;dev-local-3nodes_medco-network&quot;</span> --network<span class="o">=</span><span class="s2">&quot;dev-local-3nodes_medco-srv0&quot;</span> <span class="se">\</span>
     -v ~/medco-loader/data/i2b2:/dataset -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml <span class="se">\</span>
-    medco/medco-loader:v0.1.1a -debug <span class="m">2</span> v1 --group /group.toml --entryPointIdx <span class="m">0</span> --sen /dataset/sensitive.txt  <span class="se">\</span>
-    --files /dataset/files.toml --dbHost postgresql --dbPort <span class="m">5432</span> --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
+    medco/medco-loader:v0.1.1 medco-loader -debug <span class="m">2</span> v1 --group /group.toml --entryPointIdx <span class="m">0</span> --sen /dataset/sensitive.txt  <span class="se">\</span>
+    --files /dataset/files.toml --dbHost localhost --dbPort <span class="m">5432</span> --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>NAME:
@@ -215,10 +254,6 @@ OPTIONS:
     --dbPassword value, --dbPw value      Database password
     --files value, -f value               Configuration toml with the path of the all the necessary i2b2 files
     --empty, -e                           Empty patient and visit dimension tables <span class="o">(</span>y/n<span class="o">)</span>
-</pre></div>
-</div>
-<p>For more help simply type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./medco-loader v1 -help
 </pre></div>
 </div>
 </div>

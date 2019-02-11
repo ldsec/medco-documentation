@@ -9,13 +9,13 @@ After the following script is executed all the data is encrypted and 'determinis
 
 You can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. 
 
-=================== ========================================================================================= ============================================================================================================================================================ =============     
-Deployment Profile  --network                                                                                 --v (volumes)                                                                                                                                                --dbName
-=================== ========================================================================================= ============================================================================================================================================================ =============  
-*test-local-3nodes* ``test-local-3nodes_medco-network`` + ``test-local-3nodes_medco-network-srv<node index>`` ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml``                            ``i2b2medcosrv<node index>``
-*test-network*      ``test-network-<network name>-node<node index>_default``                                  ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/group.toml:/group.toml`` ``i2b2medco``
-*dev-local-3nodes*  ``dev-local-3nodes_medco-network`` + ``dev-local-3nodes_medco-network-srv<node index>``   ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml``                             ``i2b2medcosrv<node index>``
-=================== ========================================================================================= ============================================================================================================================================================ ============= 
+=================== ========================================================================================= ============================================================================================================================================================ ================= =============     
+Deployment Profile  --network                                                                                 --v (volumes)                                                                                                                                                --dbHost          --dbName
+=================== ========================================================================================= ============================================================================================================================================================ ================= =============  
+*test-local-3nodes* ``test-local-3nodes_medco-network`` + ``test-local-3nodes_medco-network-srv<node index>`` ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml``                            ``<domain name>``   ``i2b2medcosrv<node index>``
+*test-network*      ``test-network-<network name>-node<node index>_default``                                  ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/group.toml:/group.toml`` ``<domain name>``   ``i2b2medco``
+*dev-local-3nodes*  ``dev-local-3nodes_medco-network`` + ``dev-local-3nodes_medco-network-srv<node index>``   ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml``                             ``localhost``      ``i2b2medcosrv<node index>``
+=================== ========================================================================================= ============================================================================================================================================================ ================= ============= 
 
 
 Example
@@ -34,7 +34,7 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
         medco/medco-loader:v0.1.1 medco-loader -debug 2 v0 --group /group.toml --entryPointIdx 0 \
         --ont_clinical /dataset/tcga_cbio/8_clinical_data.csv --sen /dataset/sensitive.txt \
         --ont_genomic /dataset/tcga_cbio/8_mutation_data.csv --clinical /dataset/tcga_cbio/8_clinical_data.csv \
-        --genomic /dataset/tcga_cbio/8_mutation_data.csv --output /dataset/ --dbHost postgresql --dbPort 5432 \
+        --genomic /dataset/tcga_cbio/8_mutation_data.csv --output /dataset/ --dbHost localhost --dbPort 5432 \
         --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
 
 Explanation of the arguments:

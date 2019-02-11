@@ -5,7 +5,7 @@ Network Test Deployment
 
 Profile *test-network*
 
-This test profile deploys an arbitrary set of MedCo nodes independently in different machines that together form a MedCo network. This deployment assumes each node is deployed in a single dedicated machine. All the machines have to be reachable between each other. Nodes should agree on a network name and individual indexes beforehand (to be assigned an UID).
+This test profile deploys an arbitrary set of MedCo nodes independently in different machines that together form a MedCo network. This deployment assumes each node is deployed in a single dedicated machine. All the machines have to be reachable between each other. Nodes should agree on a network name and individual indexes beforehand (to be assigned an UID). The next set of steps must be **executed individually by each node of the network**.
 
 This guide is for the latest released version of the docker images.
 
@@ -24,8 +24,9 @@ First step is to get the MedCo Deployment latest release at each node.
 
 Generation of the Deployment Profile
 ''''''''''''''''''''''''''''''''''''
+
 Next the *compose and configuration profiles* must be generated using a script.
-This script is **executed** in two steps, and **individually by each node of the network**.
+This script is executed in two steps.
 
 - **Step 1**: each node generates its keys and certificates, and shares its public information with the other nodes
 
@@ -54,7 +55,7 @@ The deployment profile is now ready to be used.
 MedCo Node Deployment (except IRCT)
 '''''''''''''''''''''''''''''''''''
 
-Next step is to download and build the docker images, and run a node. This set of commands must be **executed in each node**.
+Next step is to download and build the docker images, and run a node.
 
 .. code-block:: bash
 
@@ -70,7 +71,7 @@ For the subsequent runs, the startup will be faster.
 IRCT Deployment and Configuration
 '''''''''''''''''''''''''''''''''
 
-Currently IRCT must be configured manually and deployed separately **in each of the nodes in which you wish to access Glowing Bear and query the system**.  This will change in the future. 
+Currently IRCT must be configured manually and deployed separately in each of the nodes.  This will change in the future. 
 
 .. code-block:: bash
 
@@ -129,14 +130,14 @@ In order to stop the containers, simply hit ``Ctrl+C`` in all the active windows
 Keycloak Configuration
 ''''''''''''''''''''''
 
-Follow the instructions from :ref:`lbl_configuration_keycloak` and then you should be able to login in Glowing Bear. Remember that if you want to be able to query the system with another node you must first deploy and configure IRCT and Keycloack in that node. 
+Follow the instructions from :ref:`lbl_configuration_keycloak` and then you should be able to login in Glowing Bear.
 
 Data Loading
 ''''''''''''
 
 Contrary to the other deployment profiles **the default test data will not be working (the queries made will fail)** since the data is not encrypted with the collective key that was generated (encryption key derived from all the nodes' public keys).
-Run the MedCo loader (see :ref:`lbl_loading_data`) **in each node** to be able to test this deployment.
-For reference, the database address to use during loading is ``<domain name>:5432`` and the database ``i2b2medco``.
+Run the MedCo loader (see :ref:`lbl_loading_data`) to be able to test this deployment.
+For reference, the database address (host) to use during loading is ``<domain name>:5432`` and the database ``i2b2medco``.
 
 Test the deployment
 '''''''''''''''''''

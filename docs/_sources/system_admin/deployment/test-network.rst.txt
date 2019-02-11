@@ -5,37 +5,35 @@ Network Test Deployment
 
 Profile *test-network*
 
-This test profile deploys a MedCo node part of a MedCo network on a machine for test purposes.
-It can be deployed on a machine reachable by the other nodes of the network.
-The version of the docker images used are the latest released versions.
+This test profile deploys an arbitrary set of MedCo nodes independently in different machines that together form a MedCo network. This deployment assumes each node is deployed in a single dedicated machine. All the machines have to be reachable between each other. Nodes should agree on a network name and individual indexes beforehand (to be assigned an UID). The next set of steps must be **executed individually by each node of the network**.
 
+This guide is for the latest released version of the docker images.
 
 Preliminaries
 '''''''''''''
 
-First step is to get the MedCo Deployment latest release, and separately the IRCT repository.
+First step is to get the MedCo Deployment latest release at each node.
 
 .. code-block:: bash
 
     $ cd ~
-    $ wget https://github.com/lca1/medco-deployment/archive/v0.1.1c.tar.gz
-    $ tar xvzf v0.1.1c.tar.gz
-    $ mv medco-deployment-0.1.1c medco-deployment
-    $ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
+    $ wget https://github.com/lca1/medco-deployment/archive/v0.1.1b.tar.gz
+    $ tar xvzf v0.1.1b.tar.gz
+    $ mv medco-deployment-0.1.1b medco-deployment
 
 
 Generation of the Deployment Profile
 ''''''''''''''''''''''''''''''''''''
+
 Next the *compose and configuration profiles* must be generated using a script.
-This script is executed in two steps, and individually by each node of the network.
+This script is executed in two steps.
 
-- **Step 1**: each node generates its keys and certificates, and shares its public ones with the other nodes
-- **Step 2**: each node gathers the public keys and certificates of the others
+- **Step 1**: each node generates its keys and certificates, and shares its public information with the other nodes
 
-For step 1, the network name should be common to all the nodes.
-Beforehand the different parties should have agreed on the nodes members of the network, and assigned to each a
-node index (starting from 0, to n-1, n being the total number of nodes).
-The node domain name should be accessible by the other nodes.
+- **Step 2**: each node collects the public keys and certificates of the all the other nodes
+
+For step 1, the network name should be common to all the nodes. A <node domain name> corresponds to the machine domain name where the node is being deployed.
+As mentioned before the different parties should have agreed beforehand on the members of the network, and assigned an index to each different node to construct its UID (starting from 0, to n-1, n being the total number of nodes).
 
 .. code-block:: bash
 
@@ -43,10 +41,9 @@ The node domain name should be accessible by the other nodes.
     $ bash step1.sh <network name> <node index> <node domain name>
 
 This script will generate part of the *configuration profile*, including a file ``srv<node index>-public.tar.gz``.
-This file should be shared with the other nodes, and all of them need to place it in the *configuration profile* folder,
-such that all the ``srv<node index>-public.tar.gz`` files are present at the same place.
+This file should be shared with the other nodes, and all of them need to place it in the *configuration profile* folder, ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>``, such that all the files inside ``srv<node index>-public.tar.gz`` are in the same location in each node.
 
-Once this is done, the step 2 can be executed:
+Once this is done, step 2 can be executed:
 
 .. code-block:: bash
 
@@ -58,7 +55,7 @@ The deployment profile is now ready to be used.
 MedCo Node Deployment (except IRCT)
 '''''''''''''''''''''''''''''''''''
 
-Next step is to download or build the docker images, and run the node:
+Next step is to download and build the docker images, and run a node.
 
 .. code-block:: bash
 
@@ -67,16 +64,21 @@ Next step is to download or build the docker images, and run the node:
     $ docker-compose build
     $ docker-compose up
 
-Wait some time for the initialization of the containers to be done (until the logging stops), this can take up to 10 minutes.
+Wait some time for the initialization of the containers to be done (up to the message: *"- Started x of y services (z services are lazy, passive or on-demand)"*), this can take up to 10 minutes.
 For the subsequent runs, the startup will be faster.
 
 
-IRCT Configuration and Deployment
+IRCT Deployment and Configuration
 '''''''''''''''''''''''''''''''''
 
-Currently IRCT must be configured manually and deployed separately, this will change in the future.
+Currently IRCT must be configured manually and deployed separately in each of the nodes.  This will change in the future. 
 
-Edit the file ``~/IRCT/deployments/.env`` and adjust to your case:
+.. code-block:: bash
+
+    $ cd ~
+    $ git clone -b MedCo-v0.1.1 https://github.com/lca1/IRCT.git
+
+Edit the file ``~/IRCT/deployments/.env`` and adjust for each node:
 
 .. code-block:: bash
 
@@ -119,23 +121,28 @@ With the query tool, execute the following SQL in the database ``irct`` by adapt
 Finally, restart IRCT to account for the new configuration by hitting ``Ctrl+C`` in IRCT terminal, and starting it again:
 
 .. code-block:: bash
-
+    
     $ docker-compose -f docker-compose.medco.test-network.yml up
 
 
 In order to stop the containers, simply hit ``Ctrl+C`` in all the active windows.
-Follow the instructions from :ref:`lbl_configuration_keycloak` to be able to test the deployment.
 
+Keycloak Configuration
+''''''''''''''''''''''
+
+Follow the instructions from :ref:`lbl_configuration_keycloak` and then you should be able to login in Glowing Bear.
+
+Data Loading
+''''''''''''
+
+Contrary to the other deployment profiles **the default test data will not be working (the queries made will fail)** since the data is not encrypted with the collective key that was generated (encryption key derived from all the nodes' public keys).
+Run the MedCo loader (see :ref:`lbl_loading_data`) to be able to test this deployment.
+For reference, the database address (host) to use during loading is ``<domain name>:5432`` and the database ``i2b2medco``.
 
 Test the deployment
 '''''''''''''''''''
 
-In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at ``http://<domain name>``
-and use the credentials previously configured.
+In order to test that the network deployment of MedCo is working, access Glowing Bear in your web browser at ``http://<node domain name>`` and use the credentials previously configured during the :ref:`lbl_configuration_keycloak`. If you are new to Glowing Bear you can watch the `Glowing Bear user interface walkthrough <https://glowingbear.app>`_ video.
 
-The default test data will not be working (the queries made will fail), as the data is not encrypted with the keys that were generated.
-Use first the MedCo loader (see :ref:`lbl_loading_data`) to be able to test the deployment.
-The database address to use is ``<domain name>:5432`` with the database ``i2b2medco``.
-
-Note that by default the certificate generated by the script are self-signed, and when using Glowing Bear, the browser will issue a security warning.
+Note that by default the certificates generated by the script are self-signed and thus, when using Glowing Bear, the browser will issue a security warning.
 To use your own valid certificates, see :ref:`lbl_configuration_https`.
