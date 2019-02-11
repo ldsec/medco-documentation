@@ -2,10 +2,21 @@ v0 (Genomic Data)
 -----------------
 
 The *v0* loader expects an ontology, with mutation and clinical data in the MAF format.
-As the ontology data you must use ``data/genomic/tcga_cbio/clinical_data.csv`` and ``data/genomic/tcga_cbio/mutation_data.csv``.
-As clinical data you can keep using the same two files or a subset of the data (e.g. 8_clinical_data.csv).
+As the ontology data you must use ``~/medco-loader/data/genomic/tcga_cbio/clinical_data.csv`` and ``~/medco-loader/data/genomic/tcga_cbio/mutation_data.csv``.
+For clinical data you can keep using the same two files or a subset of the data (e.g. 8_clinical_data.csv).
 More information about how to generate sample datafiles can be found below.
-All the data is encrypted and 'deterministically tagged' in compliance with the MedCo data model.
+After the following script is executed all the data is encrypted and 'deterministically tagged' in compliance with the MedCo data model.
+
+You can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. 
+
+=================== ========================================================================================= ============================================================================================================================================================ =============     
+Deployment Profile  --network                                                                                 --v (volumes)                                                                                                                                                --dbName
+=================== ========================================================================================= ============================================================================================================================================================ =============  
+*test-local-3nodes* ``test-local-3nodes_medco-network`` + ``test-local-3nodes_medco-network-srv<node index>`` ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml``                            ``i2b2medcosrv<node index>``
+*test-network*      ``test-network-<network name>-node<node index>_default``                                  ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/group.toml:/group.toml`` ``i2b2medco``
+*dev-local-3nodes*  ``dev-local-3nodes_medco-network`` + ``dev-local-3nodes_medco-network-srv<node index>``   ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml``                             ``i2b2medcosrv<node index>``
+=================== ========================================================================================= ============================================================================================================================================================ ============= 
+
 
 Example
 '''''''
@@ -13,15 +24,14 @@ Example
 The following example allows to load data into a running MedCo development deployment (*dev-local-3nodes*), on the node 0.
 Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for the 2 other nodes.
 
-
 .. code-block:: bash
 
-    cd ~/medco-loader/docker
+    cd ~/medco-loader/deployment
     docker pull medco/medco-loader:v0.1.1
     docker run --network="dev-local-3nodes_medco-network" --network="dev-local-3nodes_medco-srv0" \
         -v ~/medco-loader/data/genomic:/dataset \
         -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml \
-        medco/medco-loader:v0.1.1 -debug 2 v0 --group /group.toml --entryPointIdx 0 \
+        medco/medco-loader:v0.1.1 medco-loader -debug 2 v0 --group /group.toml --entryPointIdx 0 \
         --ont_clinical /dataset/tcga_cbio/8_clinical_data.csv --sen /dataset/sensitive.txt \
         --ont_genomic /dataset/tcga_cbio/8_mutation_data.csv --clinical /dataset/tcga_cbio/8_clinical_data.csv \
         --genomic /dataset/tcga_cbio/8_mutation_data.csv --output /dataset/ --dbHost postgresql --dbPort 5432 \
@@ -52,14 +62,8 @@ Explanation of the arguments:
         --genomic value, --gen value          Genomic file to load
         --output value, -o value              Output path to the .csv files
 
-For more help simply type
-
-.. code-block:: bash
-
-    ./medco-loader v0 -help
-
 Data Manipulation
 '''''''''''''''''
 
-Inside ``data/scripts/`` you can find a small python application to extract (or replicate) data out of the original *tcga_cbio* dataset.
+Inside ``~/medco-loader/data/scripts/`` you can find a small python application to extract (or replicate) data out of the original *tcga_cbio* dataset.
 You can decide which patients you want to consider for you 'new' dataset or simply randomly pick a sample.

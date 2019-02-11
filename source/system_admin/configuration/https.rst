@@ -8,7 +8,7 @@ HTTPS is supported for the profiles *test-local-3nodes* and *test-network*.
 
 Certificate
 '''''''''''
-The certificates are held in the configuration profile folder:
+The certificates are held in the configuration profile folder (e.g, ``~/medco-deployment/configuration-profiles/test-local-3nodes``):
 
 - *certificate.key*: private key
 - *certificate.crt*: certificate of own node

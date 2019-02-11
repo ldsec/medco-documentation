@@ -9,9 +9,9 @@ Deployment
     test-network
     dev-local-3nodes
 
-Those pages explain how to deploy MedCo in different scenarios.
+These pages explain how to deploy MedCo in different scenarios.
 Each deployment scenario corresponds to a deployment profile, as described below.
-All those instructions use the deployment scripts from the :ref:`lbl_component_medco-deployment` component.
+All these instructions use the deployment scripts from the `medco-deployment <https://github.com/lca1/medco-deployment>`_ repository.
 
 **If you are new to MedCo...**
 
@@ -27,12 +27,12 @@ Deployment Profiles
 
 A *deployment profile* is composed of two things:
 
-- a *compose profile* in ``compose-profiles/<profile name>/``: docker-compose file and parameters like ports to expose, log level, etc.
-- a *configuration profile* in ``configuration-profiles/<profile name>/``: files mounted in the docker containers, containing the cryptographic keys, the certificates, etc.
+- a *compose profile* in ``~/medco-deployment/compose-profiles/<profile name>/``: docker-compose file and parameters like ports to expose, log level, etc.
+- a *configuration profile* in ``~/medco-deployment/configuration-profiles/<profile name>/``: files mounted in the docker containers, containing the cryptographic keys, the certificates, etc.
 
 Some profiles are provided by default, for development or testing purposes.
 Those should not be used in a production scenario with real data, as the private keys are set by default, thus not private.
-Other types of profiles must generated using the scripts in ``resources/profile-generation-scripts/<profile name>/``.
+Other types of profiles must generated using the scripts in ``~/medco-deployment/resources/profile-generation-scripts/<profile name>/``.
 
 The different profiles are the following:
 
@@ -60,5 +60,5 @@ The different profiles are the following:
     - debug logging enabled
     - profile pre-generated
 
-At the very first deployment the database is loaded with some test encrypted data, using the key of the pre-generated profiles.
-This means that this test data will not work with the profile *test-network*, but only with *dev-local-3nodes* and *test-local-3nodes*.
+The database is pre-loaded with some encrypted test data using a key that is pre-generated from the combination of all the participating nodes' public keys. 
+For the *test-network* deployment profile this data will not be correctly encrypted, since the public key of each node is generated independently, and, as such, the data must be re-loaded.
