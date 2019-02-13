@@ -74,9 +74,6 @@ Test Query
 
 To check that it is working you can query for: 
 
-- Diagnoses
-    - Neoplasm
-        - Benign neoplasm
-            - Benign neoplasm of breast
+``-> Diagnoses -> Neoplasm -> Benign neoplasm -> Benign neoplasm of breast``
 
 You should obtain 2 matching subjects.
