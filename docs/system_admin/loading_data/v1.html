@@ -183,43 +183,6 @@ This involves encrypting and ‘deterministically tagging’ some of the data.</
 </ul>
 </div></blockquote>
 <p>You can use the following table bellow to adapt some of the script parameters depending on the deployment scenario.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="6%" />
-<col width="29%" />
-<col width="50%" />
-<col width="6%" />
-<col width="10%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Deployment Profile</th>
-<th class="head">–network</th>
-<th class="head">–v (volumes)</th>
-<th class="head">–dbHost</th>
-<th class="head">–dbName</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><em>test-local-3nodes</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-network-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/i2b2:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-</tr>
-<tr class="row-odd"><td><em>test-network</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;_default</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/i2b2:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code></td>
-</tr>
-<tr class="row-even"><td><em>dev-local-3nodes</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-network-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/i2b2:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">localhost</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-</tr>
-</tbody>
-</table>
 <div class="section" id="dummy-generation">
 <h2>Dummy Generation<a class="headerlink" href="#dummy-generation" title="Permalink to this headline">¶</a></h2>
 <p>The provided example data set files come with dummy data pre-generated.
