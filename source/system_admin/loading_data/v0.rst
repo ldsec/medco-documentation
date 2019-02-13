@@ -27,7 +27,6 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
 .. code-block:: bash
 
     cd ~/medco-loader/deployment
-    docker pull medco/medco-loader:v0.1.1
     docker run --network="dev-local-3nodes_medco-network" --network="dev-local-3nodes_medco-srv0" \
         -v ~/medco-loader/data/genomic:/dataset \
         -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml \
