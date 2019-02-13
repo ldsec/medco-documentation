@@ -67,3 +67,16 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
         --dbPassword value, --dbPw value      Database password
         --files value, -f value               Configuration toml with the path of the all the necessary i2b2 files
         --empty, -e                           Empty patient and visit dimension tables (y/n)
+
+
+Test Query
+'''''''
+
+To check that it is working you can query for: 
+
+```- Diagnoses
+    - Neoplasm
+        - Benign neoplasm
+            - Benign neoplasm of breast``
+
+You should obtain 2 matching subjects.
