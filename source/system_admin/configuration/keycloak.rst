@@ -13,7 +13,9 @@ Accessing the web administration interface
 In the case of the development profile *dev-local-3nodes* (i.e. without reverse proxy), the address is ``http://localhost:8081/auth/admin``.
 In the other cases (with the reverse proxy), the address is ``http://<node domain name>/auth/admin``.
 The credentials are :
-- User ``keycloak``.
+
+- User ``keycloak``
+
 - Password ``keycloak`` by default, or whatever else was configured at the initial deployment.
 
 .. _lbl_configuration_keycloak_no_https:
