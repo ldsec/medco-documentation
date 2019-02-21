@@ -31,7 +31,16 @@ Dummy Generation
 
 The provided example data set files come with dummy data pre-generated.
 Those data are random dummy entries whose purpose is to prevent frequency attacks.
-For more information on how this dummy generation is done please refer to ``~/medco-loader/data/scripts/import-tool/report/report.pdf``.
+For more information on how this dummy generation is done please refer to ``~/medco-loader/data/scripts/import-tool/report/report.pdf``. If you want to re-generate the dummies you have to place your ``observation_fact.csv`` and ``patient_dimension.csv`` files inside the following folder: ``~/medco-loader/data/scripts/import-tool/data/original``. Then simply execute:
+
+.. code-block:: bash
+
+    cd ~/medco-loader/data/scripts/import-tool/deployment
+    docker-compose build 
+    docker-compose up
+
+The output files are placed inside ``~/medco-loader/data/scripts/import-tool/data/output``. You need only to replace the ``dummy_to_patient.csv``with the new one (placed inside this folder) (ignore all the others).
+Please notice that by default the max ratio is 20, the minimum anonimity set is 1000 and the number of clusters is 2. You can manually change these parameters by editing ``~/medco-loader/data/scripts/import-tool/using_clustering.py``.
 In a future release, the generation will be done dynamically by the loader.
 
 Example
