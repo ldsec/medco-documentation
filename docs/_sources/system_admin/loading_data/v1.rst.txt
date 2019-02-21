@@ -39,7 +39,8 @@ For more information on how this dummy generation is done please refer to ``~/me
     docker-compose build 
     docker-compose up
 
-The output files are placed inside ``~/medco-loader/data/scripts/import-tool/data/output``. You need only to replace the ``dummy_to_patient.csv``with the new one (placed inside this folder) (ignore all the others).
+The generation of the dummies will take some time (around 5min with the default data) so please wait for the container to finish. 
+The output files are placed inside ``~/medco-loader/data/scripts/import-tool/data/output``. **You only need to replace the old ``dummy_to_patient.csv`` with the new one that was generated (ignore all the others files).**
 Please notice that by default the max ratio is 20, the minimum anonimity set is 1000 and the number of clusters is 2. You can manually change these parameters by editing ``~/medco-loader/data/scripts/import-tool/using_clustering.py``.
 In a future release, the generation will be done dynamically by the loader.
 
@@ -77,9 +78,6 @@ Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for th
         --files value, -f value               Configuration toml with the path of the all the necessary i2b2 files
         --empty, -e                           Empty patient and visit dimension tables (y/n)
 
-
-Test Query
-''''''''''
 
 To check that it is working you can query for: 
 

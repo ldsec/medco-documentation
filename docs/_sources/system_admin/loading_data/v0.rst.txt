@@ -67,9 +67,6 @@ Data Manipulation
 Inside ``~/medco-loader/data/scripts/`` you can find a small python application to extract (or replicate) data out of the original *tcga_cbio* dataset.
 You can decide which patients you want to consider for you 'new' dataset or simply randomly pick a sample.
 
-Test Query
-''''''''''
-
 To check that it is working you can query for: 
 
 ``-> MedCo Gemomic Ontology -> Gene Name -> BRPF3``

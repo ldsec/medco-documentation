@@ -230,8 +230,9 @@ docker-compose build
 docker-compose up
 </pre></div>
 </div>
-<p>The output files are placed inside <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/scripts/import-tool/data/output</span></code>. You need only to replace the <code class="docutils literal notranslate"><span class="pre">dummy_to_patient.csv``with</span> <span class="pre">the</span> <span class="pre">new</span> <span class="pre">one</span> <span class="pre">(placed</span> <span class="pre">inside</span> <span class="pre">this</span> <span class="pre">folder)</span> <span class="pre">(ignore</span> <span class="pre">all</span> <span class="pre">the</span> <span class="pre">others).</span>
-<span class="pre">Please</span> <span class="pre">notice</span> <span class="pre">that</span> <span class="pre">by</span> <span class="pre">default</span> <span class="pre">the</span> <span class="pre">max</span> <span class="pre">ratio</span> <span class="pre">is</span> <span class="pre">20,</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">anonimity</span> <span class="pre">set</span> <span class="pre">is</span> <span class="pre">1000</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">clusters</span> <span class="pre">is</span> <span class="pre">2.</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">manually</span> <span class="pre">change</span> <span class="pre">these</span> <span class="pre">parameters</span> <span class="pre">by</span> <span class="pre">editing</span> <span class="pre">``~/medco-loader/data/scripts/import-tool/using_clustering.py</span></code>.
+<p>The generation of the dummies will take some time (around 5min with the default data) so please wait for the container to finish.
+The output files are placed inside <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/scripts/import-tool/data/output</span></code>. <strong>You only need to replace the old ``dummy_to_patient.csv`` with the new one that was generated (ignore all the others files).</strong>
+Please notice that by default the max ratio is 20, the minimum anonimity set is 1000 and the number of clusters is 2. You can manually change these parameters by editing <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/scripts/import-tool/using_clustering.py</span></code>.
 In a future release, the generation will be done dynamically by the loader.</p>
 </div>
 <div class="section" id="example">
@@ -264,9 +265,6 @@ OPTIONS:
     --empty, -e                           Empty patient and visit dimension tables <span class="o">(</span>y/n<span class="o">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="test-query">
-<h2>Test Query<a class="headerlink" href="#test-query" title="Permalink to this headline">¶</a></h2>
 <p>To check that it is working you can query for:</p>
 <p><code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">Diagnoses</span> <span class="pre">-&gt;</span> <span class="pre">Neoplasm</span> <span class="pre">-&gt;</span> <span class="pre">Benign</span> <span class="pre">neoplasm</span> <span class="pre">-&gt;</span> <span class="pre">Benign</span> <span class="pre">neoplasm</span> <span class="pre">of</span> <span class="pre">breast</span></code></p>
 <p>You should obtain 2 matching subjects.</p>
