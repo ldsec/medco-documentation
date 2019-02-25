@@ -172,9 +172,11 @@ As the ontology data you must use <code class="docutils literal notranslate"><sp
 For clinical data you can keep using the same two files or a subset of the data (e.g. 8_clinical_data.csv).
 More information about how to generate sample datafiles can be found below.
 After the following script is executed all the data is encrypted and ‘deterministically tagged’ in compliance with the MedCo data model.</p>
-<div class="section" id="loading-with-the-same-host">
-<h2>Loading with the same host<a class="headerlink" href="#loading-with-the-same-host" title="Permalink to this headline">¶</a></h2>
-<p>If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. <strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
+<div class="section" id="loading-from-the-same-host">
+<h2>Loading from the same host<a class="headerlink" href="#loading-from-the-same-host" title="Permalink to this headline">¶</a></h2>
+<p>If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario.
+This includes the scenario in <code class="docutils literal notranslate"><span class="pre">test-network</span></code> where for each of the nodes you want to load data from its hosting machine.
+<strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="6%" />
@@ -213,8 +215,8 @@ After the following script is executed all the data is encrypted and ‘determin
 </tbody>
 </table>
 </div>
-<div class="section" id="loading-with-a-different-host">
-<h2>Loading with a different host<a class="headerlink" href="#loading-with-a-different-host" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="loading-from-a-different-host">
+<h2>Loading from a different host<a class="headerlink" href="#loading-from-a-different-host" title="Permalink to this headline">¶</a></h2>
 <p>If you are using an external machine (e.g. your laptop) to load the data into one of the nodes you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. In this case you do not need to specify the <code class="docutils literal notranslate"><span class="pre">--network</span></code> parameters.
 <strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
 <table border="1" class="docutils">

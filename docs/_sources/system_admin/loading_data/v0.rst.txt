@@ -7,10 +7,12 @@ For clinical data you can keep using the same two files or a subset of the data 
 More information about how to generate sample datafiles can be found below.
 After the following script is executed all the data is encrypted and 'deterministically tagged' in compliance with the MedCo data model.
 
-Loading with the same host
+Loading from the same host
 ''''''''''''''''''''''''''
 
-If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. **You need to repeat the loading process for all nodes, by modifying the arguments "network", "entryPointIdx" and "dbName".**
+If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. 
+This includes the scenario in ``test-network`` where for each of the nodes you want to load data from its hosting machine.
+**You need to repeat the loading process for all nodes, by modifying the arguments "network", "entryPointIdx" and "dbName".**
 
 =================== ================================================================================= ============================================================================================================================================================ ============== ============================     
 Deployment Profile  --network                                                                         --v (volumes)                                                                                                                                                --dbHost       --dbName
@@ -20,7 +22,7 @@ Deployment Profile  --network                                                   
 *dev-local-3nodes*  ``dev-local-3nodes_medco-network`` + ``dev-local-3nodes_medco-srv<node index>``   ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml``                             ``postgresql`` ``i2b2medcosrv<node index>``
 =================== ================================================================================= ============================================================================================================================================================ ============== ============================
 
-Loading with a different host
+Loading from a different host
 '''''''''''''''''''''''''''''
 
 If you are using an external machine (e.g. your laptop) to load the data into one of the nodes you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. In this case you do not need to specify the ``--network`` parameters. 

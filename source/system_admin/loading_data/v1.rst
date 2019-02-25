@@ -18,7 +18,9 @@ List of input ('original') files:
 Loading in the same host
 ''''''''''''''''''''''''
 
-If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. **You need to repeat the loading process for all nodes, by modifying the arguments "network", "entryPointIdx" and "dbName".**
+If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. 
+This includes the scenario in ``test-network`` where for each of the nodes you want to load data from its hosting machine.
+**You need to repeat the loading process for all nodes, by modifying the arguments "network", "entryPointIdx" and "dbName".**
 
 =================== ================================================================================= ========================================================================================================================================================= ============== ============================     
 Deployment Profile  --network                                                                         --v (volumes)                                                                                                                                             --dbHost          --dbName
