@@ -74,13 +74,13 @@ First step is to clone the ``glowing-bear`` repository with the correct branch.
 .. code-block:: bash
 
     $ cd ~
-    $ git clone -b picsure https://github.com/lca1/glowing-bear.git
+    $ git clone -b picsure https://github.com/lca1/glowing-bear-medco.git
 
 Glowing Bear is deployed separately for development, as we use its very practical development server:
 
 .. code-block:: bash
 
-    $ cd ~/glowing-bear/deployment
+    $ cd ~/glowing-bear-medco/deployment
     $ docker-compose build dev-server
 
 

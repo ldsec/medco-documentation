@@ -5,3 +5,6 @@ web Docker Images
 -----------------
 
 nginx environments + organization
+
+- maintenance tasks:
+ -- update versions of software used: pic-sure, pgadmin, keycloak

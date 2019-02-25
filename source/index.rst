@@ -31,7 +31,7 @@ Resources
 
 - MedCo software forked repositories
     - IRCT: https://github.com/lca1/IRCT (forked from https://github.com/hms-dbmi/IRCT)
-    - Glowing Bear: https://github.com/lca1/glowing-bear (forked from https://github.com/thehyve/glowing-bear)
+    - Glowing Bear: https://github.com/lca1/glowing-bear-medco (forked from https://github.com/thehyve/glowing-bear)
 
 - Other repositories
     - Deployment: https://github.com/lca1/medco-deployment

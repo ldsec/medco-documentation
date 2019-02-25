@@ -219,11 +219,11 @@ $ docker-compose -f docker-compose.medco.dev-local-3nodes.yml up
 <h2>Glowing Bear Deployment and Configuration<a class="headerlink" href="#glowing-bear-deployment-and-configuration" title="Permalink to this headline">¶</a></h2>
 <p>First step is to clone the <code class="docutils literal notranslate"><span class="pre">glowing-bear</span></code> repository with the correct branch.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
-$ git clone -b picsure https://github.com/lca1/glowing-bear.git
+$ git clone -b picsure https://github.com/lca1/glowing-bear-medco.git
 </pre></div>
 </div>
 <p>Glowing Bear is deployed separately for development, as we use its very practical development server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/glowing-bear/deployment
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/glowing-bear-medco/deployment
 $ docker-compose build dev-server
 </pre></div>
 </div>
