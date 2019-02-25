@@ -172,14 +172,16 @@ As the ontology data you must use <code class="docutils literal notranslate"><sp
 For clinical data you can keep using the same two files or a subset of the data (e.g. 8_clinical_data.csv).
 More information about how to generate sample datafiles can be found below.
 After the following script is executed all the data is encrypted and ‘deterministically tagged’ in compliance with the MedCo data model.</p>
-<p>You can use the following table bellow to adapt some of the script parameters depending on the deployment scenario.</p>
+<div class="section" id="loading-with-the-same-host">
+<h2>Loading with the same host<a class="headerlink" href="#loading-with-the-same-host" title="Permalink to this headline">¶</a></h2>
+<p>If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. <strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="6%" />
 <col width="27%" />
-<col width="51%" />
-<col width="6%" />
-<col width="10%" />
+<col width="52%" />
+<col width="5%" />
+<col width="9%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Deployment Profile</th>
@@ -193,23 +195,56 @@ After the following script is executed all the data is encrypted and ‘determin
 <tr class="row-even"><td><em>test-local-3nodes</em></td>
 <td><code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">postgresql</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
 </tr>
 <tr class="row-odd"><td><em>test-network</em></td>
 <td><code class="docutils literal notranslate"><span class="pre">test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;_default</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">postgresql</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code></td>
 </tr>
 <tr class="row-even"><td><em>dev-local-3nodes</em></td>
 <td><code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">localhost</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">postgresql</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="loading-with-a-different-host">
+<h2>Loading with a different host<a class="headerlink" href="#loading-with-a-different-host" title="Permalink to this headline">¶</a></h2>
+<p>If you are using an external machine (e.g. your laptop) to load the data into one of the nodes you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. In this case you do not need to specify the <code class="docutils literal notranslate"><span class="pre">--network</span></code> parameters.
+<strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="71%" />
+<col width="8%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Deployment Profile</th>
+<th class="head">–v (volumes)</th>
+<th class="head">–dbHost</th>
+<th class="head">–dbName</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em>test-local-3nodes</em></td>
+<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
+</tr>
+<tr class="row-odd"><td><em>test-network</em></td>
+<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/group.toml:/group.toml</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>The following example allows to load data into a running MedCo development deployment (<em>dev-local-3nodes</em>), on the node 0.
