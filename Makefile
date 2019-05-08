@@ -5,7 +5,7 @@
 PWD           = $(shell pwd)
 CURRENT_USER  = $(shell id -u)
 SPHINXOPTS    =
-SPHINXBUILD   = docker run -e USER_ID=$(CURRENT_USER) -v $(PWD):/medco-documentation ddidier/sphinx-doc:1.8.3-2 sphinx-build
+SPHINXBUILD   = docker run -e USER_ID=$(CURRENT_USER) -v $(PWD):/medco-documentation ddidier/sphinx-doc:latest sphinx-build
 SPHINXPROJ    = MedCoDocumentation
 SOURCEDIR     = /medco-documentation/source
 BUILDDIR      = /medco-documentation
