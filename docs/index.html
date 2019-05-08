@@ -8,42 +8,46 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MedCo Technical Documentation &mdash; MedCo Technical Documentation 0.1.1 documentation</title>
+  <title>MedCo Technical Documentation &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
   
 
   
   
+    <link rel="shortcut icon" href="_static/medco-favicon-32x32.png"/>
+  
   
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="System Administrator Guide" href="system_admin/index.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +61,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -159,13 +163,21 @@
 <blockquote>
 <div><ul>
 <li><div class="first line-block">
+<div class="line"><strong>0.2.0</strong>, <em>3rd May 2019</em></div>
+<div class="line">Architecture revisit, replaced <em>medco-i2b2-cell</em> by <em>medco-connector</em>, upgrades (IRCT v1.4 to PICSURE v2.0, Onet
+suite v3, Keycloak, Nginx, PHP), consolidation of deployment, many smaller fixes and enhancements.</div>
+</div>
+</li>
+<li><div class="first line-block">
 <div class="line"><strong>0.1.1</strong>, <em>23rd Jan. 2019</em></div>
-<div class="line">Deployment for test purposes on several machines, enhancements of documentation and deployment infrastructure, Nginx reverse proxy with HTTPS support, Keycloak update.</div>
+<div class="line">Deployment for test purposes on several machines, enhancements of documentation and deployment infrastructure,
+Nginx reverse proxy with HTTPS support, Keycloak update.</div>
 </div>
 </li>
 <li><div class="first line-block">
 <div class="line"><strong>0.1</strong>, <em>1st Dec. 2018</em></div>
-<div class="line">First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect authentication. Deployment for development and test purpose on a single machine.</div>
+<div class="line">First public release of MedCo, running with i2b2 v1.7, PIC-SURE/IRCT v1.4 and centralized OpenID Connect
+authentication. Deployment for development and test purpose on a single machine.</div>
 </div>
 </li>
 </ul>
@@ -177,28 +189,13 @@
 <li><dl class="first docutils">
 <dt>MedCo software repositories</dt>
 <dd><ul class="first last">
-<li>I2B2 Cell: <a class="reference external" href="https://github.com/lca1/medco-i2b2-cell">https://github.com/lca1/medco-i2b2-cell</a></li>
-<li>Unlynx Wrapper: <a class="reference external" href="https://github.com/lca1/medco-unlynx">https://github.com/lca1/medco-unlynx</a></li>
-<li>Unlynx Javascript Crypto Library: <a class="reference external" href="https://github.com/lca1/medco-unlynx-js">https://github.com/lca1/medco-unlynx-js</a></li>
-<li>Data Loader: <a class="reference external" href="https://github.com/lca1/medco-loader">https://github.com/lca1/medco-loader</a></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>MedCo software forked repositories</dt>
-<dd><ul class="first last">
-<li>IRCT: <a class="reference external" href="https://github.com/lca1/IRCT">https://github.com/lca1/IRCT</a> (forked from <a class="reference external" href="https://github.com/hms-dbmi/IRCT">https://github.com/hms-dbmi/IRCT</a>)</li>
-<li>Glowing Bear: <a class="reference external" href="https://github.com/lca1/glowing-bear-medco">https://github.com/lca1/glowing-bear-medco</a> (forked from <a class="reference external" href="https://github.com/thehyve/glowing-bear">https://github.com/thehyve/glowing-bear</a>)</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Other repositories</dt>
-<dd><ul class="first last">
-<li>Deployment: <a class="reference external" href="https://github.com/lca1/medco-deployment">https://github.com/lca1/medco-deployment</a></li>
-<li>Documentation: <a class="reference external" href="https://github.com/lca1/medco-documentation">https://github.com/lca1/medco-documentation</a></li>
+<li><a class="reference external" href="https://github.com/lca1/medco-connector">MedCo Connector</a></li>
+<li><a class="reference external" href="https://github.com/lca1/medco-unlynx">Unlynx Wrapper</a></li>
+<li><a class="reference external" href="https://github.com/lca1/medco-unlynx-js">Unlynx Javascript Crypto Library</a></li>
+<li><a class="reference external" href="https://github.com/lca1/medco-loader">Data Loader</a></li>
+<li><a class="reference external" href="https://github.com/lca1/glowing-bear-medco">Glowing Bear MedCo</a> (forked from <a class="reference external" href="https://github.com/thehyve/glowing-bear">The Hyve</a>)</li>
+<li><a class="reference external" href="https://github.com/lca1/medco-deployment">Deployment</a></li>
+<li><a class="reference external" href="https://github.com/lca1/medco-documentation">Documentation</a></li>
 </ul>
 </dd>
 </dl>
@@ -206,8 +203,17 @@
 <li><dl class="first docutils">
 <dt>Other resources</dt>
 <dd><ul class="first last">
-<li>Docker Hub organization: <a class="reference external" href="https://hub.docker.com/u/medco/">https://hub.docker.com/u/medco/</a></li>
-<li>NPM.js organization: <a class="reference external" href="https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib">https://www.npmjs.com/package/&#64;medco/unlynx-crypto-js-lib</a></li>
+<li><a class="reference external" href="https://hub.docker.com/u/medco/">Docker Hub organization</a></li>
+<li><a class="reference external" href="https://www.npmjs.com/package/&#64;medco/medco-unlynx-js">NPM.js organization</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Deprecated repositories</dt>
+<dd><ul class="first last">
+<li><a class="reference external" href="https://github.com/lca1/IRCT">IRCT</a> (forked from <a class="reference external" href="https://github.com/hms-dbmi/IRCT">HMS-DBMI</a>)</li>
+<li><a class="reference external" href="https://github.com/lca1/medco-i2b2-cell">I2B2 Cell</a></li>
 </ul>
 </dd>
 </dl>
@@ -267,26 +273,16 @@ If you need more information, please contact us.</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

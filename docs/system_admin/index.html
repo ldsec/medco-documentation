@@ -8,43 +8,47 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>System Administrator Guide &mdash; MedCo Technical Documentation 0.1.1 documentation</title>
+  <title>System Administrator Guide &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
   
 
   
   
+    <link rel="shortcut icon" href="../_static/medco-favicon-32x32.png"/>
+  
   
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Specifications" href="specifications/index.html" />
     <link rel="prev" title="MedCo Technical Documentation" href="../index.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -166,8 +170,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="deployment/index.html">Deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="deployment/test-local-3nodes.html">Local Test Deployment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#medco-stack-deployment">MedCo Stack Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
@@ -175,17 +178,15 @@
 <li class="toctree-l2"><a class="reference internal" href="deployment/test-network.html">Network Test Deployment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#preliminaries">Preliminaries</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#generation-of-the-deployment-profile">Generation of the Deployment Profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#medco-stack-deployment">MedCo Stack Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#data-loading">Data Loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/test-network.html#test-the-deployment">Test the deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="deployment/dev-local-3nodes.html">Local Development Deployment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#medco-node-deployment-except-irct">MedCo Node Deployment (except IRCT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#irct-deployment-and-configuration">IRCT Deployment and Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#glowing-bear-deployment-and-configuration">Glowing Bear Deployment and Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#medco-stack-deployment-except-glowing-bear">MedCo Stack Deployment (except Glowing Bear)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#glowing-bear-deployment">Glowing Bear Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#keycloak-configuration">Keycloak Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployment/dev-local-3nodes.html#test-the-deployment">Test the deployment</a></li>
 </ul>
@@ -252,7 +253,7 @@
         <a href="specifications/index.html" class="btn btn-neutral float-right" title="Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="MedCo Technical Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="MedCo Technical Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -278,26 +279,16 @@
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

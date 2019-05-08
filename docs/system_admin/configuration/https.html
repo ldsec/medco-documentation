@@ -8,43 +8,47 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>HTTPS Configuration &mdash; MedCo Technical Documentation 0.1.1 documentation</title>
+  <title>HTTPS Configuration &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
   
 
   
   
+    <link rel="shortcut icon" href="../../_static/medco-favicon-32x32.png"/>
+  
   
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="The PostgreSQL database" href="postgresql.html" />
     <link rel="prev" title="Keycloak Configuration" href="keycloak.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -181,13 +185,28 @@
 <div class="section" id="enable-https-for-the-test-local-deployment">
 <h2>Enable HTTPS for the Test Local Deployment<a class="headerlink" href="#enable-https-for-the-test-local-deployment" title="Permalink to this headline">¶</a></h2>
 <p>To enable HTTPS for the profile <em>test-local-3nodes</em>, replace the files <em>certificate.key</em> and <em>certificate.crt</em>
-from the <em>configuration profile</em> folder with your own versions.
-Such a certificate can be obtained for example through <a class="reference external" href="https://letsencrypt.org/">Let’s Encrypt</a>.</p>
+from the <em>configuration profile</em> folder with your own versions. Such a certificate can be obtained for example through
+<a class="reference external" href="https://letsencrypt.org/">Let’s Encrypt</a>.</p>
 <p>Then edit the file <code class="docutils literal notranslate"><span class="pre">.env</span></code> from the <em>compose profile</em>, replace the <code class="docutils literal notranslate"><span class="pre">http</span></code> with <code class="docutils literal notranslate"><span class="pre">https</span></code>, and restart the deployment.</p>
 </div>
 <div class="section" id="configure-https-for-the-test-network-deployment">
 <h2>Configure HTTPS for the Test Network Deployment<a class="headerlink" href="#configure-https-for-the-test-network-deployment" title="Permalink to this headline">¶</a></h2>
-<p><em>Coming soon</em></p>
+<p>For this profile, HTTPS is mandatory. The profile generation scripts generates and use default self-signed certificates
+for each node. Those are perfectly fine to be used, but because they are self-signed, an HTTPS warning will be displayed
+to users in their browser when accessing Glowing Bear. There are two ways of avoiding this warning:</p>
+<ul class="simple">
+<li>Configuring the browsers of your users to trust this certificate. This procedure is specific to the browsers and
+operating systems used at your site.</li>
+<li>Use a certificate obtained by an authority trusted by the browser you are using: see below.</li>
+</ul>
+<p>If you wish to use a certificate from your own making, gather its key and the certificate itself. Note that using your
+own certificate is only needed on the central node (as it is the one hosting the web application Glowing Bear). In the
+<em>configuration profile</em> of the central node (<code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/</span></code>)
+copy the certificate and its key in the respective files <code class="docutils literal notranslate"><span class="pre">certificate.crt</span></code> and <code class="docutils literal notranslate"><span class="pre">certificate.key</span></code>. Then duplicate the
+file <code class="docutils literal notranslate"><span class="pre">certificate.crt</span></code> in <code class="docutils literal notranslate"><span class="pre">srv0-certificate.crt</span></code>. Restart the deployment and the central node configuration is ready.</p>
+<p>Now the other nodes need to get this certificate to trust it. Get and copy the <code class="docutils literal notranslate"><span class="pre">srv0-certificate.crt</span></code> file into each
+of the <em>configuration profile</em> directory of the other nodes, and restart all the deployments. The configuration of HTTPS
+is now ready.</p>
 </div>
 </div>
 
@@ -202,7 +221,7 @@ Such a certificate can be obtained for example through <a class="reference exter
         <a href="postgresql.html" class="btn btn-neutral float-right" title="The PostgreSQL database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="keycloak.html" class="btn btn-neutral" title="Keycloak Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="keycloak.html" class="btn btn-neutral float-left" title="Keycloak Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -228,26 +247,16 @@ Such a certificate can be obtained for example through <a class="reference exter
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

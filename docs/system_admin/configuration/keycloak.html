@@ -8,43 +8,47 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Keycloak Configuration &mdash; MedCo Technical Documentation 0.1.1 documentation</title>
+  <title>Keycloak Configuration &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
   
 
   
   
+    <link rel="shortcut icon" href="../../_static/medco-favicon-32x32.png"/>
+  
   
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="HTTPS Configuration" href="https.html" />
     <link rel="prev" title="Configuration" href="index.html" /> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -58,7 +62,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -182,8 +186,9 @@ The credentials are :</p>
 </div>
 <div class="section" id="disabling-https-requirement-for-external-connections">
 <span id="lbl-configuration-keycloak-no-https"></span><h2>Disabling HTTPS requirement for external connections<a class="headerlink" href="#disabling-https-requirement-for-external-connections" title="Permalink to this headline">¶</a></h2>
-<p>When deploying the <em>test-local-3nodes</em> profile without HTTPS on a machine other than <code class="docutils literal notranslate"><span class="pre">localhost</span></code>, the administration interface will refuse to load.
-To solve this, access pgAdmin (see <a class="reference internal" href="postgresql.html#lbl-configuration-postgresql"><span class="std std-ref">The PostgreSQL database</span></a>) and execute the following SQL on the <code class="docutils literal notranslate"><span class="pre">keycloak</span></code> database:</p>
+<p>When deploying the <em>test-local-3nodes</em> profile without HTTPS on a machine other than <code class="docutils literal notranslate"><span class="pre">localhost</span></code>, the administration
+interface will refuse to load. To solve this, access pgAdmin (see <a class="reference internal" href="postgresql.html#lbl-configuration-postgresql"><span class="std std-ref">The PostgreSQL database</span></a>) and execute the
+following SQL on the <code class="docutils literal notranslate"><span class="pre">keycloak</span></code> database:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">update</span> <span class="n">REALM</span> <span class="k">set</span> <span class="n">ssl_required</span> <span class="o">=</span> <span class="s1">&#39;NONE&#39;</span> <span class="k">where</span> <span class="n">id</span> <span class="o">=</span> <span class="s1">&#39;master&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -194,43 +199,44 @@ To solve this, access pgAdmin (see <a class="reference internal" href="postgresq
 <ul class="simple">
 <li>Go to the configuration panel <em>Users</em>, click on <em>Add user</em>.</li>
 <li>Fill the <em>Username</em> field, toggle to <code class="docutils literal notranslate"><span class="pre">ON</span></code> the <em>Email Verified</em> button and click <em>Save</em>.</li>
-<li>In the next window, click on <em>Credentials</em>, enter twice the user’s password, toggle to <code class="docutils literal notranslate"><span class="pre">OFF</span></code> the <em>Temporary</em> button if desired and click <em>Reset Password</em>.</li>
+<li>In the next window, click on <em>Credentials</em>, enter twice the user’s password, toggle to <code class="docutils literal notranslate"><span class="pre">OFF</span></code> the <em>Temporary</em> button
+if desired and click <em>Reset Password</em>.</li>
 </ul>
 </div>
 <div class="section" id="add-the-default-openid-connect-client-configuration-for-medco">
 <h2>Add the default OpenID Connect client configuration for MedCo<a class="headerlink" href="#add-the-default-openid-connect-client-configuration-for-medco" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Go to the configuration panel <em>Clients</em>, click on <em>Create</em>.</li>
-<li>There specify in <em>Client ID</em> the value <code class="docutils literal notranslate"><span class="pre">i2b2-local</span></code> (or another value if previously configured) and click <em>Save</em>.</li>
-<li>In the next window, fill <em>Valid Redirect URIs</em> and <em>Web Origins</em> according to the table below and click <em>Save</em>.</li>
+<li>Go to the configuration panel <em>Clients</em> and create a new client.</li>
+<li>There specify in <em>Client ID</em> the value <code class="docutils literal notranslate"><span class="pre">medco</span></code> (or another value if previously configured) and save.</li>
+<li>In the next window (the <em>Settings</em> tab), fill <em>Valid Redirect URIs</em> according to the following table.</li>
 </ul>
 <table border="1" class="docutils">
 <colgroup>
-<col width="20%" />
-<col width="47%" />
-<col width="33%" />
+<col width="30%" />
+<col width="70%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Deployment Profile</th>
 <th class="head">Valid Redirect URIs</th>
-<th class="head">Web Origins</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><em>test-local-3nodes</em></td>
 <td><code class="docutils literal notranslate"><span class="pre">http(s)://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;/glowing-bear</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">http(s)://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;</span></code></td>
 </tr>
 <tr class="row-odd"><td><em>test-network</em></td>
 <td><code class="docutils literal notranslate"><span class="pre">https://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;/glowing-bear</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">https://&lt;node</span> <span class="pre">domain</span> <span class="pre">name&gt;</span></code></td>
 </tr>
 <tr class="row-even"><td><em>dev-local-3nodes</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">http://localhost:4200</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">http://localhost:4200</span></code></td>
 </tr>
 </tbody>
 </table>
+<ul class="simple">
+<li>In the same tab, fill <em>Web Origins</em> with <code class="docutils literal notranslate"><span class="pre">+</span></code> and save.</li>
+<li>In the <em>Mappers</em> tab, create a new mapper, fill the following: <em>Name</em>: <code class="docutils literal notranslate"><span class="pre">MedCo</span> <span class="pre">Audience</span></code>, <em>Mapper Type</em>: <code class="docutils literal notranslate"><span class="pre">Audience</span></code>,
+<em>Included Client Audience</em>: <code class="docutils literal notranslate"><span class="pre">medco</span></code> and save.</li>
+</ul>
 </div>
 </div>
 
@@ -245,7 +251,7 @@ To solve this, access pgAdmin (see <a class="reference internal" href="postgresq
         <a href="https.html" class="btn btn-neutral float-right" title="HTTPS Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -271,26 +277,16 @@ To solve this, access pgAdmin (see <a class="reference internal" href="postgresq
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -8,41 +8,45 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contribution Guidelines &mdash; MedCo Technical Documentation 0.1.1 documentation</title>
+  <title>Contribution Guidelines &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
   
 
   
   
+    <link rel="shortcut icon" href="../_static/medco-favicon-32x32.png"/>
+  
   
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -56,7 +60,7 @@
             
             
               <div class="version">
-                0.1.1
+                0.2.0
               </div>
             
           
@@ -179,6 +183,10 @@ all versions are on docker cloud as well (built as images)</p>
 </div>
 <div class="section" id="making-a-release">
 <h2>Making a Release<a class="headerlink" href="#making-a-release" title="Permalink to this headline">¶</a></h2>
+<p><em>master</em>: stable branch, always points to the latest release
+<em>dev</em>: development branch, merged into <em>master</em></p>
+<p>have designated code owners (they have the responsibility of dev)</p>
+<p>tag through github (will trigger docker hub build) “draft new release”, auto tag create</p>
 <p>git tag -a MedCo-v0.1b -m “MedCo-v0.1b”
 git push –tags</p>
 <ul class="simple">
@@ -197,7 +205,21 @@ git push –tags</p>
 <p>WARNING: tag AFTER the PR (if not annoying problems -&gt; tag it directly on github and not on CLI)
 or not? check…</p>
 <p>all repos have same version number, but can differ in terms of letters
-a
+a</p>
+<p>do release with tags x.x.x-rcZ
+test the test-3nodes-local manueally (+test network)
+increment Z as needed
+then release final without rc</p>
+<p>to do rc locally: docker-compose build the common file
+then in other repos (GB, medco-unlyncx, medco-loader, medco-connectpor)
+build and tag manually!
+medco-loader: do separately after, so that dependency on medco-unlynx version can be adapted</p>
+<p>update version of medco-unlynx used!
+create tag from github web interface on master
+update medco-doc</p>
+<p>in definitions: put rcX tag, build them manually
+&lt; procedure for different profiles</p>
+<p>versionning: semantic versionning across components
 docker cloud conf
 —————–
 Docker Tag
@@ -212,6 +234,10 @@ SUCCESS</p>
 <p>{sourceref}
 /^(v[0-9.]+[a-z]*)$/
 SUCCESS</p>
+<p>dev workflow:
+build images in independenat repos (will put dev tag)
+build from definitions form others</p>
+<p>RC for tests: how</p>
 </div>
 </div>
 
@@ -243,26 +269,16 @@ SUCCESS</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
