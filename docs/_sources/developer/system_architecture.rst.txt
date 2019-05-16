@@ -1,46 +1,62 @@
 System Architecture
 ===================
 
-.. figure:: system_architecture.png
+.. figure:: system_architecture_v0.2.png
     :align: center
 
 Containers
 ++++++++++
 
+medco-connector
+---------------
+Component orchestrating the MedCo query at the clinical site. Implements the resource-side of the PIC-SURE API. It
+communicates with *medco-unlynx* to execute the distributed cryptographic protools.
+
+
 medco-unlynx
 ------------
 The software executing the distributed cryptographic protocols, based on Unlynx.
 
-i2b2-medco
-----------
-The i2b2 stack (all the cells), with the addition of the MedCo i2b2 cell to process the queries.
-This cell communicates with *medco-unlynx* to execute the distributed cryptographic protools.
 
-irct
-----
+i2b2
+----------
+The i2b2 stack (all the cells).
+
+
+picsure
+-------
 The query translation and broadcasting layer.
 
 
-glowing-bear
+glowing-bear-medco
+------------------
+Nginx web server serving Glowing Bear and the javascript crypto module.
+
+
+medco-loader
 ------------
-Nginx web server serving Glowing Bear and the crypto module.
+ETL tool to encrypt and load data into MedCo.
 
 
 keycloak
 --------
-OpenID Connect identity provider.
+OpenID Connect identity provider, providing user management and their authentication to MedCo.
+
 
 postgresql
 ----------
 The SQL database used by all other services, contains all the data.
 
+
 pg-admin
 --------
 A web-based administration tool for the PostgreSQL database.
 
+
 nginx
 -----
 Web server and (HTTPS-enabled) reverse proxy.
+
 
 php-fpm
 -------

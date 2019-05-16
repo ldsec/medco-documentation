@@ -162,7 +162,30 @@
             
   <div class="section" id="description-of-the-default-test-data">
 <span id="lbl-test-data-description"></span><h1>Description of the default test data<a class="headerlink" href="#description-of-the-default-test-data" title="Permalink to this headline">¶</a></h1>
-<p><em>Coming soon</em></p>
+<p>The default data loaded in MedCo is an small artificially generated dataset, appropriate to test a fresh deployment. The
+same data is replicated on all the nodes. Note that as of now it is encrypted using the test keys, i.e. the ones used
+for deployment profiles <code class="docutils literal notranslate"><span class="pre">dev-local-3nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">test-local-3nodes</span></code>.</p>
+<p>It contains 4 patients: 1 (real), 2 (real), 3 (real), 4 (dummy).</p>
+<p>And 3 concepts: 1, 2, and 3.</p>
+<p>The observation fact contains the following entries:</p>
+<ul class="simple">
+<li>patient 1, concept 1</li>
+<li>patient 2, concept 1</li>
+<li>patient 2, concept 2</li>
+<li>patient 3, concept 2</li>
+<li>patient 3, concept 3</li>
+<li>patient 4, concept 1</li>
+<li>patient 4, concept 2</li>
+<li>patient 4, concept 3</li>
+</ul>
+<p>Example queries and expected results:</p>
+<ul class="simple">
+<li>1 AND 2: 1 (patient 2)</li>
+<li>2 AND 3: 1 (patient 3)</li>
+<li>1 AND 2 AND 3: 0</li>
+<li>(1 OR 2): 3 (patients 1, 2 and 3)</li>
+<li>(1 OR 3) AND 2: 1 (patients 2 and 3)</li>
+</ul>
 </div>
 
 

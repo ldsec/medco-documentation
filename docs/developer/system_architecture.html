@@ -163,30 +163,38 @@
   <div class="section" id="system-architecture">
 <h1>System Architecture<a class="headerlink" href="#system-architecture" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-center">
-<img alt="../_images/system_architecture.png" src="../_images/system_architecture.png" />
+<img alt="../_images/system_architecture_v0.2.png" src="../_images/system_architecture_v0.2.png" />
 </div>
 <div class="section" id="containers">
 <h2>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="medco-connector">
+<h3>medco-connector<a class="headerlink" href="#medco-connector" title="Permalink to this headline">¶</a></h3>
+<p>Component orchestrating the MedCo query at the clinical site. Implements the resource-side of the PIC-SURE API. It
+communicates with <em>medco-unlynx</em> to execute the distributed cryptographic protools.</p>
+</div>
 <div class="section" id="medco-unlynx">
 <h3>medco-unlynx<a class="headerlink" href="#medco-unlynx" title="Permalink to this headline">¶</a></h3>
 <p>The software executing the distributed cryptographic protocols, based on Unlynx.</p>
 </div>
-<div class="section" id="i2b2-medco">
-<h3>i2b2-medco<a class="headerlink" href="#i2b2-medco" title="Permalink to this headline">¶</a></h3>
-<p>The i2b2 stack (all the cells), with the addition of the MedCo i2b2 cell to process the queries.
-This cell communicates with <em>medco-unlynx</em> to execute the distributed cryptographic protools.</p>
+<div class="section" id="i2b2">
+<h3>i2b2<a class="headerlink" href="#i2b2" title="Permalink to this headline">¶</a></h3>
+<p>The i2b2 stack (all the cells).</p>
 </div>
-<div class="section" id="irct">
-<h3>irct<a class="headerlink" href="#irct" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="picsure">
+<h3>picsure<a class="headerlink" href="#picsure" title="Permalink to this headline">¶</a></h3>
 <p>The query translation and broadcasting layer.</p>
 </div>
-<div class="section" id="glowing-bear">
-<h3>glowing-bear<a class="headerlink" href="#glowing-bear" title="Permalink to this headline">¶</a></h3>
-<p>Nginx web server serving Glowing Bear and the crypto module.</p>
+<div class="section" id="glowing-bear-medco">
+<h3>glowing-bear-medco<a class="headerlink" href="#glowing-bear-medco" title="Permalink to this headline">¶</a></h3>
+<p>Nginx web server serving Glowing Bear and the javascript crypto module.</p>
+</div>
+<div class="section" id="medco-loader">
+<h3>medco-loader<a class="headerlink" href="#medco-loader" title="Permalink to this headline">¶</a></h3>
+<p>ETL tool to encrypt and load data into MedCo.</p>
 </div>
 <div class="section" id="keycloak">
 <h3>keycloak<a class="headerlink" href="#keycloak" title="Permalink to this headline">¶</a></h3>
-<p>OpenID Connect identity provider.</p>
+<p>OpenID Connect identity provider, providing user management and their authentication to MedCo.</p>
 </div>
 <div class="section" id="postgresql">
 <h3>postgresql<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h3>
