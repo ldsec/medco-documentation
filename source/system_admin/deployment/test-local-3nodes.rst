@@ -35,7 +35,7 @@ to reflect your configuration. For example:
 
 .. code-block:: bash
 
-    MEDCO_NODE_URL=https://medco-demo.epfl.ch
+    MEDCO_NODE_HOST=medco-demo.epfl.ch
     HTTP_SCHEME=https
     POSTGRES_PASSWORD=postgres1
     PGADMIN_PASSWORD=admin
@@ -44,10 +44,10 @@ to reflect your configuration. For example:
     I2B2_SERVICE_PASSWORD=pFjy3EjDVwLfT2rB9xkK
     I2B2_USER_PASSWORD=demouser
 
-``MEDCO_NODE_URL`` should include the protocol and the fully qualified domain name of the host, ``HTTP_SCHEME`` should
-be ``http`` or ``https``. The other fields control the default passwords for the various services running. Note that
-setting the passwords that way works only on the first deployment. If the passwords need to be updated later, you should
-use the specific component way of modifying password.
+``MEDCO_NODE_URL`` should be the fully qualified domain name of the host, ``HTTP_SCHEME`` should be ``http`` or
+``https``. The other fields control the default passwords for the various services running. Note that setting the
+passwords that way works only on the first deployment. If the passwords need to be updated later, you should use the
+specific component way of modifying password.
 
 Follow :ref:`lbl_configuration_https` to set up the certificates needed for HTTPS.
 If you are deploying on another host than the local host without HTTPS take note of the following:
