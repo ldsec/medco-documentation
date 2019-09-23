@@ -42,7 +42,7 @@ Import the provided realm configuration into Keycloak. This will create the MedC
 
 - Go to the *Import* menu
 - Click on *Select file* and select the file ``keycloak-medco-realm.json`` that you will find in ``~/medco-deployment/resources/configuration``.
-
+- Select to import everything, and to *Skip* if resources already exist
 
 Configure the MedCo OpenID Connect client
 '''''''''''''''''''''''''''''''''''''''''
