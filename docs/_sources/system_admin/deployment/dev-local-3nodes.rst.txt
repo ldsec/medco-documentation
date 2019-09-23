@@ -19,7 +19,7 @@ This example gets the data in the home directory of the current user, but that c
 .. code-block:: bash
 
     $ cd ~
-    $ git clone -b dev https://github.com/lca1/medco-deployment.git
+    $ git clone -b dev https://github.com/ldsec/medco-deployment.git
 
 Next step is to build the docker images:
 
@@ -51,7 +51,7 @@ First step is to clone the ``glowing-bear`` repository with the correct branch.
 .. code-block:: bash
 
     $ cd ~
-    $ git clone -b dev https://github.com/lca1/glowing-bear-medco.git
+    $ git clone -b dev https://github.com/ldsec/glowing-bear-medco.git
 
 Glowing Bear is deployed separately for development, as we use its convenient live development server:
 

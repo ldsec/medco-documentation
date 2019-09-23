@@ -45,7 +45,7 @@ git push --tags
 - todo: add the letters for revisions /^v([a-z0-9.]+)$/
 - docker compose update versions
 - bin: medco-deployment on github, other on docker hub
-https://github.com/lca1/medco-deployment/releases/tag/v0.1 : have text at index of doc matching the one on github release (and list)
+https://github.com/ldsec/medco-deployment/releases/tag/v0.1 : have text at index of doc matching the one on github release (and list)
 + is a pre-release
 
 update versions in medco-doicuemntaiton
@@ -73,9 +73,16 @@ update medco-doc
 in definitions: put rcX tag, build them manually
 < procedure for different profiles
 
-
+medco.epfl.ch: software page, software div on main page, roadmap
+upgrade medco-demo.epfl.ch
 
 versionning: semantic versionning across components
+
+version of medco-unlynx in medco-connector go.mod
+medco-connector contains cli client: has dep on medco unlynx and medco loader
+
+also version in gen script
+
 docker cloud conf
 -----------------
 Docker Tag
@@ -101,3 +108,7 @@ build from definitions form others
 
 
 RC for tests: how
+
+
+best practices
+- code owners

@@ -21,7 +21,7 @@ First step is to get the MedCo Deployment latest release at each node.
 .. code-block:: bash
 
     $ cd ~
-    $ wget https://github.com/lca1/medco-deployment/archive/v0.2.0.tar.gz
+    $ wget https://github.com/ldsec/medco-deployment/archive/v0.2.0.tar.gz
     $ tar xvzf v0.2.0.tar.gz
     $ mv medco-deployment-0.2.0 medco-deployment
 

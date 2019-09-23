@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MedCo Deployment &mdash; MedCo Technical Documentation 0.2.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; MedCo Technical Documentation 0.2.1 documentation</title>
   
 
   
@@ -85,8 +85,8 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../system_admin/index.html">System Administrator Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">System Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/index.html">Developer Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../user/index.html">User Guide</a></li>
 </ul>
 
@@ -133,13 +133,13 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>MedCo Deployment</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/developer/components/medco-deployment.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/system_admin/configuration/timeouts.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -152,10 +152,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="medco-deployment">
-<span id="lbl-component-medco-deployment"></span><h1>MedCo Deployment<a class="headerlink" href="#medco-deployment" title="Permalink to this headline">¶</a></h1>
-<p><em>Coming soon</em></p>
-</div>
+  <p>As MedCo has a complex architecture with many components interacting with others on long-lived connections, time-outs can be tricky.
+todo: put in configuration?</p>
+<p>list of timeouts</p>
+<p>nginx: ALL_TIMEOUTS_SECONDS
+controls:
+send_timeout ${ALL_TIMEOUTS_SECONDS}s;
+proxy_read_timeout ${ALL_TIMEOUTS_SECONDS}s;
+proxy_send_timeout ${ALL_TIMEOUTS_SECONDS}s;
+proxy_connect_timeout ${ALL_TIMEOUTS_SECONDS}s;</p>
+<p>medco-connector: SERVER_HTTP_WRITE_TIMEOUT_SECONDS / I2B2_WAIT_TIME_SECONDS / UNLYNX_TIMEOUT_SECONDS</p>
+<p>picsure: HTTP_CLIENT_TIMEOUT_SECONDS all client calls made from picsure (server???)</p>
+<p>client: CLIENT_QUERY_TIMEOUT_SECONDS</p>
 
 
            </div>

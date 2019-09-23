@@ -142,7 +142,7 @@ The ``GOPATH`` is ``/go/`` and contains all the sources and executables.
 
 - ``bin``: compiled binaries
 - ``src``: go sources (contains all the installed dependencies)
-    - ``github.com/lca1/unlynx/``: unlynx sources
+    - ``github.com/ldsec/unlynx/``: unlynx sources
     - ``gopkg.in/dedis/onet.v1/``: Onet library (cothority code)
 
 **Ports Exposed**

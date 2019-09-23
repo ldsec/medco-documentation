@@ -3,8 +3,8 @@
 Keycloak Configuration
 ----------------------
 
-Here follows some MedCo-specific instructions for the administration of Keycloak.
-For anything, please refer to the `Keycloak Server Administration Guide <https://www.keycloak.org/docs/latest/server_admin/index.html>`_.
+Here follows some MedCo-specific instructions for the administration of Keycloak. For anything else, please refer to the
+`Keycloak Server Administration Guide <https://www.keycloak.org/docs/latest/server_admin/index.html>`_.
 
 
 Accessing the web administration interface
@@ -17,6 +17,7 @@ The credentials are :
 - User ``keycloak``
 
 - Password ``keycloak`` by default, or whatever else was configured at the initial deployment.
+
 
 .. _lbl_configuration_keycloak_no_https:
 
@@ -34,21 +35,19 @@ following SQL on the ``keycloak`` database:
 You need to restart the Keycloak docker container to enable the changes. 
 
 
-Manually add an authorized user
-'''''''''''''''''''''''''''''''
+Import MedCo Default Settings
+'''''''''''''''''''''''''''''
 
-- Go to the configuration panel *Users*, click on *Add user*.
-- Fill the *Username* field, toggle to ``ON`` the *Email Verified* button and click *Save*.
-- In the next window, click on *Credentials*, enter twice the user's password, toggle to ``OFF`` the *Temporary* button
-  if desired and click *Reset Password*.
+Import the provided realm configuration into Keycloak. This will create the MedCo client with the appropriate roles.
+
+- Go to the *Import* menu
+- Click on *Select file* and select the file ``keycloak-medco-realm.json`` that you will find in ``~/medco-deployment/resources/configuration``.
 
 
-Add the default OpenID Connect client configuration for MedCo
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Configure the MedCo OpenID Connect client
+'''''''''''''''''''''''''''''''''''''''''
 
-- Go to the configuration panel *Clients* and create a new client.
-- There specify in *Client ID* the value ``medco`` (or another value if previously configured) and save.
-- In the next window (the *Settings* tab), fill *Valid Redirect URIs* according to the following table.
+In the *Settings* tab, fill *Valid Redirect URIs* according to the following table:
 
 =================== =============================================
 Deployment Profile  Valid Redirect URIs
@@ -58,6 +57,24 @@ Deployment Profile  Valid Redirect URIs
 *dev-local-3nodes*  ``http://localhost:4200``
 =================== =============================================
 
-- In the same tab, fill *Web Origins* with ``+`` and save.
-- In the *Mappers* tab, create a new mapper, fill the following: *Name*: ``MedCo Audience``, *Mapper Type*: ``Audience``,
-  *Included Client Audience*: ``medco`` and save.
+In the same tab, fill *Web Origins* with ``+`` and save.
+
+
+User Management
+'''''''''''''''
+
+**Add a user**
+
+- Go to the configuration panel *Users*, click on *Add user*.
+- Fill the *Username* field, toggle to ``ON`` the *Email Verified* button and click *Save*.
+- In the next window, click on *Credentials*, enter twice the user's password, toggle to ``OFF`` the *Temporary* button
+  if desired and click *Reset Password*.
+
+
+**Give query permissions to a user**
+
+- Go to the configuration panel *Users*, search for the user you want to give authorization to and click on *Edit*.
+- Go to the *Role Mappings* tab, and select *medco* (or another client ID set up for the MedCo OIDC client) in the *Client Roles*.
+- Add the roles you wish to give the user, each of the roles maps to a query type.
+
+

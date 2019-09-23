@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contribution Guidelines &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
+  <title>Contribution Guidelines &mdash; MedCo Technical Documentation 0.2.1 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.2.1
               </div>
             
           
@@ -199,7 +199,7 @@ git push –tags</p>
 <li>docker compose update versions</li>
 <li>bin: medco-deployment on github, other on docker hub</li>
 </ul>
-<p><a class="reference external" href="https://github.com/lca1/medco-deployment/releases/tag/v0.1">https://github.com/lca1/medco-deployment/releases/tag/v0.1</a> : have text at index of doc matching the one on github release (and list)
+<p><a class="reference external" href="https://github.com/ldsec/medco-deployment/releases/tag/v0.1">https://github.com/ldsec/medco-deployment/releases/tag/v0.1</a> : have text at index of doc matching the one on github release (and list)
 + is a pre-release</p>
 <p>update versions in medco-doicuemntaiton</p>
 <p>WARNING: tag AFTER the PR (if not annoying problems -&gt; tag it directly on github and not on CLI)
@@ -219,10 +219,16 @@ create tag from github web interface on master
 update medco-doc</p>
 <p>in definitions: put rcX tag, build them manually
 &lt; procedure for different profiles</p>
-<p>versionning: semantic versionning across components
-docker cloud conf
-—————–
-Docker Tag
+<p>medco.epfl.ch: software page, software div on main page, roadmap
+upgrade medco-demo.epfl.ch</p>
+<p>versionning: semantic versionning across components</p>
+<p>version of medco-unlynx in medco-connector go.mod
+medco-connector contains cli client: has dep on medco unlynx and medco loader</p>
+<p>also version in gen script</p>
+</div>
+<div class="section" id="docker-cloud-conf">
+<h2>docker cloud conf<a class="headerlink" href="#docker-cloud-conf" title="Permalink to this headline">¶</a></h2>
+<p>Docker Tag
 Source
 Build Status</p>
 <p>dev
@@ -238,6 +244,8 @@ SUCCESS</p>
 build images in independenat repos (will put dev tag)
 build from definitions form others</p>
 <p>RC for tests: how</p>
+<p>best practices
+- code owners</p>
 </div>
 </div>
 
@@ -252,7 +260,7 @@ build from definitions form others</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, EPFL LCA1
+        &copy; Copyright 2017-2019, EPFL LDS
 
     </p>
   </div>

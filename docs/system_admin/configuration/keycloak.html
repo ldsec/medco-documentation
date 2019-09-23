@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Keycloak Configuration &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
+  <title>Keycloak Configuration &mdash; MedCo Technical Documentation 0.2.1 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.2.1
               </div>
             
           
@@ -172,8 +172,8 @@
             
   <div class="section" id="keycloak-configuration">
 <span id="lbl-configuration-keycloak"></span><h1>Keycloak Configuration<a class="headerlink" href="#keycloak-configuration" title="Permalink to this headline">¶</a></h1>
-<p>Here follows some MedCo-specific instructions for the administration of Keycloak.
-For anything, please refer to the <a class="reference external" href="https://www.keycloak.org/docs/latest/server_admin/index.html">Keycloak Server Administration Guide</a>.</p>
+<p>Here follows some MedCo-specific instructions for the administration of Keycloak. For anything else, please refer to the
+<a class="reference external" href="https://www.keycloak.org/docs/latest/server_admin/index.html">Keycloak Server Administration Guide</a>.</p>
 <div class="section" id="accessing-the-web-administration-interface">
 <h2>Accessing the web administration interface<a class="headerlink" href="#accessing-the-web-administration-interface" title="Permalink to this headline">¶</a></h2>
 <p>In the case of the development profile <em>dev-local-3nodes</em> (i.e. without reverse proxy), the address is <code class="docutils literal notranslate"><span class="pre">http://localhost:8081/auth/admin</span></code>.
@@ -194,22 +194,17 @@ following SQL on the <code class="docutils literal notranslate"><span class="pre
 </div>
 <p>You need to restart the Keycloak docker container to enable the changes.</p>
 </div>
-<div class="section" id="manually-add-an-authorized-user">
-<h2>Manually add an authorized user<a class="headerlink" href="#manually-add-an-authorized-user" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="import-medco-default-settings">
+<h2>Import MedCo Default Settings<a class="headerlink" href="#import-medco-default-settings" title="Permalink to this headline">¶</a></h2>
+<p>Import the provided realm configuration into Keycloak. This will create the MedCo client with the appropriate roles.</p>
 <ul class="simple">
-<li>Go to the configuration panel <em>Users</em>, click on <em>Add user</em>.</li>
-<li>Fill the <em>Username</em> field, toggle to <code class="docutils literal notranslate"><span class="pre">ON</span></code> the <em>Email Verified</em> button and click <em>Save</em>.</li>
-<li>In the next window, click on <em>Credentials</em>, enter twice the user’s password, toggle to <code class="docutils literal notranslate"><span class="pre">OFF</span></code> the <em>Temporary</em> button
-if desired and click <em>Reset Password</em>.</li>
+<li>Go to the <em>Import</em> menu</li>
+<li>Click on <em>Select file</em> and select the file <code class="docutils literal notranslate"><span class="pre">keycloak-medco-realm.json</span></code> that you will find in <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/resources/configuration</span></code>.</li>
 </ul>
 </div>
-<div class="section" id="add-the-default-openid-connect-client-configuration-for-medco">
-<h2>Add the default OpenID Connect client configuration for MedCo<a class="headerlink" href="#add-the-default-openid-connect-client-configuration-for-medco" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Go to the configuration panel <em>Clients</em> and create a new client.</li>
-<li>There specify in <em>Client ID</em> the value <code class="docutils literal notranslate"><span class="pre">medco</span></code> (or another value if previously configured) and save.</li>
-<li>In the next window (the <em>Settings</em> tab), fill <em>Valid Redirect URIs</em> according to the following table.</li>
-</ul>
+<div class="section" id="configure-the-medco-openid-connect-client">
+<h2>Configure the MedCo OpenID Connect client<a class="headerlink" href="#configure-the-medco-openid-connect-client" title="Permalink to this headline">¶</a></h2>
+<p>In the <em>Settings</em> tab, fill <em>Valid Redirect URIs</em> according to the following table:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="30%" />
@@ -232,10 +227,22 @@ if desired and click <em>Reset Password</em>.</li>
 </tr>
 </tbody>
 </table>
+<p>In the same tab, fill <em>Web Origins</em> with <code class="docutils literal notranslate"><span class="pre">+</span></code> and save.</p>
+</div>
+<div class="section" id="user-management">
+<h2>User Management<a class="headerlink" href="#user-management" title="Permalink to this headline">¶</a></h2>
+<p><strong>Add a user</strong></p>
 <ul class="simple">
-<li>In the same tab, fill <em>Web Origins</em> with <code class="docutils literal notranslate"><span class="pre">+</span></code> and save.</li>
-<li>In the <em>Mappers</em> tab, create a new mapper, fill the following: <em>Name</em>: <code class="docutils literal notranslate"><span class="pre">MedCo</span> <span class="pre">Audience</span></code>, <em>Mapper Type</em>: <code class="docutils literal notranslate"><span class="pre">Audience</span></code>,
-<em>Included Client Audience</em>: <code class="docutils literal notranslate"><span class="pre">medco</span></code> and save.</li>
+<li>Go to the configuration panel <em>Users</em>, click on <em>Add user</em>.</li>
+<li>Fill the <em>Username</em> field, toggle to <code class="docutils literal notranslate"><span class="pre">ON</span></code> the <em>Email Verified</em> button and click <em>Save</em>.</li>
+<li>In the next window, click on <em>Credentials</em>, enter twice the user’s password, toggle to <code class="docutils literal notranslate"><span class="pre">OFF</span></code> the <em>Temporary</em> button
+if desired and click <em>Reset Password</em>.</li>
+</ul>
+<p><strong>Give query permissions to a user</strong></p>
+<ul class="simple">
+<li>Go to the configuration panel <em>Users</em>, search for the user you want to give authorization to and click on <em>Edit</em>.</li>
+<li>Go to the <em>Role Mappings</em> tab, and select <em>medco</em> (or another client ID set up for the MedCo OIDC client) in the <em>Client Roles</em>.</li>
+<li>Add the roles you wish to give the user, each of the roles maps to a query type.</li>
 </ul>
 </div>
 </div>
@@ -260,7 +267,7 @@ if desired and click <em>Reset Password</em>.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, EPFL LCA1
+        &copy; Copyright 2017-2019, EPFL LDS
 
     </p>
   </div>

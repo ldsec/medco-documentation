@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>v0 (Genomic Data) &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
+  <title>v0 (Genomic Data) &mdash; MedCo Technical Documentation 0.2.1 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.2.1
               </div>
             
           
@@ -171,99 +171,24 @@
             
   <div class="section" id="v0-genomic-data">
 <h1>v0 (Genomic Data)<a class="headerlink" href="#v0-genomic-data" title="Permalink to this headline">¶</a></h1>
-<p>The <em>v0</em> loader expects an ontology, with mutation and clinical data in the MAF format.
-As the ontology data you must use <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic/tcga_cbio/clinical_data.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic/tcga_cbio/mutation_data.csv</span></code>.
-For clinical data you can keep using the same two files or a subset of the data (e.g. 8_clinical_data.csv).
-More information about how to generate sample datafiles can be found below.
-After the following script is executed all the data is encrypted and ‘deterministically tagged’ in compliance with the MedCo data model.</p>
-<div class="section" id="loading-from-the-same-host">
-<h2>Loading from the same host<a class="headerlink" href="#loading-from-the-same-host" title="Permalink to this headline">¶</a></h2>
-<p>If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario.
-This includes the scenario in <code class="docutils literal notranslate"><span class="pre">test-network</span></code> where for each of the nodes you want to load data from its hosting machine.
-<strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="6%" />
-<col width="27%" />
-<col width="52%" />
-<col width="5%" />
-<col width="9%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Deployment Profile</th>
-<th class="head">–network</th>
-<th class="head">–v (volumes)</th>
-<th class="head">–dbHost</th>
-<th class="head">–dbName</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><em>test-local-3nodes</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">test-local-3nodes_medco-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">postgresql</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-</tr>
-<tr class="row-odd"><td><em>test-network</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;_default</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">postgresql</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code></td>
-</tr>
-<tr class="row-even"><td><em>dev-local-3nodes</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-network</span></code> + <code class="docutils literal notranslate"><span class="pre">dev-local-3nodes_medco-srv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">postgresql</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="loading-from-a-different-host">
-<h2>Loading from a different host<a class="headerlink" href="#loading-from-a-different-host" title="Permalink to this headline">¶</a></h2>
-<p>If you are using an external machine (e.g. your laptop) to load the data into one of the nodes you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. In this case you do not need to specify the <code class="docutils literal notranslate"><span class="pre">--network</span></code> parameters.
-<strong>You need to repeat the loading process for all nodes, by modifying the arguments “network”, “entryPointIdx” and “dbName”.</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="9%" />
-<col width="71%" />
-<col width="8%" />
-<col width="13%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Deployment Profile</th>
-<th class="head">–v (volumes)</th>
-<th class="head">–dbHost</th>
-<th class="head">–dbName</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><em>test-local-3nodes</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medcosrv&lt;node</span> <span class="pre">index&gt;</span></code></td>
-</tr>
-<tr class="row-odd"><td><em>test-network</em></td>
-<td><code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/genomic:/dataset</span></code> + <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/configuration-profiles/test-network-&lt;network</span> <span class="pre">name&gt;-node&lt;node</span> <span class="pre">index&gt;/group.toml:/group.toml</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;domain</span> <span class="pre">name&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">i2b2medco</span></code></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>The <em>v0</em> loader expects an ontology, with mutation and clinical data in the MAF format. As the ontology data you must
+use <code class="docutils literal notranslate"><span class="pre">~/medco-deployment/resources/data/genomic/tcga_cbio/clinical_data.csv</span></code> and
+<code class="docutils literal notranslate"><span class="pre">~/medco-deployment/resources/data/genomic/tcga_cbio/mutation_data.csv</span></code>. For clinical data you can keep using the same
+two files or a subset of the data (e.g. 8_clinical_data.csv). More information about how to generate sample datafiles
+can be found below. After the following script is executed all the data is encrypted and ‘deterministically tagged’ in
+compliance with the MedCo data model.</p>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>The following example allows to load data into a running MedCo development deployment (<em>dev-local-3nodes</em>), on the node 0.
-Adapt accordingly arguments <code class="docutils literal notranslate"><span class="pre">network</span></code>, <code class="docutils literal notranslate"><span class="pre">entryPointIdx</span></code> and <code class="docutils literal notranslate"><span class="pre">dbName</span></code> for the 2 other nodes.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/medco-loader/deployment
-docker run --network<span class="o">=</span><span class="s2">&quot;dev-local-3nodes_medco-network&quot;</span> --network<span class="o">=</span><span class="s2">&quot;dev-local-3nodes_medco-srv0&quot;</span> <span class="se">\</span>
-    -v ~/medco-loader/data/genomic:/dataset <span class="se">\</span>
-    -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml <span class="se">\</span>
-    medco/medco-loader:v0.2.0 medco-loader -debug <span class="m">2</span> v0 --group /group.toml --entryPointIdx <span class="m">0</span> <span class="se">\</span>
-    --ont_clinical /dataset/tcga_cbio/8_clinical_data.csv --sen /dataset/sensitive.txt <span class="se">\</span>
-    --ont_genomic /dataset/tcga_cbio/8_mutation_data.csv --clinical /dataset/tcga_cbio/8_clinical_data.csv <span class="se">\</span>
-    --genomic /dataset/tcga_cbio/8_mutation_data.csv --output /dataset/ --dbHost localhost --dbPort <span class="m">5432</span> <span class="se">\</span>
-    --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
+<p>The following example allows to load data into a running MedCo development deployment (<em>dev-local-3nodes</em>), on the node
+0. Adapt accordingly the docker-compose service being ran to load the two other nodes of this profile.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/compose-profiles/dev-local-3nodes
+$ docker-compose -f docker-compose.tools.yml run medco-loader-srv0 v0 <span class="se">\</span>
+    --ont_clinical /data/genomic/tcga_cbio/8_clinical_data.csv <span class="se">\</span>
+    --sen /data/genomic/sensitive.txt <span class="se">\</span>
+    --ont_genomic /data/genomic/tcga_cbio/8_mutation_data.csv <span class="se">\</span>
+    --clinical /data/genomic/tcga_cbio/8_clinical_data.csv <span class="se">\</span>
+    --genomic /data/genomic/tcga_cbio/8_mutation_data.csv <span class="se">\</span>
+    --output /data/
 </pre></div>
 </div>
 <p>Explanation of the arguments:</p>
@@ -292,8 +217,9 @@ OPTIONS:
 </div>
 <div class="section" id="data-manipulation">
 <h2>Data Manipulation<a class="headerlink" href="#data-manipulation" title="Permalink to this headline">¶</a></h2>
-<p>Inside <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/scripts/</span></code> you can find a small python application to extract (or replicate) data out of the original <em>tcga_cbio</em> dataset.
-You can decide which patients you want to consider for you ‘new’ dataset or simply randomly pick a sample.</p>
+<p>Inside <code class="docutils literal notranslate"><span class="pre">~/medco-loader/data/scripts/</span></code> you can find a small python application to extract (or replicate) data out of
+the original <em>tcga_cbio</em> dataset. You can decide which patients you want to consider for you ‘new’ dataset or simply
+randomly pick a sample.</p>
 <p>To check that it is working you can query for:</p>
 <p><code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">MedCo</span> <span class="pre">Gemomic</span> <span class="pre">Ontology</span> <span class="pre">-&gt;</span> <span class="pre">Gene</span> <span class="pre">Name</span> <span class="pre">-&gt;</span> <span class="pre">BRPF3</span></code></p>
 <p>For the small dataset <code class="docutils literal notranslate"><span class="pre">8_xxxx</span></code> you should obtain 3 matching subjects (one at each site).</p>
@@ -320,7 +246,7 @@ You can decide which patients you want to consider for you ‘new’ dataset or 
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, EPFL LCA1
+        &copy; Copyright 2017-2019, EPFL LDS
 
     </p>
   </div>

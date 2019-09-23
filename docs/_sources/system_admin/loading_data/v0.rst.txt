@@ -1,58 +1,30 @@
 v0 (Genomic Data)
 -----------------
 
-The *v0* loader expects an ontology, with mutation and clinical data in the MAF format.
-As the ontology data you must use ``~/medco-loader/data/genomic/tcga_cbio/clinical_data.csv`` and ``~/medco-loader/data/genomic/tcga_cbio/mutation_data.csv``.
-For clinical data you can keep using the same two files or a subset of the data (e.g. 8_clinical_data.csv).
-More information about how to generate sample datafiles can be found below.
-After the following script is executed all the data is encrypted and 'deterministically tagged' in compliance with the MedCo data model.
-
-Loading from the same host
-''''''''''''''''''''''''''
-
-If you using the same host machine to deploy and load the data you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. 
-This includes the scenario in ``test-network`` where for each of the nodes you want to load data from its hosting machine.
-**You need to repeat the loading process for all nodes, by modifying the arguments "network", "entryPointIdx" and "dbName".**
-
-=================== ================================================================================= ============================================================================================================================================================ ============== ============================     
-Deployment Profile  --network                                                                         --v (volumes)                                                                                                                                                --dbHost       --dbName
-=================== ================================================================================= ============================================================================================================================================================ ============== ============================ 
-*test-local-3nodes* ``test-local-3nodes_medco-network`` + ``test-local-3nodes_medco-srv<node index>`` ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml``                            ``postgresql`` ``i2b2medcosrv<node index>``
-*test-network*      ``test-network-<network name>-node<node index>_default``                          ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/group.toml:/group.toml`` ``postgresql`` ``i2b2medco``
-*dev-local-3nodes*  ``dev-local-3nodes_medco-network`` + ``dev-local-3nodes_medco-srv<node index>``   ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml``                             ``postgresql`` ``i2b2medcosrv<node index>``
-=================== ================================================================================= ============================================================================================================================================================ ============== ============================
-
-Loading from a different host
-'''''''''''''''''''''''''''''
-
-If you are using an external machine (e.g. your laptop) to load the data into one of the nodes you can use the following table bellow to adapt some of the script parameters depending on the deployment scenario. In this case you do not need to specify the ``--network`` parameters. 
-**You need to repeat the loading process for all nodes, by modifying the arguments "network", "entryPointIdx" and "dbName".**
-
-=================== ============================================================================================================================================================ ================= ============================    
-Deployment Profile   --v (volumes)                                                                                                                                               --dbHost          --dbName
-=================== ============================================================================================================================================================ ================= ============================ 
-*test-local-3nodes* ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-local-3nodes/group.toml:/group.toml``                            ``<domain name>`` ``i2b2medcosrv<node index>``
-*test-network*      ``~/medco-loader/data/genomic:/dataset`` + ``~/medco-deployment/configuration-profiles/test-network-<network name>-node<node index>/group.toml:/group.toml`` ``<domain name>`` ``i2b2medco``
-=================== ============================================================================================================================================================ ================= ============================
+The *v0* loader expects an ontology, with mutation and clinical data in the MAF format. As the ontology data you must
+use ``~/medco-deployment/resources/data/genomic/tcga_cbio/clinical_data.csv`` and
+``~/medco-deployment/resources/data/genomic/tcga_cbio/mutation_data.csv``. For clinical data you can keep using the same
+two files or a subset of the data (e.g. 8_clinical_data.csv). More information about how to generate sample datafiles
+can be found below. After the following script is executed all the data is encrypted and 'deterministically tagged' in
+compliance with the MedCo data model.
 
 
 Example
 '''''''
 
-The following example allows to load data into a running MedCo development deployment (*dev-local-3nodes*), on the node 0.
-Adapt accordingly arguments ``network``, ``entryPointIdx`` and ``dbName`` for the 2 other nodes.
+The following example allows to load data into a running MedCo development deployment (*dev-local-3nodes*), on the node
+0. Adapt accordingly the docker-compose service being ran to load the two other nodes of this profile.
 
 .. code-block:: bash
 
-    cd ~/medco-loader/deployment
-    docker run --network="dev-local-3nodes_medco-network" --network="dev-local-3nodes_medco-srv0" \
-        -v ~/medco-loader/data/genomic:/dataset \
-        -v ~/medco-deployment/configuration-profiles/dev-local-3nodes/group.toml:/group.toml \
-        medco/medco-loader:v0.2.0 medco-loader -debug 2 v0 --group /group.toml --entryPointIdx 0 \
-        --ont_clinical /dataset/tcga_cbio/8_clinical_data.csv --sen /dataset/sensitive.txt \
-        --ont_genomic /dataset/tcga_cbio/8_mutation_data.csv --clinical /dataset/tcga_cbio/8_clinical_data.csv \
-        --genomic /dataset/tcga_cbio/8_mutation_data.csv --output /dataset/ --dbHost localhost --dbPort 5432 \
-        --dbName i2b2medcosrv0 --dbUser i2b2 --dbPassword i2b2
+    $ cd ~/medco-deployment/compose-profiles/dev-local-3nodes
+    $ docker-compose -f docker-compose.tools.yml run medco-loader-srv0 v0 \
+        --ont_clinical /data/genomic/tcga_cbio/8_clinical_data.csv \
+        --sen /data/genomic/sensitive.txt \
+        --ont_genomic /data/genomic/tcga_cbio/8_mutation_data.csv \
+        --clinical /data/genomic/tcga_cbio/8_clinical_data.csv \
+        --genomic /data/genomic/tcga_cbio/8_mutation_data.csv \
+        --output /data/
 
 Explanation of the arguments:
 
@@ -79,11 +51,13 @@ Explanation of the arguments:
         --genomic value, --gen value          Genomic file to load
         --output value, -o value              Output path to the .csv files
 
+
 Data Manipulation
 '''''''''''''''''
 
-Inside ``~/medco-loader/data/scripts/`` you can find a small python application to extract (or replicate) data out of the original *tcga_cbio* dataset.
-You can decide which patients you want to consider for you 'new' dataset or simply randomly pick a sample.
+Inside ``~/medco-loader/data/scripts/`` you can find a small python application to extract (or replicate) data out of
+the original *tcga_cbio* dataset. You can decide which patients you want to consider for you 'new' dataset or simply
+randomly pick a sample.
 
 To check that it is working you can query for: 
 

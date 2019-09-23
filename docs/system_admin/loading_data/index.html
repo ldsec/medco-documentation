@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Loading Data &mdash; MedCo Technical Documentation 0.2.0 documentation</title>
+  <title>Loading Data &mdash; MedCo Technical Documentation 0.2.1 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.2.0
+                0.2.1
               </div>
             
           
@@ -172,40 +172,31 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="v0.html">v0 (Genomic Data)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="v0.html#loading-from-the-same-host">Loading from the same host</a></li>
-<li class="toctree-l2"><a class="reference internal" href="v0.html#loading-from-a-different-host">Loading from a different host</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v0.html#example">Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v0.html#data-manipulation">Data Manipulation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="v1.html">v1 (I2B2 Demodata)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="v1.html#loading-in-the-same-host">Loading in the same host</a></li>
-<li class="toctree-l2"><a class="reference internal" href="v1.html#loading-in-a-different-host">Loading in a different host</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v1.html#dummy-generation">Dummy Generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="v1.html#example">Example</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<p>The current version offers two different loading alternatives: (<em>v0</em>) loading of clinical and genomic data based on MAF datasets;
-and (<em>v1</em>) loading of generic i2b2 data.
-Currently these two loaders support each one dataset:</p>
+<p>The current version offers two different loading alternatives: (<em>v0</em>) loading of clinical and genomic data based on MAF
+datasets; and (<em>v1</em>) loading of generic i2b2 data. Currently these two loaders support each one dataset:</p>
 <ul class="simple">
 <li><em>v0</em>: a genomic dataset (<em>tcga_cbio</em> publicly available in <a class="reference external" href="http://www.cbioportal.org/">cBioPortal</a>)</li>
 <li><em>v1</em>: the <a class="reference external" href="https://www.i2b2.org/software/repository.html?t=demo&amp;p=15">i2b2 demodata</a>.</li>
 </ul>
-<p>Future releases of this software will allow for other arbitrary data sources, given that they follow a specific structure (e.g. BAM format).</p>
+<p>Future releases of this software will allow for other arbitrary data sources, given that they follow a specific
+structure (e.g. BAM format).</p>
 <div class="section" id="pre-requisites">
 <h2>Pre-Requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
-<p>First get the repository containing the MedCo loader software, which already contains some test data for you to work with.
-Note that you need to <a class="reference external" href="https://git-lfs.github.com/">install git-lfs on your system</a> for those data to be retrieved with the repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
-$ git clone -b v0.2.0 https://github.com/lca1/medco-loader.git
-</pre></div>
-</div>
-<p><strong>Building Application</strong></p>
-<p>To get the MedCo loader application, pull it with Docker:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull medco/medco-loader:v0.2.0
+<p><strong>Download test data</strong></p>
+<p>From the <em>medco-deployment</em> folder, execute the <cite>resources/data/download.sh</cite> script to download the test datasets.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/medco-deployment/resources/data
+$ bash download.sh
 </pre></div>
 </div>
 </div>
@@ -231,7 +222,7 @@ $ git clone -b v0.2.0 https://github.com/lca1/medco-loader.git
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017-2019, EPFL LCA1
+        &copy; Copyright 2017-2019, EPFL LDS
 
     </p>
   </div>

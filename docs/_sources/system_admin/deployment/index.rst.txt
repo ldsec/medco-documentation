@@ -11,7 +11,7 @@ Deployment
 
 These pages explain how to deploy MedCo in different scenarios.
 Each deployment scenario corresponds to a deployment profile, as described below.
-All these instructions use the deployment scripts from the `medco-deployment <https://github.com/lca1/medco-deployment>`_ repository.
+All these instructions use the deployment scripts from the `medco-deployment <https://github.com/ldsec/medco-deployment>`_ repository.
 
 **If you are new to MedCo...**
 
