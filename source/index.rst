@@ -14,6 +14,8 @@ MedCo Technical Documentation
 Releases
 ++++++++
 
+    - | **0.2.1-1**, *8 Jan. 2020*
+      | Adds hotfix to solve an issue preventing deployment in some scenarios.
     - | **0.2.1**, *15 Aug. 2019*
       | Implementation of additional query types (patient list, locally obfuscated count, global count, shuffled count),
         implementation of OIDC-based authorization model, implementation of CLI client, timers improvements, upgrade of
