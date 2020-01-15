@@ -10,7 +10,7 @@ Containers
 medco-connector
 ---------------
 Component orchestrating the MedCo query at the clinical site. Implements the resource-side of the PIC-SURE API. It
-communicates with *medco-unlynx* to execute the distributed cryptographic protools.
+communicates with *medco-unlynx* to execute the distributed cryptographic protocols.
 
 
 medco-unlynx
