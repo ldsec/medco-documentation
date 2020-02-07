@@ -16,6 +16,7 @@
   * [Loading Data](system-administrator-guide/loading-data/README.md)
     * [v0 \(Genomic Data\)](system-administrator-guide/loading-data/v0-genomic-data.md)
     * [v1 \(I2B2 Demodata\)](system-administrator-guide/loading-data/v1-i2b2-demodata.md)
+  * [Command-Line Interface \(CLI\)](system-administrator-guide/command-line-interface-cli.md)
   * [Network Architecture](system-administrator-guide/network-architecture.md)
 * [Developer Guide](developer-guide/README.md)
   * [System Architecture](developer-guide/system-architecture.md)
