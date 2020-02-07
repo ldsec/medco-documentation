@@ -95,7 +95,7 @@ OPTIONS:
    --limit value, -l value  Maximum number of returned values (default: 0)
 ```
 
-To do some tests, you may want to [load some test data first](loading-data/v0-genomic-data.md).
+To do some tests, you may want to [load some data first](loading-data/v0-genomic-data.md).
 
 Then, for example, if you want to know which genomic annotations of type "protein\_change" containing the string "g32" are available, you can run:
 
@@ -137,7 +137,7 @@ OPTIONS:
 
 ```
 
-To do some tests, you may want to [load some test data first](loading-data/v0-genomic-data.md).
+To do some tests, you may want to [load some data first](loading-data/v0-genomic-data.md).
 
 Then, for example, if you want to know the variant ID of the genomic annotation "HTR5A" of type "hugo\_gene\_symbol" with zygosity "heterozygous" or "homozygous", you can run:
 
