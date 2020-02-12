@@ -1,14 +1,5 @@
 # Releases
 
-## v0.3.0 - 11 Feb. 2020
-
-* Many corrections to comply with security reviews
-* Architecture changes: removal of PICSURE, new implementation of genomic annotations querying
-* Keycloak auto-provisioning
-* Support of several identity providers per MedCo node
-* Rework of Glowing Bear MedCo
-* Various smaller improvements, bug fixes and better stability
-
 ## v0.2.1 - 15 Aug. 2019
 
 * Implementation of additional query types \(patient list, locally obfuscated count, global count, shuffled count\)
