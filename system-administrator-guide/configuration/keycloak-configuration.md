@@ -31,7 +31,7 @@ Import the provided realm configuration into Keycloak. This will create the MedC
 
 ### Configure the MedCo OpenID Connect client
 
-In the _Settings_ tab, fill _Valid Redirect URIs_ according to the following table:
+Access the configuration panel of the MedCo client by going to the _Clients_ tab, and click on the _medco_ client. The, in the _Settings_ tab, fill _Valid Redirect URIs_ according to the following table:
 
 | Deployment Profile | Valid Redirect URIs |
 | :--- | :--- |
