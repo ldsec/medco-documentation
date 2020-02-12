@@ -2,11 +2,11 @@
 
 MedCo provides a client command-line interface \(CLI\) to interact with the _medco-connector_ APIs.
 
-### Prerequisites
+## Prerequisites
 
 To use the CLI, you must first follow one of the [deployment guides](deployment/). However, the version of the CLI documented here is the one shipped with the [Local Development Deployment](deployment/local-development-deployment.md).
 
-### How to use it
+## How to use it
 
 To show the CLI manual, run:
 
@@ -39,12 +39,12 @@ GLOBAL OPTIONS:
 ```
 
 {% hint style="info" %}
-For a start, you can use the credentials of the default user:  `username:test password:test`
+For a start, you can use the credentials of the default user: `username:test password:test`
 
 You will also need to specify the URL of the medco connector node you want to interact with by properly setting the MEDCO\_CONNECTOR\_URL variable in compose-profiles/docker-compose-definitions.yml
 {% endhint %}
 
-#### query
+### query
 
 You can use this command to query the MedCo network.
 
@@ -80,7 +80,7 @@ node_name,count,patient_list,DDTRequestTime,KSRequestTime,KSTimeCommunication,KS
 Not that, in the queries, the OR operator has the highest priority, so `1 AND 2 OR 3 AND 2` is factorised as `(1) AND (2 OR 3) AND (2)`.
 {% endhint %}
 
-#### genomic-annotations-get-values
+### genomic-annotations-get-values
 
 You can use this command to get the values of the genomic annotations that MedCo nodes make available for queries.
 
@@ -114,9 +114,9 @@ G32E
 The matching is case-insensitive and it is not possible to use wildcards. At the moment only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
 
-#### genomic-annotations-get-variants
+### genomic-annotations-get-variants
 
-You can use this command to get the variant ID of a certain genomic annotation. 
+You can use this command to get the variant ID of a certain genomic annotation.
 
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test genomic-annotations-get-variants --help
@@ -134,7 +134,6 @@ If omitted, the command will execute as if zygosity was equal to "heterozygous|h
 OPTIONS:
    --zygosity value, -z value  Variant zygosysty
    --encrypted, -e             Return encrypted variant id
-
 ```
 
 To do some tests, you may want to [load some data first](loading-data/v0-genomic-data.md).
@@ -155,3 +154,4 @@ You will get:
 {% hint style="info" %}
 The matching is case-insensitive and it is not possible to use wildcards. If you request the ID of an annotation which is not available \(e.g, in the previous, example, "HTR5"\) you will get an error message. At the moment only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
+

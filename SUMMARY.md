@@ -3,7 +3,6 @@
 * [Home](README.md)
 * [Releases](releases.md)
 * [System Administrator Guide](system-administrator-guide/README.md)
-  * [Specifications](system-administrator-guide/specifications.md)
   * [Deployment](system-administrator-guide/deployment/README.md)
     * [Local Test Deployment](system-administrator-guide/deployment/local-test-deployment.md)
     * [Network Test Deployment](system-administrator-guide/deployment/network-test-deployment.md)
