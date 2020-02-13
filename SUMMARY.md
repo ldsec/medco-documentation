@@ -2,22 +2,28 @@
 
 * [Home](README.md)
 * [Releases](releases.md)
-* [System Administrator Guide](system-administrator-guide/README.md)
-  * [Deployment](system-administrator-guide/deployment/README.md)
-    * [Local Test Deployment](system-administrator-guide/deployment/local-test-deployment.md)
-    * [Network Test Deployment](system-administrator-guide/deployment/network-test-deployment.md)
-    * [Local Development Deployment](system-administrator-guide/deployment/local-development-deployment.md)
-  * [Configuration](system-administrator-guide/configuration/README.md)
-    * [Keycloak Configuration](system-administrator-guide/configuration/keycloak-configuration.md)
-    * [HTTPS Configuration](system-administrator-guide/configuration/https-configuration.md)
-    * [The PostgreSQL database](system-administrator-guide/configuration/the-postgresql-database.md)
-    * [Configuring SwitchAAI Authentication](system-administrator-guide/configuration/configuring-switchaai-authentication.md)
-  * [Loading Data](system-administrator-guide/loading-data/README.md)
-    * [v0 \(Genomic Data\)](system-administrator-guide/loading-data/v0-genomic-data.md)
-    * [v1 \(I2B2 Demodata\)](system-administrator-guide/loading-data/v1-i2b2-demodata.md)
-  * [Command-Line Interface \(CLI\)](system-administrator-guide/command-line-interface-cli.md)
-  * [Network Architecture](system-administrator-guide/network-architecture.md)
-* [Developer Guide](developer-guide/README.md)
-  * [System Architecture](developer-guide/system-architecture.md)
-  * [Description of the default test data](developer-guide/description-of-the-default-test-data.md)
+
+## For System Administrators <a id="system-administrators"></a>
+
+* [Specifications](system-administrators/system-administrator-guide.md)
+* [Deployment](system-administrators/deployment/README.md)
+  * [Local Test Deployment](system-administrators/deployment/local-test-deployment.md)
+  * [Network Test Deployment](system-administrators/deployment/network-test-deployment.md)
+  * [Local Development Deployment](system-administrators/deployment/local-development-deployment.md)
+* [Configuration](system-administrators/configuration/README.md)
+  * [Keycloak](system-administrators/configuration/keycloak.md)
+  * [HTTPS Configuration](system-administrators/configuration/https-configuration.md)
+  * [The PostgreSQL database](system-administrators/configuration/the-postgresql-database.md)
+  * [Configuring SwitchAAI Authentication](system-administrators/configuration/configuring-switchaai-authentication.md)
+* [Loading Data](system-administrators/loading-data/README.md)
+  * [v0 \(Genomic Data\)](system-administrators/loading-data/v0-genomic-data.md)
+  * [v1 \(I2B2 Demodata\)](system-administrators/loading-data/v1-i2b2-demodata.md)
+* [Command-Line Interface \(CLI\)](system-administrators/command-line-interface-cli.md)
+* [Network Architecture](system-administrators/network-architecture.md)
+
+## For Developers <a id="developers"></a>
+
+* [System Architecture](developers/system-architecture.md)
+* [Description of the default test data](developers/description-of-the-default-test-data.md)
+* [Developer Guide](developers/developer-guide.md)
 

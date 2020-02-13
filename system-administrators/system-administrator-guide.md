@@ -1,8 +1,4 @@
-# System Administrator Guide
-
-This guide explains the deployment and configuration of MedCo instances according to different scenarios.
-
-## Specifications
+# Specifications
 
 We recommend the following specifications for running MedCo:
 

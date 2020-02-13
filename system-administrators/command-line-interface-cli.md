@@ -61,7 +61,7 @@ OPTIONS:
    --resultFile value, -r value  Output file for the result CSV. Printed to stdout if omitted.
 ```
 
-This is the syntax of an example query using the pre-loaded [default testa data](../developer-guide/description-of-the-default-test-data.md).
+This is the syntax of an example query using the pre-loaded [default testa data](../developers/description-of-the-default-test-data.md).
 
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test query patient_list 1 AND 2 OR 3

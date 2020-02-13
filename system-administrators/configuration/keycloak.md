@@ -1,8 +1,14 @@
-# Keycloak Configuration
+# Keycloak
 
 
 
 Here follows some MedCo-specific instructions for the administration of Keycloak. For anything else, please refer to the [Keycloak Server Administration Guide](https://www.keycloak.org/docs/latest/server_admin/index.html).
+
+TODO: add section about changing default keys
+
+{% hint style="danger" %}
+For a production deployment, it is crucial to change the default keys and credentials.
+{% endhint %}
 
 ### Accessing the web administration interface
 
@@ -12,6 +18,8 @@ In the case of the development profile _dev-local-3nodes_ \(i.e. without reverse
 * Password `keycloak` by default, or whatever else was configured at the initial deployment.
 
 ### Disabling HTTPS requirement for external connections
+
+REMOVE ME
 
 When deploying the _test-local-3nodes_ profile without HTTPS on a machine other than `localhost`, the administration interface will refuse to load. To solve this, access pgAdmin \(see [The PostgreSQL database](the-postgresql-database.md)\) and execute the following SQL on the `keycloak` database:
 
@@ -42,6 +50,8 @@ Access the configuration panel of the MedCo client by going to the _Clients_ tab
 In the same tab, fill _Web Origins_ with `+` and save.
 
 ### User Management
+
+TODO: add info about default credentials and how to change them etc test + keycloak
 
 **Add a user**
 

@@ -52,11 +52,11 @@ In order to stop the containers, simply hit `Ctrl+C` in all the active windows.
 
 ### Keycloak Configuration
 
-Follow the instructions from [Keycloak Configuration](../configuration/keycloak-configuration.md) to be able to use Glowing Bear.
+Follow the instructions from [Keycloak Configuration](../configuration/keycloak.md) to be able to use Glowing Bear.
 
 ### Test the deployment
 
-In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at `http://localhost:4200` and use the credentials previously configured during the [Keycloak Configuration](../configuration/keycloak-configuration.md). If you are new to Glowing Bear you can watch the [Glowing Bear user interface walkthrough](https://glowingbear.app/) video.
+In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at `http://localhost:4200` and use the credentials previously configured during the [Keycloak Configuration](../configuration/keycloak.md). If you are new to Glowing Bear you can watch the [Glowing Bear user interface walkthrough](https://glowingbear.app/) video.
 
 By default MedCo loads a specific test data, refer to [Description of the default test data](https://medco.epfl.ch/documentation/developer/test_data_description.html#lbl-test-data-description) for expected results to queries. To load a dataset, follow the guide [Loading Data](../loading-data/). For reference, the database address \(host\) to use during loading is `localhost:5432` and the databases `i2b2medcosrv0`, `i2b2medcosrv1` and `i2b2medcosrv2`.
 
