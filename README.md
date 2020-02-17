@@ -1,6 +1,6 @@
 # Home
 
-## Resourcess
+## Resources
 
 * MedCo software repositories
   * [MedCo Connector](https://github.com/ldsec/medco-connector)
