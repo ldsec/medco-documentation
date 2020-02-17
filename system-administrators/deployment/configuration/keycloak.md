@@ -71,7 +71,7 @@ Both `keycloak` and `test` users comes with default passwords. For a production 
   * Optionally toggle to `OFF` the _Temporary_ button; if `ON` the user at the next login will need to update his password.
   * Click on _Reset Password_.
 
-### Changing default keys
+### Changing default realm keys
 
 The example configuration comes with default keys. They have to be changed for a network deployment where there are several Keycloak instances.
 
