@@ -19,6 +19,7 @@
   * [v1 \(I2B2 Demodata\)](system-administrators/data-loading/v1-i2b2-demodata.md)
 * [Command-Line Interface \(CLI\)](system-administrators/command-line-interface-cli.md)
 * [Network Architecture](system-administrators/network-architecture.md)
+* [Common Problems](system-administrators/common-problems.md)
 
 ## For Developers <a id="developers"></a>
 
