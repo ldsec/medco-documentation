@@ -77,7 +77,10 @@ Wait some time for the initialization of the containers to be done, this can tak
 
 ## Keycloak Configuration
 
-Follow the instructions for [configuring the MedCo OpenID Connect client in Keycloak](configuration/keycloak.md#medco-openid-connect-client) to be able to login in Glowing Bear.
+You will need to follow two sets of instruction to make Keycloak functional and be able to log in:
+
+* [Update the MedCo OIDC client](configuration/keycloak.md#medco-openid-connect-client)
+* [Update the Keycloak realm keys](configuration/keycloak.md#changing-default-keys)
 
 ## Test the deployment
 
