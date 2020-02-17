@@ -1,8 +1,6 @@
 # Home
 
-_Disclaimer: MedCo is still an experimental software under development and should not, at this point, use real sensitive data._
-
-## Resources
+## Resourcess
 
 * MedCo software repositories
   * [MedCo Connector](https://github.com/ldsec/medco-connector)
