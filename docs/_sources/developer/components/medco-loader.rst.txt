@@ -1,4 +1,0 @@
-MedCo Loader
-============
-
-*Coming soon*

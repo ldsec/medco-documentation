@@ -1,7 +1,0 @@
-todo:
-the test-network, but by changing passwords in containers and keycloak
-+ have guide on how to manage users etc. in keycloak
-
-+ jwt, irct conf w/ jwt
-
--> for after pic-sure 2
