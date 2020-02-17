@@ -58,8 +58,6 @@ Access the configuration panel of the MedCo client by going to the _Clients_ tab
 
 In the same tab, fill _Web Origins_ with `+` and save.
 
-## Securing a production deployment
-
 ### Changing default passwords
 
 Both `keycloak` and `test` users comes with default passwords. For a production deployment they need to be changed:
@@ -73,7 +71,7 @@ Both `keycloak` and `test` users comes with default passwords. For a production 
 
 ### Changing default keys
 
-The example configuration comes with default keys. They should be changed for a production deployment.
+The example configuration comes with default 
 
 * Go to the configuration panel _Realm Settings_, then to the _Keys_ tab and _Providers_ subtab.
 * Click on _Add keystore..._ and add the three following providers:
@@ -87,15 +85,6 @@ The example configuration comes with default keys. They should be changed for a 
     * _Console Display Name_: `rsa-medco`
     * _Priority_: `100`
 * Finally, delete **all the other key providers** listed that you did not just add. They should be names _xxx-generated_. Note that it is normal if you get logged out during the operation, just log back in and continue the process.
-
-### Enabling brute force detection
-
-* Go to the configuration panel _Realm Settings_, then to the _Security Defenses_ tab and _Brute Force Detection_ subtab.
-* Toggle to `ON` the _Enabled_ button.
-* Fill the following:
-  * _Max Login Failures_: `3`
-  * _Wait Increment_: `30 Seconds`
-  * _Save_ the configuration.
 
 ## \_\_
 
