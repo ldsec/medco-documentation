@@ -1,4 +1,4 @@
-# Specifications
+# Requirements
 
 We recommend the following specifications for running MedCo:
 
@@ -9,6 +9,8 @@ We recommend the following specifications for running MedCo:
   * **RAM**: &gt;16 GB \(ideal\), &gt;8GB \(minimum\)
   * **Storage**: dependent on data loaded, &gt;100GB
 * **Software**
-  * **OS**: Any flavor of Linux, physical or virtualized \(tested with Ubuntu 16.04, 18.04, Fedora 29\)
-  * **Softwares**: OpenSSL, [Docker](https://docs.docker.com/install/) \(tested with Docker 18.09.1\) & [Docker-Compose](https://docs.docker.com/compose/install/) \(tested with Docker-Compose 1.23.2\).
+  * OS: Any flavor of Linux, physical or virtualized \(tested with Ubuntu 16.04, 18.04, Fedora 29\)
+  * OpenSSL
+  * [Docker](https://docs.docker.com/install/) version &gt;= 18.09.1
+  * [Docker-Compose](https://docs.docker.com/compose/install/) version &gt;= 1.23.2
 

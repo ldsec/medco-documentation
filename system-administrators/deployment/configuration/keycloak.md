@@ -1,6 +1,6 @@
 # Keycloak
 
-Here follows some MedCo-specific instructions for the administration of Keycloak. For anything else, please refer to the [Keycloak Server Administration Guide](https://www.keycloak.org/docs/latest/server_admin/index.html).
+Here follows some MedCo-specific instructions for the administration of Keycloak. For anything else, please refer to the [Keycloak Server Administration Guide](https://www.keycloak.org/docs/latest/server_admin/index.html). Those instructions do not necessarily need to be all followed for all deployments, refer to the deployment guide to know which ones are important.
 
 {% hint style="danger" %}
 For a production deployment, it is crucial to change the default keys and credentials.
@@ -48,7 +48,7 @@ The default MedCo user has all the authorizations to run all types of MedCo quer
 
 The default Keycloak configuration provides an example of a fully working configuration for deployments on your local host. In other cases, you will need to modify this configuration.
 
-Access the configuration panel of the MedCo client by going to the _Clients_ tab, and click on the _medco_ client. The, in the _Settings_ tab, fill _Valid Redirect URIs_ to reflect the following table:
+Access the configuration panel of the MedCo client by going to the _Clients_ tab, and click on the _medco_ client. Then, in the _Settings_ tab, fill _Valid Redirect URIs_ to reflect the following table \(you can delete the existing entries\):
 
 | Deployment Profile | Valid Redirect URIs |
 | :--- | :--- |
@@ -57,6 +57,8 @@ Access the configuration panel of the MedCo client by going to the _Clients_ tab
 | _dev-local-3nodes_ | `http://localhost:4200/*` |
 
 In the same tab, fill _Web Origins_ with `+` and save.
+
+## Securing a production deployment
 
 ### Changing default passwords
 
@@ -69,9 +71,9 @@ Both `keycloak` and `test` users comes with default passwords. For a production 
   * Optionally toggle to `OFF` the _Temporary_ button; if `ON` the user at the next login will need to update his password.
   * Click on _Reset Password_.
 
-### Changing default keys
+### Changing default realm keys
 
-The example configuration comes with default 
+The example configuration comes with default keys. They have to be changed for a network deployment where there are several Keycloak instances.
 
 * Go to the configuration panel _Realm Settings_, then to the _Keys_ tab and _Providers_ subtab.
 * Click on _Add keystore..._ and add the three following providers:
@@ -84,7 +86,16 @@ The example configuration comes with default
 * * _rsa-generated_
     * _Console Display Name_: `rsa-medco`
     * _Priority_: `100`
-* Finally, delete **all the other key providers** listed that you did not just add. They should be names _xxx-generated_. Note that it is normal if you get logged out during the operation, just log back in and continue the process.
+* Finally, delete **all the other key providers** listed that you did not just add. They should be named _xxx-generated_. Note that it is normal if you get logged out during the operation, just log back in and continue the process.
+
+### Enabling brute force detection
+
+* Go to the configuration panel _Realm Settings_, then to the _Security Defenses_ tab and _Brute Force Detection_ subtab.
+* Toggle to `ON` the _Enabled_ button.
+* Fill the following:
+  * _Max Login Failures_: `3`
+  * _Wait Increment_: `30 Seconds`
+  * _Save_ the configuration.
 
 ## \_\_
 

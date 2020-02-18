@@ -4,14 +4,15 @@ MedCo provides a client command-line interface \(CLI\) to interact with the _med
 
 ## Prerequisites
 
-To use the CLI, you must first follow one of the [deployment guides](deployment/). However, the version of the CLI documented here is the one shipped with the [Local Development Deployment](deployment/local-development-deployment.md).
+To use the CLI, you must first follow one of the [deployment guides](deployment/). However, the version of the CLI documented here is the one shipped with the [Local Development Deployment](../developers/local-development-deployment.md).
 
-## How to use it
+## How to use
 
 To show the CLI manual, run:
 
 ```text
-cd medco-deployment/compose-profiles/dev-local-3nodes/
+export MEDCO_SETUP_DIR=~/medco-deployment
+cd ${MEDCO_SETUP_DIR}/compose-profiles/dev-local-3nodes/
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user [USERNAME] --password [PASSWORD] --help
 
 NAME:
@@ -40,8 +41,6 @@ GLOBAL OPTIONS:
 
 {% hint style="info" %}
 For a start, you can use the credentials of the default user: `username:test password:test`
-
-You will also need to specify the URL of the medco connector node you want to interact with by properly setting the MEDCO\_CONNECTOR\_URL variable in compose-profiles/docker-compose-definitions.yml
 {% endhint %}
 
 ### query
@@ -61,7 +60,7 @@ OPTIONS:
    --resultFile value, -r value  Output file for the result CSV. Printed to stdout if omitted.
 ```
 
-This is the syntax of an example query using the pre-loaded [default testa data](../developers/description-of-the-default-test-data.md).
+This is the syntax of an example query using the pre-loaded [default test data](../developers/description-of-the-default-test-data.md).
 
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test query patient_list 1 AND 2 OR 3
@@ -95,7 +94,7 @@ OPTIONS:
    --limit value, -l value  Maximum number of returned values (default: 0)
 ```
 
-To do some tests, you may want to [load some data first](loading-data/v0-genomic-data.md).
+To do some tests, you may want to [load some data first](data-loading/v0-genomic-data.md).
 
 Then, for example, if you want to know which genomic annotations of type "protein\_change" containing the string "g32" are available, you can run:
 
@@ -111,7 +110,7 @@ G32E
 ```
 
 {% hint style="info" %}
-The matching is case-insensitive and it is not possible to use wildcards. At the moment only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
+The matching is case-insensitive and it is not possible to use wildcards. At the moment, with the loader v0, only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
 
 ### genomic-annotations-get-variants
@@ -136,7 +135,7 @@ OPTIONS:
    --encrypted, -e             Return encrypted variant id
 ```
 
-To do some tests, you may want to [load some data first](loading-data/v0-genomic-data.md).
+To do some tests, you may want to [load some data first](data-loading/v0-genomic-data.md).
 
 Then, for example, if you want to know the variant ID of the genomic annotation "HTR5A" of type "hugo\_gene\_symbol" with zygosity "heterozygous" or "homozygous", you can run:
 
@@ -152,6 +151,6 @@ You will get:
 ```
 
 {% hint style="info" %}
-The matching is case-insensitive and it is not possible to use wildcards. If you request the ID of an annotation which is not available \(e.g, in the previous, example, "HTR5"\) you will get an error message. At the moment only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
+The matching is case-insensitive and it is not possible to use wildcards. If you request the ID of an annotation which is not available \(e.g, in the previous, example, "HTR5"\) you will get an error message. At the moment, with the loader v0, only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
 

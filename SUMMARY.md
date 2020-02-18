@@ -5,7 +5,7 @@
 
 ## For System Administrators <a id="system-administrators"></a>
 
-* [Specifications](system-administrators/system-administrator-guide.md)
+* [Requirements](system-administrators/requirements.md)
 * [Deployment](system-administrators/deployment/README.md)
   * [Local Test Deployment](system-administrators/deployment/local-test-deployment.md)
   * [Network Test Deployment](system-administrators/deployment/network-test-deployment.md)
@@ -17,7 +17,7 @@
 * [Data Loading](system-administrators/data-loading/README.md)
   * [v0 \(Genomic Data\)](system-administrators/data-loading/v0-genomic-data.md)
   * [v1 \(I2B2 Demodata\)](system-administrators/data-loading/v1-i2b2-demodata.md)
-* [Command-Line Interface \(CLI\)](system-administrators/command-line-interface-cli.md)
+* [Command-Line Interface \(CLI\)](system-administrators/cli.md)
 * [Network Architecture](system-administrators/network-architecture.md)
 * [Common Problems](system-administrators/common-problems.md)
 
