@@ -19,7 +19,7 @@
 
 ## Contact
 
-For assistance with deploying MedCo or any other technical questions, send an email at [medco-dev@listes.epfl.ch](mailto:medco-dev%40listes.epfl.ch) or any of the contributors.
+For assistance with deploying MedCo or any other technical questions, send an email at [medco@epfl.ch](mailto:medco@epfl.ch) or any of the contributors.
 
 * [Mickaël Misbach](https://github.com/mickmis) \(Privacy and Security Software Engineer, EPFL\) - [mickael.misbach@epfl.ch](mailto:mickael.misbach%40epfl.ch)
 * [Francesco Marino](https://github.com/sevsnap) \(Privacy and Security Software Engineer, EPFL\) - [francesco.marino@epfl.ch](mailto:francesco.marino%40epfl.ch)
