@@ -1,5 +1,11 @@
 # Releases
 
+## v1.0.0 - 31th March 2020
+
+* First stable version
+* Externally reviewed and pen-tested
+* Bug fixes and enhancements
+
 ## v0.3.1 - 6th March 2020
 
 * Several bug fixes and enhancements
