@@ -23,20 +23,14 @@ cd "${MEDCO_SETUP_DIR}/compose-profiles/test-local-3nodes"
 docker-compose -f docker-compose.yml -f docker-compose.tools.yml pull
 ```
 
-The default configuration of the deployment is suitable if the stack is deployed on your local host, and if you do not need to modify the default passwords. If so, edit the file `${MEDCO_SETUP_DIR}/compose-profiles/test-local-3nodes/.env` to reflect your configuration. For example:
+The default configuration of the deployment is suitable if the stack is deployed on your local host, and if you do not need to modify the default passwords. To change the default passwords check out [this page](configuration/passwords.md). For the other settings, check out the following example of modifying the file `${MEDCO_SETUP_DIR}/compose-profiles/test-local-3nodes/.env` to reflect your configuration. For example:
 
 ```bash
 MEDCO_NODE_HOST=medco-demo.epfl.ch
 MEDCO_NODE_HTTP_SCHEME=https
-POSTGRES_PASSWORD=postgres_password
-PGADMIN_PASSWORD=pgadmin_password
-KEYCLOAK_PASSWORD=keycloak_password
-I2B2_WILDFLY_PASSWORD=i2b2_wildfly_password
-I2B2_SERVICE_PASSWORD=i2b2_service_password
-I2B2_USER_PASSWORD=i2b2_user_password
 ```
 
-`MEDCO_NODE_HOST` should be the fully qualified domain name of the host, `MEDCO_NODE_HTTP_SCHEME` should be `http` or `https`. The other fields control the default passwords for the various services running. Note that setting the passwords that way works only on the first deployment. If the passwords need to be updated later, you should use the specific component way of modifying password.
+`MEDCO_NODE_HOST` should be the fully qualified domain name of the host, `MEDCO_NODE_HTTP_SCHEME` should be `http` or `https`. 
 
 {% hint style="warning" %}
 If you enable HTTPS, follow [HTTPS Configuration](configuration/https-configuration.md) to set up the needed certificates.

@@ -59,7 +59,7 @@ cd "${MEDCO_SETUP_DIR}/resources/profile-generation-scripts/test-network"
 bash step2.sh ${MEDCO_SETUP_NETWORK_NAME} ${MEDCO_SETUP_NODE_IDX}
 ```
 
-At this point, it is possible to edit the default configuration generated in `${MEDCO_SETUP_DIR}/configuration-profiles/test-network-${MEDCO_SETUP_NETWORK_NAME}-node${MEDCO_SETUP_NODE_IDX}/.env` This is needed if you want to modify the default passwords. When editing this file, be careful to change only the passwords and not the other values. Note that setting the passwords that way works only on the first deployment. If the passwords need to be updated later, you should use the specific component way of modifying password.
+At this point, it is possible to edit the default configuration generated in `${MEDCO_SETUP_DIR}/configuration-profiles/test-network-${MEDCO_SETUP_NETWORK_NAME}-node${MEDCO_SETUP_NODE_IDX}/.env` This is needed if you want [to modify the default passwords](configuration/passwords.md). When editing this file, be careful to change only the passwords and not the other values. 
 
 The deployment profile is now ready to be used.
 

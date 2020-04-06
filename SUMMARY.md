@@ -11,6 +11,7 @@
   * [Network Test Deployment](system-administrators/deployment/network-test-deployment.md)
   * [Network Production Deployment](system-administrators/deployment/network-production-deployment.md)
   * [Configuration](system-administrators/deployment/configuration/README.md)
+    * [Passwords](system-administrators/deployment/configuration/passwords.md)
     * [Keycloak](system-administrators/deployment/configuration/keycloak.md)
     * [HTTPS Configuration](system-administrators/deployment/configuration/https-configuration.md)
     * [Configuring SwitchAAI Authentication](system-administrators/deployment/configuration/configuring-switchaai-authentication.md)
