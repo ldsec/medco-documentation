@@ -17,7 +17,7 @@ The observation fact contains the following entries:
 * patient 4, concept 2
 * patient 4, concept 3
 
-Example queries and expected results:
+Example queries and expected results \(per node\):
 
 * 1 AND 2: 1 \(patient 2\)
 * 2 AND 3: 1 \(patient 3\)

@@ -1,6 +1,6 @@
 # System Architecture
 
-![MedCo System Architecture](https://medco.epfl.ch/documentation/_images/system_architecture_v0.2.png)
+![](../.gitbook/assets/system_architecture_v0.2.png)
 
 ### Containers
 
