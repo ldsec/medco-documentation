@@ -28,4 +28,3 @@
 * [System Architecture](developers/system-architecture.md)
 * [Description of the default test data](developers/description-of-the-default-test-data.md)
 * [Database](developers/database.md)
-
