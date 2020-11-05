@@ -28,3 +28,6 @@
 * [System Architecture](developers/system-architecture.md)
 * [Description of the default test data](developers/description-of-the-default-test-data.md)
 * [Database](developers/database.md)
+* [Live Demo](developers/live-demo.md)
+* [Release a new version](developers/release-a-new-version.md)
+

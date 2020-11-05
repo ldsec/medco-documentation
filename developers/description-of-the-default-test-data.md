@@ -31,20 +31,21 @@ Example queries and expected results \(per node\):
 
 Default data for survival analysis consist on 228 fake patients. Each patient has observations relative to:
 
-* Death status (/SPHNv2020.1/DeathStatus/ and /DeathStatus-status/death in metadata)
-* Gender (/I2B2/Demographics/Gender/Female/ and /I2B2/Demographics/Gender/Female/ in metadata)
-* A diagnosis (/SPHNv2020.1/FophDiagnosis/  in metadata)
+* Death status \(/SPHNv2020.1/DeathStatus/ and /DeathStatus-status/death in metadata\)
+* Gender \(/I2B2/Demographics/Gender/Female/ and /I2B2/Demographics/Gender/Female/ in metadata\)
+* A diagnosis \(/SPHNv2020.1/FophDiagnosis/  in metadata\)
 
 All patients have the same diagnosis. It is used as the start event for computing relative times.
 
-Death status have two possible values: death or unknown (respectively 126:0 and 126:1 in modifier_cd column of observation_fact). 165 patients are deceased, the remaining 63 have the unknown status. Death status is used as the end event for relative times. As unknown-status death observation is the latest one for those whose death is not recorded, this observation is also useful for end event for right censoring events.
+Death status have two possible values: death or unknown \(respectively 126:0 and 126:1 in modifier\_cd column of observation\_fact\). 165 patients are deceased, the remaining 63 have the unknown status. Death status is used as the end event for relative times. As unknown-status death observation is the latest one for those whose death is not recorded, this observation is also useful for end event for right censoring events.
 
 Gender observation are useful for testing the grouping feature. There are 138 female patients and 90 male patients.
 
-Survival analysis query requires cohorts saved by the user. Tables explore_query_results and saved_cohorts are preloaded with the patient_num of the 228 fake patients. The  cohort identifier is -1 It is the default argument of the command.
+Survival analysis query requires cohorts saved by the user. Tables explore\_query\_results and saved\_cohorts are preloaded with the patient\_num of the 228 fake patients. The cohort identifier is -1 It is the default argument of the command.
 
 Survival analysis example:
 
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test srva  srva -l 2000 -g day  -s /SPHN/SPHNv2020.1/FophDiagnosis/ -e /SPHN/SPHNv2020.1/DeathStatus/ -y 126:1
 ```
+
