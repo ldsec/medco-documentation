@@ -13,6 +13,7 @@
   * [Configuration](system-administrators/deployment/configuration/README.md)
     * [Passwords](system-administrators/deployment/configuration/passwords.md)
     * [Keycloak](system-administrators/deployment/configuration/keycloak.md)
+    * [Setting Authorizations](system-administrators/deployment/configuration/setting-authorizations.md)
     * [HTTPS Configuration](system-administrators/deployment/configuration/https-configuration.md)
     * [Configuring SwitchAAI Authentication](system-administrators/deployment/configuration/configuring-switchaai-authentication.md)
 * [Data Loading](system-administrators/data-loading/README.md)
