@@ -28,6 +28,7 @@ COMMANDS:
    query, q                                Query the MedCo network
    genomic-annotations-get-values, gval    Get genomic annotations values
    genomic-annotations-get-variants, gvar  Get genomic annotations variants
+   survival-analysis, srva                 Run a survival analysis
    help, h                                 Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
@@ -154,3 +155,39 @@ You will get:
 The matching is case-insensitive and it is not possible to use wildcards. If you request the ID of an annotation which is not available \(e.g, in the previous, example, "HTR5"\) you will get an error message. At the moment, with the loader v0, only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
 
+### survival-analysis
+
+You can run this command to get information useful to run survival analysis. The relative time points are computed as the difference between absolute dates of start concept and end concept.
+
+```text
+NAME:
+   medco-cli-client survival-analysis - Run a survival analysis
+
+USAGE:
+   medco-cli-client survival-analysis [command options] -l limit [-g granularity] [-c cohortID] -s startConcept [-x startModifier] -e endConcept [-y endModifier]
+
+DESCRIPTION:
+   Returns the points of the survival curve
+
+OPTIONS:
+   --limit value, -l value          Max limit of survival analysis. (default: 0)
+   --granularity value, -g value    Time resolution, one of [day, week, month, year] (default: "day")
+   --cohortID value, -c value       Cohort identifier (default: -1)
+   --startConcept value, -s value   Survival start concept
+   --startModifier value, -x value  Survival start modifier (default: "@")
+   --endConcept value, -e value     Survival end concept
+   --endModifier value, -y value    Survival end modifier (default: "@")
+
+```
+
+Start and concept are determined by the name of the access table concatenated to the full path of the concept.
+
+The default cohort identifier -1 corresponds to test data loaded for end-to-end testing.  All future cohort identifiers will be positive integers. Cohorts can be created after a successful MedCo Explore query.
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test srva  srva -l 2000 -g week -c 1  -s /SPHN/SPHNv2020.1/FophDiagnosis/ -e /SPHN/SPHNv2020.1/DeathStatus/ -y 126:1
+```
+
+{% hint style="info" %}
+The matching is case-insensitive and it is not possible to use wildcards. If you request the ID of an annotation which is not available \(e.g, in the previous, example, "HTR5"\) you will get an error message. At the moment only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
+{% endhint %}
