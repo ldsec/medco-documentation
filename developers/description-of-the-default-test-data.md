@@ -6,26 +6,44 @@ The default data loaded in MedCo is a small artificially generated dataset, appr
 
 It contains 4 patients: 1 \(real\), 2 \(real\), 3 \(real\), 4 \(dummy\).
 
-And 3 concepts: 1, 2, and 3.
+3 encrypted concepts: 1, 2, 3.
+
+1 clear concept folder: /E2ETEST/e2etest/.
+
+4 clear concepts:  /E2ETEST/e2etest/1/,  /E2ETEST/e2etest/2/, /E2ETEST/e2etest/3/.
+
+1 modifier folder: /E2ETEST/modifiers/.
+
+3 modifiers: /E2ETEST/modifiers/1/, E2ETEST/modifiers/2/, E2ETEST/modifiers/3/.
 
 The observation fact contains the following entries:
 
 * patient 1, concept 1
+* patient 1, concept /E2ETEST/e2etest/1/, modifier /E2ETEST/modifiers/1/
 * patient 2, concept 1
 * patient 2, concept 2
+* patient 2, concept /E2ETEST/e2etest/1/, modifier /E2ETEST/modifiers/
+* patient 2, concept /E2ETEST/e2etest/2/, modifier /E2ETEST/modifiers/2/
 * patient 3, concept 2
 * patient 3, concept 3
+* patient 3, concept /E2ETEST/e2etest/3/, modifier /E2ETEST/modifiers/
 * patient 4, concept 1
 * patient 4, concept 2
 * patient 4, concept 3
+* patient 4, concept /E2ETEST/e2etest/3/, modifier /E2ETEST/modifiers/3/
 
 Example queries and expected results \(per node\):
 
-* 1 AND 2: 1 \(patient 2\)
-* 2 AND 3: 1 \(patient 3\)
-* 1 AND 2 AND 3: 0
-* \(1 OR 2\): 3 \(patients 1, 2 and 3\)
-* \(1 OR 3\) AND 2: 1 \(patients 2 and 3\) 
+* enc::1 AND enc::2: 1 \(patient 2\)
+* enc::2 AND enc::3: 1 \(patient 3\)
+* enc::1 AND enc::2 AND enc::3: 0
+* \(enc::1 OR enc::2\): 3 \(patients 1, 2 and 3\)
+* \(enc::1 OR enc::3\) AND enc::2: 1 \(patients 2 and 3\)
+* clr::/E2ETEST/e2etest/1/: 2 \(patients 1 and 2\)
+* clr::/E2ETEST/e2etest/1/::/E2ETEST/modifiers/:/e2etest/%: 2 \(patients 1 and 2\)
+* clr::/E2ETEST/e2etest/1/::/E2ETEST/modifiers/1/:/e2etest/1/: 1 \(patients 1\)
+* enc:: 1 AND clr::/E2ETEST/e2etest/2/: 1 \(patients 2\)
+* enc::1 OR clr::/E2ETEST/e2etest/3/:  3 \(patients 1, 2 and 3\)
 
 ## MedCo Analysis - survival analysis
 

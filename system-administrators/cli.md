@@ -11,8 +11,8 @@ To use the CLI, you must first follow one of the [deployment guides](deployment/
 To show the CLI manual, run:
 
 ```text
-export MEDCO_SETUP_DIR=~/medco-deployment
-cd ${MEDCO_SETUP_DIR}/compose-profiles/dev-local-3nodes/
+export MEDCO_SETUP_DIR=~/medco
+cd ${MEDCO_SETUP_DIR}/deployments/dev-local-3nodes/
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user [USERNAME] --password [PASSWORD] --help
 
 NAME:
@@ -25,19 +25,21 @@ VERSION:
    1.0.0
 
 COMMANDS:
-   query, q                                Query the MedCo network
-   genomic-annotations-get-values, gval    Get genomic annotations values
-   genomic-annotations-get-variants, gvar  Get genomic annotations variants
-   survival-analysis, srva                 Run a survival analysis
-   help, h                                 Shows a list of commands or help for one command
+   concept-children, conc   Get the children (concepts and modifiers) of a concept
+   modifier-children, modc  Get the children of a modifier
+   query, q                 Query the MedCo network
+   ga-get-values, ga-val    Get the values of the genomic annotations of type *annotation* whose values contain *value*
+   ga-get-variant, ga-var   Get the variant ID of the genomic annotation of type *annotation* and value *value*
+   help, h                  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --user value, -u value      OIDC user login
-   --password value, -p value  OIDC password login
-   --token value, -t value     OIDC token
-   --disableTLSCheck           Disable check of TLS certificates
-   --help, -h                  show help
-   --version, -v               print the version
+   --user value, -u value        OIDC user login
+   --password value, -p value    OIDC password login
+   --token value, -t value       OIDC token
+   --disableTLSCheck             Disable check of TLS certificates
+   --outputFile value, -o value  Output file for the result. Printed to stdout if omitted.
+   --help, -h                    show help
+   --version, -v                 print the version
 ```
 
 {% hint style="info" %}
@@ -55,42 +57,51 @@ NAME:
    medco-cli-client query - Query the MedCo network
 
 USAGE:
-   medco-cli-client query [command options] [patient_list|count_per_site|count_per_site_obfuscated|count_per_site_shuffled|count_per_site_shuffled_obfuscated|count_global|count_global_obfuscated] [query string]
-
-OPTIONS:
-   --resultFile value, -r value  Output file for the result CSV. Printed to stdout if omitted.
+   medco-cli-client query [patient_list|count_per_site|count_per_site_obfuscated|count_per_site_shuffled|count_per_site_shuffled_obfuscated|count_global|count_global_obfuscated] [query string]
 ```
 
 This is the syntax of an example query using the pre-loaded [default test data](../developers/description-of-the-default-test-data.md).
 
 ```text
-docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test query patient_list 1 AND 2 OR 3
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test query patient_list enc::1 AND enc::2 OR enc::3
 ```
 
 You will get something like that:
 
 ```text
 node_name,count,patient_list,DDTRequestTime,KSRequestTime,KSTimeCommunication,KSTimeExec,TaggingTimeCommunication,TaggingTimeExec,medco-connector-DDT,medco-connector-i2b2-PDO,medco-connector-i2b2-PSM,medco-connector-local-agg,medco-connector-local-patient-list-masking,medco-connector-overall,medco-connector-unlynx-key-switch-count,medco-connector-unlynx-key-switch-patient-list
-0,8,[1 2 3 4 5 6 7 8],268,162,154,0,218,23,275,2561,16507,0,32,19619,50,179
-1,0,[],212,61,43,0,179,12,232,2078,17993,0,1,20433,38,87
-2,0,[],196,38,30,0,172,7,216,1574,18889,1,2,20779,30,53
+0,1,[2],4236,311,307,0,1657,10,4266,3972,25472,1,153,34834,469,491
+1,1,[2],584,89,75,0,474,78,677,4717,61325,16,3,66991,140,104
+2,1,[2],669,55,45,0,576,49,709,3134,63371,0,8,67358,68,63
 ```
 
+Query terms can be composed using the logical operators NOT, AND and OR.
+
 {% hint style="info" %}
-Not that, in the queries, the OR operator has the highest priority, so `1 AND 2 OR 3 AND 2` is factorised as `(1) AND (2 OR 3) AND (2)`.
+Note that, in the queries, the OR operator has the highest priority, so`1 AND NOT 2 OR 3 AND 2` is factorised as `(1) AND (NOT (2 OR 3)) AND (2)`
 {% endhint %}
 
-### genomic-annotations-get-values
+Each query term is composed of two fields, the type field and the content field, separated by `::`. Possible values of the type field are: `enc`, `clr`, `file`.
+
+When the type field is equal to `enc`, the content field contains the concept ID. 
+
+When the type field is equal to `clr,` the content field contains the concept path and, possibly, the modifier field, which in turn contains the modifier key and applied path fields, separated by `:`.
+
+When the type field is equal to `file`, the content field contains the path of the file containing the query terms, one for each row. The query terms contained in the same file are OR-ed together. Besides `enc`, `clr,` and `file` query terms, a file can also contain genomic query terms, each of which is composed by 4 comma separated values. 
+
+### ga-get-values
 
 You can use this command to get the values of the genomic annotations that MedCo nodes make available for queries.
 
 ```text
-docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test genomic-annotations-get-values --help
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test ga-get-values --help
 
 NAME:
-   medco-cli-client genomic-annotations-get-values - Get genomic annotations values
+   medco-cli-client ga-get-values - Get the values of the genomic annotations of type *annotation* whose values contain *value*
+
 USAGE:
-   medco-cli-client genomic-annotations-get-values [command options] [-l limit] [annotation] [value]
+   medco-cli-client ga-get-values [command options] [-l limit] annotation value
+
 OPTIONS:
    --limit value, -l value  Maximum number of returned values (default: 0)
 ```
@@ -100,7 +111,7 @@ To do some tests, you may want to [load some data first](data-loading/v0-genomic
 Then, for example, if you want to know which genomic annotations of type "protein\_change" containing the string "g32" are available, you can run:
 
 ```text
-docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test genomic-annotations-get-values protein_change g32
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test ga-get-values protein_change g32
 ```
 
 You will get:
@@ -114,18 +125,18 @@ G32E
 The matching is case-insensitive and it is not possible to use wildcards. At the moment, with the loader v0, only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
 
-### genomic-annotations-get-variants
+### ga-get-variant
 
 You can use this command to get the variant ID of a certain genomic annotation.
 
 ```text
-docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test genomic-annotations-get-variants --help
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test ga-get-variant --help
 
 NAME:
-   medco-cli-client genomic-annotations-get-variants - Get genomic annotations variants
+   medco-cli-client ga-get-variant - Get the variant ID of the genomic annotation of type *annotation* and value *value*
 
 USAGE:
-   medco-cli-client genomic-annotations-get-variants [command options] [-z zygosity] [-e] [annotation] [value]
+   medco-cli-client ga-get-variant [command options] [-z zygosity] [-e] annotation value
 
 DESCRIPTION:
    zygosity can be either heterozygous, homozygous, unknown or a combination of the three separated by |
@@ -141,7 +152,7 @@ To do some tests, you may want to [load some data first](data-loading/v0-genomic
 Then, for example, if you want to know the variant ID of the genomic annotation "HTR5A" of type "hugo\_gene\_symbol" with zygosity "heterozygous" or "homozygous", you can run:
 
 ```text
-docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test genomic-annotations-get-variants -z "heterozygous|homozygous" hugo_gene_symbol HTR5A
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test ga-get-variant -z "heterozygous|homozygous" hugo_gene_symbol HTR5A
 ```
 
 You will get:
