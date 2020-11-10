@@ -14,7 +14,7 @@ You can access the Keycloak administration interface at `http(s)://<node domain 
 
 ### Default users
 
-The default configuration shipped with the MedCo deployments come with two users.
+The default configuration shipped with the MedCo deployments come with several users.
 
 #### Admin user
 
@@ -23,12 +23,18 @@ The default admin credentials has all the admin access to Keycloak, but no acces
 * User `keycloak`
 * Password `keycloak` \(unless configured otherwise through the `.env` file\)
 
-#### Test user
+#### Test users
 
-The default MedCo user has all the authorizations to run all types of MedCo query. It is this user you should use to log in MedCo. Its credentials are:
+They all have the password `test` and have different authorizations that are obvious from their names.
 
-* User `test`
-* Password `test`
+* User `test`: this user has all the authorizations to run all types of MedCo explore queries. it will default to the highest authorization being `patient_list`.
+* User `test_explore_count_global`
+* User `test_explore_count_global_obfuscated`
+* User `test_explore_count_per_site`
+* User `test_explore_count_per_site_obfuscated`
+* User `test_explore_count_per_site_shuffled`
+* User `test_explore_count_per_site_shuffled_obfuscated`
+* User `test_explore_patient_list`
 
 ### **Add a user**
 
