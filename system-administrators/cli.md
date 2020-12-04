@@ -22,15 +22,22 @@ USAGE:
    medco-cli-client [global options] command [command options] [arguments...]
 
 VERSION:
-   1.0.0
+   dev
 
 COMMANDS:
-   concept-children, conc   Get the children (concepts and modifiers) of a concept
-   modifier-children, modc  Get the children of a modifier
-   query, q                 Query the MedCo network
-   ga-get-values, ga-val    Get the values of the genomic annotations of type *annotation* whose values contain *value*
-   ga-get-variant, ga-var   Get the variant ID of the genomic annotation of type *annotation* and value *value*
-   help, h                  Shows a list of commands or help for one command
+   concept-children, con-c     Get the concept children (both concepts and modifiers)
+   modifier-children, mod-c    Get the modifier children
+   concept-info, con-i         Get the concept info
+   modifier-info, mod-i        Get the modifier info
+   query, q                    Query the MedCo network
+   ga-get-values, ga-val       Get the values of the genomic annotations of type *annotation* whose values contain *value*
+   ga-get-variant, ga-var      Get the variant ID of the genomic annotation of type *annotation* and value *value*
+   survival-analysis, srva     Run a survival analysis
+   get-saved-cohorts, getsc    get cohorts
+   add-saved-cohorts, addsc    Create a new cohort.
+   update-saved-cohorts, upsc  Updates an existing cohort.
+   remove-saved-cohorts, rmsc  Remove a cohort.
+   help, h                     Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --user value, -u value        OIDC user login
@@ -46,6 +53,143 @@ GLOBAL OPTIONS:
 For a start, you can use the credentials of the default user: `username:test password:test`
 {% endhint %}
 
+### concept-children
+
+You can use this command to browse the MedCo ontology by getting the children of a concept, both concepts and modifiers.
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test concept-children --help
+NAME:
+   medco-cli-client concept-children - Get the concept children (both concepts and modifiers)
+
+USAGE:
+   medco-cli-client concept-children conceptPath
+```
+
+For example:
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test concept-children /E2ETEST/e2etest/ 
+PATH	TYPE
+/E2ETEST/e2etest/1/	concept
+/E2ETEST/e2etest/2/	concept
+/E2ETEST/e2etest/3/	concept
+/E2ETEST/modifiers/	modifier_folder
+```
+
+### modifier-children
+
+You can use this command to browse the MedCo ontology by getting the children of a modifier.
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test modifier-children --help
+NAME:
+   medco-cli-client modifier-children - Get the modifier children
+
+USAGE:
+   medco-cli-client modifier-children modifierPath appliedPath appliedConcept
+```
+
+For example:
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test modifier-children /E2ETEST/modifiers/ /e2etest/% /E2ETEST/e2etest/1/
+PATH	TYPE
+/E2ETEST/modifiers/1/	modifier
+```
+
+### concept-info
+
+You can use this command to get information about a MedCo concept, including the associated metadata.
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test concept-info --help
+NAME:
+   medco-cli-client concept-info - Get the concept info
+
+USAGE:
+   medco-cli-client concept-info conceptPath
+```
+
+For example:
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test concept-info /E2ETEST/e2etest/1/ 
+  <ExploreSearchResultElement>
+      <Code>ENC_ID:1</Code>
+      <DisplayName>E2E Concept 1</DisplayName>
+      <Leaf>true</Leaf>
+      <MedcoEncryption>
+          <Encrypted>true</Encrypted>
+          <ID>1</ID>
+      </MedcoEncryption>
+      <Metadata>
+          <ValueMetadata>
+              <ChildrenEncryptIDs></ChildrenEncryptIDs>
+              <CreationDateTime></CreationDateTime>
+              <DataType></DataType>
+              <EncryptedType></EncryptedType>
+              <EnumValues></EnumValues>
+              <Flagstouse></Flagstouse>
+              <NodeEncryptID></NodeEncryptID>
+              <Oktousevalues></Oktousevalues>
+              <TestID></TestID>
+              <TestName></TestName>
+              <Version></Version>
+          </ValueMetadata>
+      </Metadata>
+      <Name>E2E Concept 1</Name>
+      <Path>/E2ETEST/e2etest/1/</Path>
+      <Type>concept</Type>
+  </ExploreSearchResultElement>
+```
+
+### modifier-info
+
+You can use this command to get information about a MedCo modifier, including the associated metadata.
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test modifier-info --help
+NAME:
+   medco-cli-client modifier-info - Get the modifier info
+
+USAGE:
+   medco-cli-client modifier-info modifierPath appliedPath
+```
+
+For example:
+
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test modifier-info /E2ETEST/modifiers/1/ /e2etest/1/
+  <ExploreSearchResultElement>
+      <Code>ENC_ID:5</Code>
+      <DisplayName>E2E Modifier 1</DisplayName>
+      <Leaf>true</Leaf>
+      <MedcoEncryption>
+          <Encrypted>true</Encrypted>
+          <ID>5</ID>
+      </MedcoEncryption>
+      <Metadata>
+          <ValueMetadata>
+              <ChildrenEncryptIDs></ChildrenEncryptIDs>
+              <CreationDateTime></CreationDateTime>
+              <DataType></DataType>
+              <EncryptedType></EncryptedType>
+              <EnumValues></EnumValues>
+              <Flagstouse></Flagstouse>
+              <NodeEncryptID></NodeEncryptID>
+              <Oktousevalues></Oktousevalues>
+              <TestID></TestID>
+              <TestName></TestName>
+              <Version></Version>
+          </ValueMetadata>
+      </Metadata>
+      <Name>E2E Modifier 1</Name>
+      <Path>/E2ETEST/modifiers/1/</Path>
+      <Type>modifier</Type>
+  </ExploreSearchResultElement>
+```
+
 ### query
 
 You can use this command to query the MedCo network.
@@ -57,7 +201,10 @@ NAME:
    medco-cli-client query - Query the MedCo network
 
 USAGE:
-   medco-cli-client query [patient_list|count_per_site|count_per_site_obfuscated|count_per_site_shuffled|count_per_site_shuffled_obfuscated|count_global|count_global_obfuscated] [query string]
+   medco-cli-client query [command options] [-t timing] query_string
+
+OPTIONS:
+   --timing value, -t value  Query timing: any|samevisit|sameinstancenum (default: "any")
 ```
 
 This is the syntax of an example query using the pre-loaded [default test data](../developers/description-of-the-default-test-data.md).
@@ -79,15 +226,23 @@ Query terms can be composed using the logical operators NOT, AND and OR.
 
 {% hint style="info" %}
 Note that, in the queries, the OR operator has the highest priority, so`1 AND NOT 2 OR 3 AND 2` is factorised as `(1) AND (NOT (2 OR 3)) AND (2)`
+
+`To each group of OR-ed terms you can also add a timing option ("any", "samevisit", "sameinstancenum") that will ovveride the globally set timing option. For example:` 
+
+`1 any AND NOT 2 OR 3 samevisit AND 2 sameinstancenum`
 {% endhint %}
 
-Each query term is composed of two fields, the type field and the content field, separated by `::`. Possible values of the type field are: `enc`, `clr`, `file`.
 
-When the type field is equal to `enc`, the content field contains the concept ID. 
 
-When the type field is equal to `clr,` the content field contains the concept path and, possibly, the modifier field, which in turn contains the modifier key and applied path fields, separated by `:`.
+Each query term is composed is composed of two mandatory fields, the type field and the content field, and an optional field, the constraint field, all separated by `::`. 
 
-When the type field is equal to `file`, the content field contains the path of the file containing the query terms, one for each row. The query terms contained in the same file are OR-ed together. Besides `enc`, `clr,` and `file` query terms, a file can also contain genomic query terms, each of which is composed by 4 comma separated values. 
+                                                    `type::content[::constraint]`
+
+Possible values of the type field are: `enc`, `clr`, `file`.
+
+1. When the type field is equal to `enc`, the content field contains the concept ID. The constraint field is not present this case.
+2. When the type field is equal to `clr,` the content field contains the concept field \(containing the concept path\) and, possibly, the modifier field, which in turn contains the modifier key and applied path fields, all separated by `:`. The optional constraint field can be present, containing the operator and value fields separated by `:`. The constraint field applies either to the concept or, if the modifier field is present, to the modifier. The possible operators are: EQ \(equals\), NE \(not equal\), GT \(greater than\), LT \(less than\), GE \(greater than or equal\), LE \(less than or equal\), BETWEEN \(between, in this case the value field is in the format "x and y"\).
+3. When the type field is equal to `file`, the content field contains the path of the file containing the query terms, one for each row. The query terms contained in the same file are OR-ed together. Besides `enc`, `clr,` and `file` query terms, a file can also contain genomic query terms, each of which is composed by 4 comma separated values. 
 
 ### ga-get-values
 
