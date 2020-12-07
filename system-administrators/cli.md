@@ -229,7 +229,7 @@ Note that, in the queries, the OR operator has the highest priority, so`1 AND NO
 
 `To each group of OR-ed terms you can also add a timing option ("any", "samevisit", "sameinstancenum") that will ovveride the globally set timing option. For example:` 
 
-`1 any AND NOT 2 OR 3 samevisit AND 2 sameinstancenum`
+`1 AND NOT 2 OR 3 samevisit AND 2`
 {% endhint %}
 
 
