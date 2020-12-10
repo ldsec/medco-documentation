@@ -210,7 +210,7 @@ OPTIONS:
 This is the syntax of an example query using the pre-loaded [default test data](../developers/description-of-the-default-test-data.md).
 
 ```text
-docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test query patient_list enc::1 AND enc::2 OR enc::3
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test query enc::1 AND enc::2 OR enc::3
 ```
 
 You will get something like that:
