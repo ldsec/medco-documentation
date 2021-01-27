@@ -227,7 +227,7 @@ Query terms can be composed using the logical operators NOT, AND and OR.
 {% hint style="info" %}
 Note that, in the queries, the OR operator has the highest priority, so`1 AND NOT 2 OR 3 AND 2` is factorised as `(1) AND (NOT (2 OR 3)) AND (2)`
 
-`To each group of OR-ed terms you can also add a timing option ("any", "samevisit", "sameinstancenum") that will ovveride the globally set timing option. For example:` 
+To each group of OR-ed terms you can also add a timing option \("any", "samevisit", "sameinstancenum"\) that will override the globally set timing option. For example: ``
 
 `1 AND NOT 2 OR 3 samevisit AND 2`
 {% endhint %}
@@ -240,8 +240,11 @@ Each query term is composed is composed of two mandatory fields, the type field 
 
 Possible values of the type field are: `enc`, `clr`, `file`.
 
-1. When the type field is equal to `enc`, the content field contains the concept ID. The constraint field is not present this case.
-2. When the type field is equal to `clr,` the content field contains the concept field \(containing the concept path\) and, possibly, the modifier field, which in turn contains the modifier key and applied path fields, all separated by `:`. The optional constraint field can be present, containing the operator and value fields separated by `:`. The constraint field applies either to the concept or, if the modifier field is present, to the modifier. The possible operators are: EQ \(equals\), NE \(not equal\), GT \(greater than\), LT \(less than\), GE \(greater than or equal\), LE \(less than or equal\), BETWEEN \(between, in this case the value field is in the format "x and y"\).
+1. When the type field is equal to `enc`, the content field contains the concept ID. The constraint field is not present in this case.
+2. When the type field is equal to `clr,` the content field contains the concept field \(containing the concept path\) and, possibly, the modifier field, which in turn contains the modifier key and applied path fields, all separated by `:`. The optional constraint field can be present, containing the operator, type and value fields separated by `:`. The constraint field applies either to the concept or, if the modifier field is present, to the modifier. The possible types are NUMBER and TEXT. The possible operators for numbers are: EQ \(equals\), NE \(not equal\), GT \(greater than\), LT \(less than\), GE \(greater than or equal\), LE \(less than or equal\), BETWEEN \(between, in this case the value field is in the format "x and y"\). The possible operators for TEXT are LIKE\[exact\], LIKE\[begin\], LIKE\[contains\] and LIKE\[end\].
+
+ 
+
 3. When the type field is equal to `file`, the content field contains the path of the file containing the query terms, one for each row. The query terms contained in the same file are OR-ed together. Besides `enc`, `clr,` and `file` query terms, a file can also contain genomic query terms, each of which is composed by 4 comma separated values. 
 
 ### ga-get-values

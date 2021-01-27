@@ -14,21 +14,27 @@ It contains 4 patients: 1 \(real\), 2 \(real\), 3 \(real\), 4 \(dummy\).
 
 1 modifier folder: /E2ETEST/modifiers/.
 
-3 modifiers: /E2ETEST/modifiers/1/, E2ETEST/modifiers/2/, E2ETEST/modifiers/3/.
+5 modifiers: /E2ETEST/modifiers/1/, E2ETEST/modifiers/2/, E2ETEST/modifiers/3/, E2ETEST/modifiers/2text/, E2ETEST/modifiers/3text/.
 
 The observation fact contains the following entries:
 
 * patient 1, concept 1
 * patient 1, concept /E2ETEST/e2etest/1/ \(val=10\), modifier /E2ETEST/modifiers/1/ \(val=10\)
+* patient 1, concept /E2ETEST/e2etest/2/, modifier /E2ETEST/modifiers/2text/ \(val='bcde'\)
+* patient 1, concept /E2ETEST/e2etest/3/, modifier /E2ETEST/modifiers/3text/ \(val='ab'\)
 * patient 2, concept 1
 * patient 2, concept 2
 * patient 2, concept /E2ETEST/e2etest/1/ \(val=20\), modifier /E2ETEST/modifiers/ \(val=20\)
 * patient 2, concept /E2ETEST/e2etest/2/\(val=50\), modifier /E2ETEST/modifiers/2/\(val=5\)
+* patient 2, concept /E2ETEST/e2etest/2/, modifier /E2ETEST/modifiers/2text/ \(val='abc'\)
+* patient 2, concept /E2ETEST/e2etest/3/, modifier /E2ETEST/modifiers/3text/ \(val='def'\)
 * patient 3, concept 2
 * patient 3, concept 3
 * patient 3, concept /E2ETEST/e2etest/1/ \(val=30\), modifier /E2ETEST/modifiers/ \(val=15\), modifier /E2ETEST/modifiers/1/ \(val=15\)
 * patient 3, concept /E2ETEST/e2etest/2/ \(val=25\), modifier /E2ETEST/modifiers/ \(val=30\), modifier /E2ETEST/modifiers/2/ \(val=15\)
 * patient 3, concept /E2ETEST/e2etest/3/ \(val=77\), modifier /E2ETEST/modifiers/ \(val=66\), modifier /E2ETEST/modifiers/3/ \(val=88\)
+* patient 3, concept /E2ETEST/e2etest/2/, modifier /E2ETEST/modifiers/2text/ \(val='de'\)
+* patient 3, concept /E2ETEST/e2etest/3/, modifier /E2ETEST/modifiers/3text/ \(val='abcdef'\)
 * patient 4, concept 1
 * patient 4, concept 2
 * patient 4, concept 3
@@ -47,9 +53,13 @@ Example queries and expected results \(per node\):
 * `enc::1 AND clr::/E2ETEST/e2etest/2/`: 1 \(patient 2\)
 * `enc::1 OR clr::/E2ETEST/e2etest/3/`:  3 \(patients 1, 2 and 3\)
 * `clr::/E2ETEST/e2etest/1/::EQ:10`: 1 \(patient 1\)
-* `clr::/E2ETEST/e2etest/1/:/E2ETEST/modifiers/1/:/e2etest/1/::EQ:15`: 1 \(patient 3\)
-* `clr::/E2ETEST/e2etest/1/::BETWEEN:5 and 25`: 2 \(patients 1 and 2\)
-* `enc::1 OR clr::/E2ETEST/e2etest/2/::GE:25 AND clr::/E2ETEST/e2etest/2/:/E2ETEST/modifiers/2/:/e2etest/2/::LT:21`: 2 \(2 and 3\)
+* `clr::/E2ETEST/e2etest/1/:/E2ETEST/modifiers/1/:/e2etest/1/::EQ:NUMBER:15`: 1 \(patient 3\)
+* `clr::/E2ETEST/e2etest/1/::BETWEEN:NUMBER:5 and 25`: 2 \(patients 1 and 2\)
+* `enc::1 OR clr::/E2ETEST/e2etest/2/::GE:25 AND clr::/E2ETEST/e2etest/2/:/E2ETEST/modifiers/2/:/e2etest/2/::LT:NUMBER:21`: 2 \(2 and 3\)
+* `clr::/E2ETEST/e2etest/2/:/E2ETEST/modifiers/2text/:/e2etest/2/::IN:TEXT:\'abc\'\,'de\'`: 2 \(2 and 3\)
+* `clr::/E2ETEST/e2etest/3/:/E2ETEST/modifiers/3text/:/e2etest/3/::LIKE[begin]:TEXT:ab`: 2 \(1 and 3\)
+* `clr::/E2ETEST/e2etest/2/:/E2ETEST/modifiers/2text/:/e2etest/2/::LIKE[contains]:TEXT:cd`: 1 \(1\)
+* `clr::/E2ETEST/e2etest/3/:/E2ETEST/modifiers/3text/:/e2etest/3/::LIKE[end]:TEXT:bc`: 0
 
 ## MedCo Analysis - survival analysis
 
