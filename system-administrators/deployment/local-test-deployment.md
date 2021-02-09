@@ -5,7 +5,7 @@ description: Deployment of profile test-local-3nodes.
 # Local Test Deployment
 
 {% hint style="danger" %}
-This deployment profile comes with default pre-generated keys and default passwords. It is not meant to contain any real data nor be used in production. If you wish to do so, use instead the [Network Production Deployment \(prod-network\)](network-production-deployment.md) deployment profile.
+This deployment profile comes with default pre-generated keys and default passwords. It is not meant to contain any real data nor be used in production. If you wish to do so, use instead the [Network Production Deployment \(prod-network\)]() deployment profile.
 {% endhint %}
 
 This test profile deploys 3 MedCo nodes on a single machine for test purposes. It can be used either on your local machine, or any other machine to which you have access. The version of the docker images used are the latest released versions. This profile is for example used for the [MedCo public demo](https://medco-demo.epfl.ch/).

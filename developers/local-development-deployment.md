@@ -5,7 +5,7 @@ description: Deployment profile dev-local-3nodes.
 # Local Development Deployment
 
 {% hint style="danger" %}
-This deployment profile comes with default pre-generated keys and password. It is not meant to contain any real data nor be used in production. If you wish to do so, use instead the [Network Production Deployment \(prod-network\)](../system-administrators/deployment/network-production-deployment.md) deployment profile.
+This deployment profile comes with default pre-generated keys and password. It is not meant to contain any real data nor be used in production. If you wish to do so, use instead the [Network Production Deployment \(prod-network\)]() deployment profile.
 {% endhint %}
 
 This deployment profile deploys 3 MedCo nodes on a single machine for development purposes. It is meant to be used only on your local machine, i.e. `localhost`. The tags of the docker images used are all _dev_, i.e. the ones built from the development version of the different source codes. They are available either through Docker Hub, or built locally from the sources of each component.
