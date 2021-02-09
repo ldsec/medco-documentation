@@ -1,6 +1,6 @@
 # Releases
 
-## v2.0.0 - xxth XXX 2020
+## v2.0.0 - xxth XXX 2021
 
 * x
 

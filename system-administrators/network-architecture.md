@@ -1,6 +1,6 @@
 # Network Architecture
 
-![MedCo Network Architecture.](../.gitbook/assets/network_architecture.png)
+![MedCo Network Architecture](../.gitbook/assets/network-architecture.png)
 
 ## External Entities
 

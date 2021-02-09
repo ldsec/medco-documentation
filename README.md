@@ -7,8 +7,7 @@
   * [Glowing Bear MedCo](https://github.com/ldsec/glowing-bear-medco) \(forked from [The Hyve](https://github.com/thehyve/glowing-bear)\)
   * [Documentation](https://github.com/ldsec/medco-documentation)
 * Packages
-  * [Docker Hub organization](https://hub.docker.com/u/medco/)
-  * [NPM.js organization](https://www.npmjs.com/package/@medco/medco-unlynx-js)
+  * [GitHub Packages](https://github.com/orgs/ldsec/packages)
 
 ## Contact
 

@@ -12,7 +12,7 @@ Future releases of this software will allow for other arbitrary data sources, gi
 From the _medco-deployment_ folder, execute the resources/data/download.sh script to download the test datasets.
 
 ```bash
-cd ${MEDCO_SETUP_DIR}/resources/data
+cd ${MEDCO_SETUP_DIR}/test/data
 bash download.sh
 ```
 

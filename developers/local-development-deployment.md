@@ -5,7 +5,7 @@ description: Deployment profile dev-local-3nodes.
 # Local Development Deployment
 
 {% hint style="danger" %}
-This deployment profile comes with default pre-generated keys and password. It is not meant to contain any real data nor be used in production. If you wish to do so, use instead the [Network Production Deployment \(prod-network\)](../system-administrators/deployment/network-production-deployment.md) deployment profile.
+This deployment profile comes with default pre-generated keys and password. It is not meant to contain any real data nor be used in production. If you wish to do so, use instead the [Network Deployment \(network\)](../system-administrators/deployment/network-deployment.md) deployment profile.
 {% endhint %}
 
 This deployment profile deploys 3 MedCo nodes on a single machine for development purposes. It is meant to be used only on your local machine, i.e. `localhost`. The tags of the docker images used are all _dev_, i.e. the ones built from the development version of the different source codes. They are available either through Docker Hub, or built locally from the sources of each component.
@@ -75,5 +75,9 @@ In order to stop the containers, simply hit `Ctrl+C` in all the active windows.
 
 In order to test that the development deployment of MedCo is working, access Glowing Bear in your web browser at `http://localhost:4200/glowing-bear/` and use the default credentials specified in [Keycloak user management](../system-administrators/deployment/configuration/keycloak.md#user-management). If you are new to Glowing Bear you can watch the [Glowing Bear user interface walkthrough](https://glowingbear.app/) video. You can also use the [CLI client](../system-administrators/cli.md) to perform tests.
 
-By default MedCo loads a specific test data, refer to [Description of the default test data](https://medco.epfl.ch/documentation/developer/test_data_description.html#lbl-test-data-description) for expected results to queries. To load a dataset, follow the guide [Loading Data](../system-administrators/data-loading/). 
+By default MedCo loads a specific test data, refer to [Description of the default test data](https://medco.epfl.ch/documentation/developer/test_data_description.html#lbl-test-data-description) for expected results to queries. To load a dataset, follow the guide [Loading Data](../system-administrators/data-loading/). To load some additional test data by performing a simple data loading you can execute the following:
+
+```bash
+make load_test_data
+```
 

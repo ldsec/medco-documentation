@@ -1,6 +1,6 @@
 # v0 \(Genomic Data\)
 
-The _v0_ loader expects an ontology, with mutation and clinical data in the MAF format. As the ontology data you must use `${MEDCO_SETUP_DIR}/resources/data/genomic/tcga_cbio/clinical_data.csv` and `${MEDCO_SETUP_DIR}/resources/data/genomic/tcga_cbio/mutation_data.csv`. For clinical data you can keep using the same two files or a subset of the data \(e.g. `8_clinical_data.csv`\). More information about how to generate sample data files can be found below. After the following script is executed all the data is encrypted and deterministically tagged in compliance with the MedCo data model.
+The _v0_ loader expects an ontology, with mutation and clinical data in the MAF format. As the ontology data you must use `${MEDCO_SETUP_DIR}/test/data/genomic/tcga_cbio/clinical_data.csv` and `${MEDCO_SETUP_DIR}/test/data/genomic/tcga_cbio/mutation_data.csv`. For clinical data you can keep using the same two files or a subset of the data \(e.g. `8_clinical_data.csv`\). More information about how to generate sample data files can be found below. After the following script is executed all the data is encrypted and deterministically tagged in compliance with the MedCo data model.
 
 ## How to use
 
@@ -15,9 +15,9 @@ The following examples show you how to load data into a running MedCo deployment
 #### Loading the three nodes on the dev-local-3nodes profile
 
 ```bash
-export MEDCO_SETUP_DIR=~/medco-deployment \
+export MEDCO_SETUP_DIR=~/medco \
     MEDCO_DEPLOYMENT_PROFILE=dev-local-3nodes
-cd "${MEDCO_SETUP_DIR}/compose-profiles/${MEDCO_DEPLOYMENT_PROFILE}"
+cd "${MEDCO_SETUP_DIR}/deployments/${MEDCO_DEPLOYMENT_PROFILE}"
 docker-compose -f docker-compose.tools.yml run medco-loader-srv0 v0 \
     --ont_clinical /data/genomic/tcga_cbio/8_clinical_data.csv \
     --sen /data/genomic/sensitive.txt \
@@ -44,9 +44,9 @@ docker-compose -f docker-compose.tools.yml run medco-loader-srv2 v0 \
 #### Loading one node on a network-test profile
 
 ```bash
-export MEDCO_SETUP_DIR=~/medco-deployment \
+export MEDCO_SETUP_DIR=~/medco \
     MEDCO_DEPLOYMENT_PROFILE=test-network-xxx-node0
-cd "${MEDCO_SETUP_DIR}/compose-profiles/${MEDCO_DEPLOYMENT_PROFILE}"
+cd "${MEDCO_SETUP_DIR}/deployments/${MEDCO_DEPLOYMENT_PROFILE}"
 docker-compose -f docker-compose.tools.yml run medco-loader v0 \
     --ont_clinical /data/genomic/tcga_cbio/8_clinical_data.csv \
     --sen /data/genomic/sensitive.txt \

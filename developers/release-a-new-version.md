@@ -10,72 +10,43 @@ description: This is a small guide to make a new MedCo release.
 
 #### Glowing Bear MedCo
 
-* Update the Angular version
-* Node version in docker image, has to be compatible with angular
-* Angular version: 
-* * NPM packages: `npm update` and review with `npm outdated`
+* Update the Angular version and ensure node version in docker image is compatible with angular
+* NPM packages: `npm update` and review with `npm outdated`
   * `keycloak-js`: has to be the same version as Keycloak \(set in a `Dockerfile` in medco-deployment\)
-  * `typescript`: has to be compatible with angular
+  * `typescript`: has to be compatible with the angular version used
 
-#### Golang codebases: MedCo Connector, Unlynx, Loader
+#### MedCo
 
 * `Dockerfile` go base image version: `FROM golang:1.13`
 * go.mod go version: `go 1.13`
 * Go modules \(pay particular attention to onet\): `go get -u ./...` and `go mod tidy`
 
-#### Docker images in medco-deployment
-
-* keycloak: check for db config dump
-
 ### Perform tests
 
-locally with compiled dev versions from docker hub???
+* Check that all the CI/CD pipeline on GitHub passes \(this tests the whole backend with the profile _dev-local-3nodes_\)
+* Deploy locally _test-local-3nodes_ to manually test Glowing Bear MedCo
+* Deploy locally on several machines _test-network_ to manually test the deployment over several machines, and the generation of its configuration
 
-
-
-dev-local-3nodes: down and up, load v0, test + gb dev server
-
-test-local-3nodes: same, but add this if has to be done locally:
+To change the version of the docker images used, update the `.env` file in the deployment folder:
 
 ```bash
-I2B2_VERSION=dev
-MEDCO_UNLYNX_VERSION=dev
-NGINX_VERSION=dev
-PGADMIN_VERSION=dev
-KEYCLOAK_VERSION=dev
-MEDCO_CONNECTOR_VERSION=dev
-MEDCO_LOADER_VERSION=dev
-GLOWING_BEAR_MEDCO_VERSION=dev
+MEDCO_VERSION=<docker_tag>
+GLOWING_BEAR_MEDCO_VERSION=<docker_tag>
 ```
-
-test-network: xxx test the script generates OK files, test deployment of one node, test run of cli-client
-
-
-
-ensure CI of medco-deplyoment is OK + other repos
 
 ## Making a release
 
-### Keep dependencies between codebases in sync
+### Manual updates
 
-When the codebase is released, the version of the dependency should be an actual version \(like `v0.2.1`\), not a commit \(like `v0.2.2-0.20200131193353-88261e501a00`\). Because of this, the release for each go codebase should be done in a specific order:
-
-* medco-unlynx -&gt; unlynx
-* medco-loader -&gt; medco-unlynx, unlynx
-* medco-connector -&gt; medco-loader, medco-unlynx, unlynx
-
-### Updates in medco-deployment
-
-* docker-compose-definitions.yml
-* script config gen
+* Update the version of Glowing Bear MedCo `GB_VERSION` in the `Makefile` to point to the correct Docker tag that will be released \(e.g. v1.0.0\)
 
 ### Release on GitHub
 
-Version numbers follow [semantic versioning](https://semver.org/), and all codebases should have the same version. If a patch on a specific codebase is needed: 
+Version numbers follow [semantic versioning](https://semver.org/), and both codebases should have the same version. For both codebases:
 
-PR on master / then tag new v
-
-release on: medco-unlynx, medco-loader, medco-connector, glowing-bear-medco, medco-deployment
+* Out of the `dev` branch, create a PR onto `master` on GitHub and merge it
+* Out of the `master` branch, create a new release \(and the associated tag\) with the semantic version \(e.g. v1.0.0\)
+* Ensure the CI/CD pipeline correctly builds the new release
 
 ### Update documentation
 
@@ -86,12 +57,13 @@ release on: medco-unlynx, medco-loader, medco-connector, glowing-bear-medco, med
 * Review the documentation to ensure the guides are up-to-date. Notably the deployment and loading guides.
 * Make the documentation variant be the new _main_ variant on GitBook.
 * On GitHub, set the branch corresponding to the new version be the new default branch.
-* release the doc through gitbook / put new default on gitbook / put new default branch on github
 
 ## After the release
 
-* Ensure on Docker Hub that all images have been built correctly with the proper versioning.
-* Update to the new version [the live demo on medco-demo.epfl.ch]().
-* Update medco.epfl.ch website with the new version.
+* Ensure on GitHub that all images have been built correctly with the proper versioning.
+* Update to the new version [the live demo on medco-demo.epfl.ch](live-demo.md).
+* Update medco.epfl.ch website with the new version and update the roadmap.
 * Communication about the new release \(Twitter notably\).
+
+
 

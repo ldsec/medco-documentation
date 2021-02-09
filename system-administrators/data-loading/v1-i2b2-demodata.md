@@ -26,9 +26,9 @@ The following examples show you how to load data into a running MedCo deployment
 #### Loading the three nodes on the dev-local-3nodes profile
 
 ```bash
-export MEDCO_SETUP_DIR=~/medco-deployment \
+export MEDCO_SETUP_DIR=~/medco \
     MEDCO_DEPLOYMENT_PROFILE=dev-local-3nodes
-cd "${MEDCO_SETUP_DIR}/compose-profiles/${MEDCO_DEPLOYMENT_PROFILE}"
+cd "${MEDCO_SETUP_DIR}/deployments/${MEDCO_DEPLOYMENT_PROFILE}"
 docker-compose -f docker-compose.tools.yml run medco-loader-srv0 v1 \
     --sen /data/i2b2/sensitive.txt \
     --files /data/i2b2/files.toml
@@ -43,9 +43,9 @@ docker-compose -f docker-compose.tools.yml run medco-loader-srv2 v1 \
 #### Loading one node on a network-test profile
 
 ```bash
-export MEDCO_SETUP_DIR=~/medco-deployment \
+export MEDCO_SETUP_DIR=~/medco \
     MEDCO_DEPLOYMENT_PROFILE=test-network-xxx-node0
-cd "${MEDCO_SETUP_DIR}/compose-profiles/${MEDCO_DEPLOYMENT_PROFILE}"
+cd "${MEDCO_SETUP_DIR}/deployments/${MEDCO_DEPLOYMENT_PROFILE}"
 docker-compose -f docker-compose.tools.yml run medco-loader v1 \
     --sen /data/i2b2/sensitive.txt \
     --files /data/i2b2/files.toml

@@ -27,3 +27,13 @@ docker: Got permission denied while trying to connect to the Docker daemon socke
 
 You will need to follow [these instructions from the Docker official documentation](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user).
 
+### Corrupt deployment after interrupting the very first loading
+
+The very first a deployment is started, an initialization phase that can some time \(2-10 minutes depending on the machine\) will take place. If during this initialization the deployment is stopped, the database will be left in a corrupt state. In order to reset the database, you should delete the corresponding docker volume:
+
+```bash
+docker volume rm dev-local-3nodes_medcodb
+```
+
+Note that the name of volume in this example is valid only for the dev-local-3nodes deployment. In other cases, use `docker volume ls` to retrieve the name of the volume containing the database, usually in the format `<deploymentprofile>_medcodb`.
+
