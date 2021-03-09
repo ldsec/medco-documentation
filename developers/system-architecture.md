@@ -1,6 +1,6 @@
 # System Architecture
 
-![MedCo System Architecture](../.gitbook/assets/system-architecture-v1.0.png)
+![](../.gitbook/assets/medco-system-architecture.png)
 
 ### Containers
 
