@@ -64,7 +64,7 @@ Glowing Bear is deployed separately for development, as we use its convenient li
 
 ```bash
 cd ~/glowing-bear-medco/deployment
-docker-compose up dev-server
+./dev-server.sh
 ```
 
 Note that the first run will take a significant time in order to build everything.
