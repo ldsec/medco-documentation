@@ -16,9 +16,9 @@ To enable HTTPS for the profile _test-local-3nodes_, replace the files _certific
 
 Then edit the file `.env` from the _compose profile_, replace the `http` with `https`, and restart the deployment.
 
-### Configure HTTPS for the Network Test and Production Deployments
+### Configure HTTPS for the Network Deployment
 
-For these profiles, HTTPS is mandatory. The profile generation scripts generate and use default self-signed certificates for each node. Those are perfectly fine to be used, but because they are self-signed, an HTTPS warning will be displayed to users in their browser when accessing one of the Glowing Bear instance.
+For this profile, HTTPS is mandatory. The profile generation script generates and uses default self-signed certificates for each node. Those are perfectly fine to be used, but because they are self-signed, an HTTPS warning will be displayed to users in their browser when accessing one of the Glowing Bear instance.
 
 There is currently only one way of avoiding this warning: configuring the browsers of your users to trust this certificate. This procedure is specific to the browsers and operating systems used at your site.
 
