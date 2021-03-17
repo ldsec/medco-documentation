@@ -28,7 +28,7 @@ The following instructions are to be executed on the administration UI of Keyclo
 
 ### Configure the first login flow
 
-The behavior of Keycloak during the very login of users through the identity provider is highly customisable. We propose below an example of a working flow but this can be changed to fit your need. 
+The behavior of Keycloak during the very first login of users through the identity provider is highly customisable. We propose below an example of a working flow but this can be changed to fit your need. 
 
 * Navigate to _Authentication_ &gt; _Flows,_ select _First Broker Login_ and make a _Copy_ of it. Name it for example `SwitchAAI-Test Demo IdP First Broker Login`.
 * Change the list of executions to make it look like the following image.
