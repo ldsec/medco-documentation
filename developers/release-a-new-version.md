@@ -44,8 +44,7 @@ GLOWING_BEAR_MEDCO_VERSION=<docker_tag>
 
 Version numbers follow [semantic versioning](https://semver.org/), and both codebases should have the same version. For both codebases:
 
-* Out of the `dev` branch, create a PR onto `master` on GitHub and merge it
-* Out of the `master` branch, create a new release \(and the associated tag\) with the semantic version \(e.g. v1.0.0\)
+* Out of the `dev` branch, create a new release \(and the associated tag\) with the semantic version \(e.g. v1.0.0\)
 * Ensure the CI/CD pipeline correctly builds the new release
 
 ### Update documentation

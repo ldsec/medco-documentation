@@ -1,8 +1,18 @@
 # Releases
 
-## v2.0.0 - xxth XXX 2021
+## v2.0.0 - 24th March 2021
 
-* x
+New major version of MedCo, it includes:
+
+* Explore new features: 
+  * numeric range queries
+  * text queries
+  * i2b2 modifiers
+  * auto-selection of result type
+  * saving of cohorts
+  * patient list download
+* Analysis: add support for survival analysis
+* Many bug fixes and small improvements
 
 ## v1.0.0 - 31th March 2020
 
