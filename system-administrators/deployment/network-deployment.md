@@ -15,10 +15,8 @@ The next set of steps must be **fully executed individually by each node of the 
 First step is to get the MedCo Deployment latest release at each node. Adapt `${MEDCO_SETUP_DIR}` to where you wish to install MedCo.
 
 ```bash
-export MEDCO_SETUP_DIR=~/medco MEDCO_SETUP_VER=2.0.0
-wget https://github.com/ldsec/medco/archive/v${MEDCO_SETUP_VER}.tar.gz
-tar xvzf v${MEDCO_SETUP_VER}.tar.gz
-mv medco-${MEDCO_SETUP_VER} "${MEDCO_SETUP_DIR}"
+export MEDCO_SETUP_DIR=~/medco MEDCO_SETUP_VER=v2.0.0
+git clone --depth 1 --branch ${MEDCO_SETUP_VER} https://github.com/ldsec/medco.git ${MEDCO_SETUP_DIR}
 ```
 
 ## Generation of the deployment Profile
