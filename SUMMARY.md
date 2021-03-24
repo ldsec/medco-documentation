@@ -16,6 +16,7 @@
     * [HTTPS Configuration](system-administrators/deployment/configuration/https-configuration.md)
     * [Configuring SwitchAAI Authentication](system-administrators/deployment/configuration/configuring-switchaai-authentication.md)
 * [Data Loading](system-administrators/data-loading/README.md)
+  * [Synthetic SPO Data](system-administrators/data-loading/synthetic-spo-data.md)
   * [v0 \(Genomic Data\)](system-administrators/data-loading/v0-genomic-data.md)
   * [v1 \(I2B2 Demodata\)](system-administrators/data-loading/v1-i2b2-demodata.md)
 * [Command-Line Interface \(CLI\)](system-administrators/cli.md)
