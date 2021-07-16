@@ -32,3 +32,7 @@
 * [Live Demo](developers/live-demo.md)
 * [Release a new version](developers/release-a-new-version.md)
 
+## For users
+
+* [Live Demo Tutorial](for-users/live-demo-tutorial.md)
+
