@@ -117,5 +117,11 @@ In this part, we first need to build and run a Query to have some subjects, and 
 
 ![](../.gitbook/assets/analysis_step17.png)
 
+## Conclusion
 
+Few exploration and analysis features available in Medco were presented in this document, more are available and all can be combined with no limitations. No adaptation were made to the data, excepted for the tabular vs. graph representation. In particular, no links were lost nor tampered with. Every edge in the semantic graphs \(e.g every relation between a patient and its diagnosis or its treatment\) is preserved. The Medco database uses visit \(encounter\) identifiers, patient pseudo-identifiers, instance \(observation\) identifiers that are not shown to the user. As a consequence, using Medco does not inherently add any usability penalty compared to the original clinical data.
+
+## References
+
+\[1\] “Swiss personalized health network,” [https://sphn.ch/](https://sphn.ch/), accessed: 2021-02-26. \[2\] “Data protection in personal health,” [https://dpph.ch/](https://dpph.ch/), accessed: 2021-02-26. \[3\] [https://medco.epfl.ch/](https://medco.epfl.ch/), accessed: 2021-02-26. \[4\] J. L. Raisaro, J. R. Troncoso-Pastoriza, M. Misbach, J. S. Sousa, S. Pradervand, E. Missiaglia, O. Michielin, B. Ford, and J.-P. Hubaux, “Medco: Enabling secure and privacy-preserving exploration of distributed clinical and genomic data,” IEEE/ACM transactions on computational biology and bioinformatics, vol. 16, no. 4, pp. 1328–1341, 2018.
 
