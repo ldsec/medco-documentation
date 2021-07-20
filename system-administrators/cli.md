@@ -216,10 +216,10 @@ docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --pa
 You will get something like that:
 
 ```text
-node_name,count,patient_list,DDTRequestTime,KSRequestTime,KSTimeCommunication,KSTimeExec,TaggingTimeCommunication,TaggingTimeExec,medco-connector-DDT,medco-connector-i2b2-PDO,medco-connector-i2b2-PSM,medco-connector-local-agg,medco-connector-local-patient-list-masking,medco-connector-overall,medco-connector-unlynx-key-switch-count,medco-connector-unlynx-key-switch-patient-list
-0,1,[2],4236,311,307,0,1657,10,4266,3972,25472,1,153,34834,469,491
-1,1,[2],584,89,75,0,474,78,677,4717,61325,16,3,66991,140,104
-2,1,[2],669,55,45,0,576,49,709,3134,63371,0,8,67358,68,63
+node_name,count,patient_list,patient_set_id,DDTRequestTime,KSRequestTime,KSTimeCommunication,KSTimeExec,TaggingTimeCommunication,TaggingTimeExec,medco-connector-DDT,medco-connector-i2b2-PDO,medco-connector-i2b2-PSM,medco-connector-local-agg,medco-connector-local-patient-list-masking,medco-connector-overall,medco-connector-unlynx-key-switch-count,medco-connector-unlynx-key-switch-patient-list
+0,1,[2],10,4236,311,307,0,1657,10,4266,3972,25472,1,153,34834,469,491
+1,1,[2],10,584,89,75,0,474,78,677,4717,61325,16,3,66991,140,104
+2,1,[2],10,669,55,45,0,576,49,709,3134,63371,0,8,67358,68,63
 ```
 
 Query terms can be composed using the logical operators NOT, AND and OR.
@@ -323,6 +323,148 @@ You will get:
 {% hint style="info" %}
 The matching is case-insensitive and it is not possible to use wildcards. If you request the ID of an annotation which is not available \(e.g, in the previous, example, "HTR5"\) you will get an error message. At the moment, with the loader v0, only three types of genomic annotations are available: variant\_name, protein\_change and hugo\_gene\_symbol.
 {% endhint %}
+
+### get-saved-cohorts
+
+You can run this command to get the cohorts that have been previously saved.
+
+
+```text
+NAME:
+   medco-cli-client get-saved-cohorts - get cohorts
+
+USAGE:
+   medco-cli-client get-saved-cohorts [command options] [-l limit]
+
+DESCRIPTION:
+   Gets the list of cohorts.
+
+OPTIONS:
+   --limit value, -l value  Limits the number of retrieved cohorts. 0 means no limit. (default: 10)
+```
+
+You can run:
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test getsc
+```
+
+
+You will get:
+```text
+node_index,cohort_name,cohort_id,query_id,creation_date,update_date,query_timing,panels
+0,testCohort,-1,-1,2020-08-25T13:57:00Z,2020-08-25T13:57:00Z,any,"{panels:[{items:[{encrypted:false,queryTerm:/E2ETEST/SPHNv2020.1/DeathStatus/}],not:false,panelTiming:any}]}"
+1,testCohort,-1,-1,2020-08-25T13:57:00Z,2020-08-25T13:57:00Z,any,"{panels:[{items:[{encrypted:false,queryTerm:/E2ETEST/SPHNv2020.1/DeathStatus/}],not:false,panelTiming:any}]}"
+2,testCohort,-1,-1,2020-08-25T13:57:00Z,2020-08-25T13:57:00Z,any,"{panels:[{items:[{encrypted:false,queryTerm:/E2ETEST/SPHNv2020.1/DeathStatus/}],not:false,panelTiming:any}]}"
+```
+
+### add-saved-cohorts
+
+You can run this command to save a new cohort. The patient set IDs are given from a previous explore request.
+More precisely, they are taken from the `patient_set_id` column of explore results. The list of IDs must be given
+in a coma-separated format, without space. There must as many IDs as there are nodes.
+
+```text
+NAME:
+   medco-cli-client add-saved-cohorts - Create a new cohort.
+
+USAGE:
+   medco-cli-client add-saved-cohorts [command options] -c cohortName -p patientSetIDs
+
+DESCRIPTION:
+   Creates a new cohort with given name. The patient set IDs correspond to explore query result IDs.
+
+OPTIONS:
+   --patientSetIDs value, -p value  List of patient set IDs, there must be one per node
+   --cohortName value, -c value     Name of the new cohort
+```
+
+For example, you can run:
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test addsc -c testCohort2 -p 10,10,10
+```
+
+### update-saved-cohorts
+
+You can run this command to update an existing cohort. The patient set IDs are given from a previous explore request, in the same manner as `add-saved-cohort` command.
+
+```text
+NAME:
+   medco-cli-client update-saved-cohorts - Updates an existing cohort.
+
+USAGE:
+   medco-cli-client update-saved-cohorts [command options] -c cohortName -p patientSetIDs
+
+DESCRIPTION:
+   Updates a new cohort with given name. The patient set IDs correspond to explore query result IDs.
+
+OPTIONS:
+   --patientSetIDs value, -p value  List of patient set IDs, there must be one per node
+   --cohortName value, -c value     Name of the existing cohort
+```
+
+For example, you can run:
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test upsc -c testCohort2 -p 9,9,9
+```
+
+### remove-saved-cohorts
+
+You can run this command to remove an existing cohort.
+
+```text
+NAME:
+   medco-cli-client remove-saved-cohorts - Remove a cohort.
+
+USAGE:
+   medco-cli-client remove-saved-cohorts [command options] -c cohortName
+
+DESCRIPTION:
+   Removes a cohort for a given name. If the user does not have a cohort with this name in DB, an error is sent.
+
+OPTIONS:
+   --cohortName value, -c value  Name of the cohort to remove
+```
+
+For example, you can run:
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test rmsc -c testCohort2
+```
+
+{% hint style="danger" %} This command removes the cohort from the node servers and it is not be possible to revert this action. {% endhint %}
+
+### cohorts-patient-list
+
+You can run this command to get the list of patient belonging to cohort. The cohort is identified by providing its name.
+
+```text
+NAME:
+   medco-cli-client cohorts-patient-list - Retrieve patient list belonging to the cohort
+
+USAGE:
+   medco-cli-client cohorts-patient-list [command options] -c cohortName [-d timer dump file]
+
+DESCRIPTION:
+   Retrieve the encrypted patient list for a given cohort name and locally decrypt it.
+
+OPTIONS:
+   --cohortName value, -c value  Name of the new cohort
+   --dumpFile value, -d value    Output file for the timers CSV. Printed to stdout if omitted.
+```
+
+For example, you can run:
+```text
+docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test cpl -c testCohort
+```
+
+You will get something like:
+```text
+Node idx 0
+1137,1138,1139,1140
+Node idx 1
+1137,1138,1139,1140
+Node idx 2
+1137,1138,1139,1140
+```
 
 ### survival-analysis
 
