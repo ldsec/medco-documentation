@@ -34,5 +34,5 @@
 
 ## For users
 
-* [Live Demo Tutorial](for-users/live-demo-tutorial.md)
+* [MedCo Live Demo Tutorial](for-users/live-demo-tutorial.md)
 

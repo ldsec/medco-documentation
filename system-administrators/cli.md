@@ -70,11 +70,11 @@ For example:
 
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test concept-children /E2ETEST/e2etest/ 
-PATH	TYPE
-/E2ETEST/e2etest/1/	concept
-/E2ETEST/e2etest/2/	concept
-/E2ETEST/e2etest/3/	concept
-/E2ETEST/modifiers/	modifier_folder
+PATH    TYPE
+/E2ETEST/e2etest/1/    concept
+/E2ETEST/e2etest/2/    concept
+/E2ETEST/e2etest/3/    concept
+/E2ETEST/modifiers/    modifier_folder
 ```
 
 ### modifier-children
@@ -94,8 +94,8 @@ For example:
 
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test modifier-children /E2ETEST/modifiers/ /e2etest/% /E2ETEST/e2etest/1/
-PATH	TYPE
-/E2ETEST/modifiers/1/	modifier
+PATH    TYPE
+/E2ETEST/modifiers/1/    modifier
 ```
 
 ### concept-info
@@ -227,24 +227,21 @@ Query terms can be composed using the logical operators NOT, AND and OR.
 {% hint style="info" %}
 Note that, in the queries, the OR operator has the highest priority, so`1 AND NOT 2 OR 3 AND 2` is factorised as `(1) AND (NOT (2 OR 3)) AND (2)`
 
-To each group of OR-ed terms you can also add a timing option \("any", "samevisit", "sameinstancenum"\) that will override the globally set timing option. For example: ``
+To each group of OR-ed terms you can also add a timing option \("any", "samevisit", "sameinstancenum"\) that will override the globally set timing option. For example: \`\`
 
 `1 AND NOT 2 OR 3 samevisit AND 2`
 {% endhint %}
 
+Each query term is composed is composed of two mandatory fields, the type field and the content field, and an optional field, the constraint field, all separated by `::`.
 
-
-Each query term is composed is composed of two mandatory fields, the type field and the content field, and an optional field, the constraint field, all separated by `::`. 
-
-                                                    `type::content[::constraint]`
+```text
+                                                `type::content[::constraint]`
+```
 
 Possible values of the type field are: `enc`, `clr`, `file`.
 
 1. When the type field is equal to `enc`, the content field contains the concept ID. The constraint field is not present in this case.
 2. When the type field is equal to `clr,` the content field contains the concept field \(containing the concept path\) and, possibly, the modifier field, which in turn contains the modifier key and applied path fields, all separated by `:`. The optional constraint field can be present, containing the operator, type and value fields separated by `:`. The constraint field applies either to the concept or, if the modifier field is present, to the modifier. The possible types are NUMBER and TEXT. The possible operators for numbers are: EQ \(equals\), NE \(not equal\), GT \(greater than\), LT \(less than\), GE \(greater than or equal\), LE \(less than or equal\), BETWEEN \(between, in this case the value field is in the format "x and y"\). The possible operators for TEXT are LIKE\[exact\], LIKE\[begin\], LIKE\[contains\] and LIKE\[end\].
-
- 
-
 3. When the type field is equal to `file`, the content field contains the path of the file containing the query terms, one for each row. The query terms contained in the same file are OR-ed together. Besides `enc`, `clr,` and `file` query terms, a file can also contain genomic query terms, each of which is composed by 4 comma separated values. 
 
 ### ga-get-values
@@ -328,7 +325,6 @@ The matching is case-insensitive and it is not possible to use wildcards. If you
 
 You can run this command to get the cohorts that have been previously saved.
 
-
 ```text
 NAME:
    medco-cli-client get-saved-cohorts - get cohorts
@@ -344,12 +340,13 @@ OPTIONS:
 ```
 
 You can run:
+
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test getsc
 ```
 
-
 You will get:
+
 ```text
 node_index,cohort_name,cohort_id,query_id,creation_date,update_date,query_timing,panels
 0,testCohort,-1,-1,2020-08-25T13:57:00Z,2020-08-25T13:57:00Z,any,"{panels:[{items:[{encrypted:false,queryTerm:/E2ETEST/SPHNv2020.1/DeathStatus/}],not:false,panelTiming:any}]}"
@@ -359,9 +356,7 @@ node_index,cohort_name,cohort_id,query_id,creation_date,update_date,query_timing
 
 ### add-saved-cohorts
 
-You can run this command to save a new cohort. The patient set IDs are given from a previous explore request.
-More precisely, they are taken from the `patient_set_id` column of explore results. The list of IDs must be given
-in a coma-separated format, without space. There must as many IDs as there are nodes.
+You can run this command to save a new cohort. The patient set IDs are given from a previous explore request. More precisely, they are taken from the `patient_set_id` column of explore results. The list of IDs must be given in a coma-separated format, without space. There must as many IDs as there are nodes.
 
 ```text
 NAME:
@@ -379,6 +374,7 @@ OPTIONS:
 ```
 
 For example, you can run:
+
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test addsc -c testCohort2 -p 10,10,10
 ```
@@ -403,6 +399,7 @@ OPTIONS:
 ```
 
 For example, you can run:
+
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test upsc -c testCohort2 -p 9,9,9
 ```
@@ -426,11 +423,14 @@ OPTIONS:
 ```
 
 For example, you can run:
+
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test rmsc -c testCohort2
 ```
 
-{% hint style="danger" %} This command removes the cohort from the node servers and it is not be possible to revert this action. {% endhint %}
+{% hint style="danger" %}
+This command removes the cohort from the node servers and it is not be possible to revert this action.
+{% endhint %}
 
 ### cohorts-patient-list
 
@@ -452,11 +452,13 @@ OPTIONS:
 ```
 
 For example, you can run:
+
 ```text
 docker-compose -f docker-compose.tools.yml run medco-cli-client --user test --password test cpl -c testCohort
 ```
 
 You will get something like:
+
 ```text
 Node idx 0
 1137,1138,1139,1140
