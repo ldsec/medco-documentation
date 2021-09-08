@@ -65,9 +65,9 @@ Get them from the Google Drive folder and execute the script.
 cd /opt/medco
 ./test/data/download.sh spo_synthetic
 
-./scripts/load-spo-i2b2-data.sh localhost i2b2medcosrv0 medcoconnectorsrv0
-./scripts/load-spo-i2b2-data.sh localhost i2b2medcosrv1 medcoconnectorsrv1
-./scripts/load-spo-i2b2-data.sh localhost i2b2medcosrv2 medcoconnectorsrv2
+./scripts/load-spo-i2b2-data.sh test/data/spo-synthetic/node_0 localhost i2b2medcosrv0 medcoconnectorsrv0
+./scripts/load-spo-i2b2-data.sh test/data/spo-synthetic/node_1 localhost i2b2medcosrv1 medcoconnectorsrv1
+./scripts/load-spo-i2b2-data.sh test/data/spo-synthetic/node_2 localhost i2b2medcosrv2 medcoconnectorsrv2
 ```
 
 ## Update certificate
