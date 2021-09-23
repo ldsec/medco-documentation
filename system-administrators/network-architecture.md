@@ -17,5 +17,5 @@ The following ports should be accessible by the listed entities, which makes IP 
 * Port 22, 5432 \(TCP\): System Administrators
 * Port 80 \(TCP\): End-Users \(HTTP automatic redirect to HTTPS \(443\)\)
 * Port 443 \(TCP\): System Administrators, End-Users, Other MedCo Nodes
-* Ports 2000-2001 \(TCP\): Other MedCo Nodes
+* Ports 2001-2002 \(TCP\): Other MedCo Nodes
 
