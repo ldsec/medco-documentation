@@ -17,13 +17,13 @@ This deployment profile deploys 3 MedCo nodes on a single machine for testing pu
 
 ### Building the docker image for the backend:
 
-Enter the directory containing the local version of the glowing-bear repository on the computer where you will deploy the software. 
+Enter the directory containing the local version of the backend repository on the computer where you will deploy the software. 
 The first step is to select the commit for which one wants a docker image to be built.
 Once this is done go to the deployments/dev-local-3nodes/ directory and run the `make build` command. This will build a docker image with the following title:
 
 ```
 name:				tag:
-medco/glowing-bear-medco	dev 
+ghcr.io/ldsec/medco dev
 ```
 
 You can check if this image exists by running `docker image ls`.
